@@ -1,5 +1,4 @@
 #define MAX 3
-#include <random>
 #include <iostream>
 using namespace std;
 #include "Tabuleiro.h"
