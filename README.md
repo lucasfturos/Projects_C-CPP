@@ -6,4 +6,4 @@ Apenas projetos focados nos meus estudos em C/C++
 
  - SnakeGame é o jogo da cobrinha feito em C. Foi feito no Linux.
 
- - Natal code é uma árvore de Natal feita em C. Foi feita no Windows e testada no Linux.
+ - Natal code é uma árvore de Natal feita em C. Foi feito no Windows e testada no Linux.
