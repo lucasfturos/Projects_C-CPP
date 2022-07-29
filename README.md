@@ -7,3 +7,5 @@ Apenas projetos focados nos meus estudos em C/C++
  - SnakeGame é o jogo da cobrinha feito em C. Foi feito no Linux.
 
  - Natal code é uma árvore de Natal feita em C. Foi feito no Windows e testada no Linux.
+ 
+ - TrianguloOpenGL é um triângulo colorido feito em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux
