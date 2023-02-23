@@ -1,6 +1,13 @@
-#ifdef PENDULO_HPP
-#define PENDULO_HPP
 
 #include <ncurses.h>
 
-#endif // PENDULO_HPP
+#include <cmath>
+#include <iostream>
+
+#include "../timer/timer.hpp"
+
+class Pendulo {
+public:
+    void draw();
+};
+

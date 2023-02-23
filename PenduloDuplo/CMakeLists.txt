@@ -13,12 +13,12 @@ set(CMAKE_CXX_STANDARD 14)            # Enable c++14 standard
 set(PROJECT_HEADER                    # Directory of all header file
   src/timer/timer.hpp
   src/pendulo/pendulo.hpp
-  src/draw/draw.hpp
+  #src/draw/draw.hpp
   )
 
 set(PROJECT_SOURCE                    # Directory of all source file
   src/pendulo/pendulo.cpp
-  src/draw/draw.cpp
+  #src/draw/draw.cpp
   src/main.cpp
   )
 
