@@ -14,4 +14,5 @@
 
    - Esfera3DOpenGL é uma esfera feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
 
-   - Cubo3DASCII é um cubo feito em C++ sendo feito o plot em modo texto. Foi feito no Linux
+   - Cubo3DASCII é um cubo feito em C++ sendo feito o plot em modo texto. Foi feito no Linux.
+     - OBS: Este projeto foi feito com base no vídeo do canal [Servet Guinarogiu](https://youtu.be/p09i_hoFdd0) para praticar C++.
