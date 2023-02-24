@@ -1,12 +1,16 @@
 #include "draw.hpp"
 
-void Draw::gotoxy(std::uint32_t x, std::uint32_t y) {
-    std::cout << "\033[%d;%dH" << y + 1 << x + 1;
+void Draw::gotoxy(short x, short y) {
+    SetCursorPos(x, y);
+}
+
+void Draw::SetCursorPos(std::uint32_t XPos, std::uint32_t YPos) {
+    printf("\033[%d;%dH", YPos + 1, XPos + 1); 
 }
 
 void Draw::drawPoint(
-    std::array<std::array<std::string, HEIGHT / dH>, WIDTH / dW + 1> platno,
-    std::uint32_t A, std::uint32_t B, std::string c) {
+    std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    std::uint32_t A, std::uint32_t B, char c) {
     if (A < 0 || B < 0 || A >= WIDTH / dW || B >= HEIGHT / dH) {
         return;
     };
@@ -14,9 +18,9 @@ void Draw::drawPoint(
 }
 
 void Draw::drawLine(
-    std::array<std::array<std::string, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
     std::uint32_t A, std::uint32_t B, std::uint32_t C, std::uint32_t D,
-    std::string c) {
+    char c) {
     // Ordenação
     if (A > C) {
         std::uint32_t t;
@@ -57,9 +61,9 @@ void Draw::drawLine(
 }
 
 void Draw::plotLineLow(
-    std::array<std::array<std::string, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
     std::uint32_t x0, std::uint32_t y0, std::uint32_t x1, std::uint32_t y1,
-    std::string c) {
+    char c) {
     std::uint32_t dx = x1 - x0, dy = y1 - y0, yi = 1;
     if (dy < 0) {
         yi = -1;
@@ -79,9 +83,9 @@ void Draw::plotLineLow(
 }
 
 void Draw::plotLineHigh(
-    std::array<std::array<std::string, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
     std::uint32_t x0, std::uint32_t y0, std::uint32_t x1, std::uint32_t y1,
-    std::string c) {
+    char c) {
     std::uint32_t dx = x1 - x0, dy = y1 - y0, xi = 1;
     if (dx < 0) {
         xi = -1;

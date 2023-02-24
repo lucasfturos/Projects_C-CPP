@@ -3,4 +3,5 @@
 int main () {
     Pendulo pendulo;
     pendulo.draw();
+    return 0;
 }
