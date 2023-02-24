@@ -22,8 +22,8 @@ class Pendulo {
 
     float l1{150.0f}, l2{150.0f},  // tamanho da corda
         m1{10.0f}, m2{10.0f},      // massa da esfera na extremidade
-        O1{2.0f * M_PI / 2.0f},    // thetas O1 e O2 do angulo
-        O2{2.0f * M_PI / 3.0f}, 
+        O1{2.0f * pi / 2.0f},    // thetas O1 e O2 do angulo
+        O2{2.0f * pi / 3.0f}, 
         w1{0.0f}, w2{0.0f},        // velocidade angular
         g{9.81f};                  // aceleração gravitacional
  
