@@ -1,19 +1,23 @@
-
 #include "draw.hpp"
 
 void Draw::gotoxy(std::uint32_t x, std::uint32_t y) {
     std::cout << "\033[%d;%dH" << y + 1 << x + 1;
 }
 
-void Draw::drawPoint(char platno[HEIGHT / dH][WIDTH / dW + 1], std::uint32_t A,
-                     std::uint32_t B, char c) {
-    if (A < 0 || B < 0 || A >= WIDTH / dW || B >= HEIGHT / dH) return;
+void Draw::drawPoint(
+    std::array<std::array<std::string, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    std::uint32_t A, std::uint32_t B, std::string c) {
+    if (A < 0 || B < 0 || A >= WIDTH / dW || B >= HEIGHT / dH) {
+        return;
+    };
     platno[B][A] = c;
 }
 
-void Draw::drawLine(char platno[HEIGHT / dH][WIDTH / dW + 1], std::uint32_t A,
-                    std::uint32_t B, std::uint32_t C, std::uint32_t D, char c) {
-    // sorting
+void Draw::drawLine(
+    std::array<std::array<std::string, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    std::uint32_t A, std::uint32_t B, std::uint32_t C, std::uint32_t D,
+    std::string c) {
+    // Ordenação
     if (A > C) {
         std::uint32_t t;
         t = A;
@@ -23,10 +27,11 @@ void Draw::drawLine(char platno[HEIGHT / dH][WIDTH / dW + 1], std::uint32_t A,
         B = D;
         D = t;
     }
-    // algorithm
+    // algoritmo
     if (B == D) {
-        for (std::uint32_t i = A; i <= C; i++)
+        for (std::uint32_t i = A; i <= C; i++) {
             drawPoint(platno, i, B, c);  // platno[B][i]=c;
+        }
         return;
     }
     if (A == C) {
@@ -35,23 +40,26 @@ void Draw::drawLine(char platno[HEIGHT / dH][WIDTH / dW + 1], std::uint32_t A,
             min = D;
             max = B;
         }
-        for (std::uint32_t i = min; i <= max; i++)
+        for (std::uint32_t i = min; i <= max; i++) {
             drawPoint(platno, A, i, c);  // platno[i][A]=c;
+        }
         return;
     }
-    if (abs(D - B) < abs(C - A))
+    if (std::abs(static_cast<int>(D - B)) < std::abs(static_cast<int>(C - A))) {
         plotLineLow(platno, A, B, C, D, c);
-    else {
-        if (B > D)
+    } else {
+        if (B > D) {
             plotLineHigh(platno, C, D, A, B, c);
-        else
+        } else {
             plotLineHigh(platno, A, B, C, D, c);
+        }
     }
 }
 
-void Draw::plotLineLow(char platno[HEIGHT / dH][WIDTH / dW + 1],
-                       std::uint32_t x0, std::uint32_t y0, std::uint32_t x1,
-                       std::uint32_t y1, char c) {
+void Draw::plotLineLow(
+    std::array<std::array<std::string, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    std::uint32_t x0, std::uint32_t y0, std::uint32_t x1, std::uint32_t y1,
+    std::string c) {
     std::uint32_t dx = x1 - x0, dy = y1 - y0, yi = 1;
     if (dy < 0) {
         yi = -1;
@@ -70,9 +78,10 @@ void Draw::plotLineLow(char platno[HEIGHT / dH][WIDTH / dW + 1],
     }
 }
 
-void Draw::plotLineHigh(char platno[HEIGHT / dH][WIDTH / dW + 1],
-                        std::uint32_t x0, std::uint32_t y0, std::uint32_t x1,
-                        std::uint32_t y1, char c) {
+void Draw::plotLineHigh(
+    std::array<std::array<std::string, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    std::uint32_t x0, std::uint32_t y0, std::uint32_t x1, std::uint32_t y1,
+    std::string c) {
     std::uint32_t dx = x1 - x0, dy = y1 - y0, xi = 1;
     if (dx < 0) {
         xi = -1;
