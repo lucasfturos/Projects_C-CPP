@@ -18,12 +18,11 @@ void Pendulo::draw() {
             trace[i][j] = 0;
         }
     }
-    
+
     // loop
     while (true) {
         system("clear");
         d.gotoxy(0, 0);
-
         // Tempo
         accumulator += currentTime - frameStart;
         frameStart = currentTime;
@@ -68,7 +67,6 @@ void Pendulo::draw() {
                 if (platno[i][j] == '@') {
                     trace[i][j] = fps;
                 }
-
                 if (trace[i][j] >= 3 * static_cast<std::uint32_t>(fps / 4)) {
                     platno[i][j] = ':';
                 } else if (trace[i][j] >=
@@ -102,7 +100,7 @@ void Pendulo::draw() {
         }
         std::cout << "\x1b[H";
         for (std::size_t k{}; k < (HEIGHT / dH) * (WIDTH / dW); ++k) {
-            std::putchar(k % (WIDTH / dW + 1) ? buffer[k] : 10);
+            std::putchar(k % (WIDTH / dW + 1) ? buffer[k] : 0);
         }
 
     }
