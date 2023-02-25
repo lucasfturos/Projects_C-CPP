@@ -11,9 +11,7 @@ class Draw {
     static constexpr std::uint32_t dW{8};
     static constexpr std::uint32_t dH{16};
 
-    void gotoxy(short x, short y);
-
-    void SetCursorPos(std::uint32_t XPos, std::uint32_t YPos);
+    void gotoxy(std::uint32_t x, std::uint32_t y);
 
     void drawPoint(
         std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,

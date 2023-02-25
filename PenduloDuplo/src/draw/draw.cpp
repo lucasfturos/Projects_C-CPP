@@ -1,11 +1,8 @@
 #include "draw.hpp"
 
-void Draw::gotoxy(short x, short y) {
-    SetCursorPos(x, y);
-}
-
-void Draw::SetCursorPos(std::uint32_t XPos, std::uint32_t YPos) {
-    printf("\033[%d;%dH", YPos + 1, XPos + 1); 
+void Draw::gotoxy(std::uint32_t x, std::uint32_t y) {
+    std::cout << "\x1b[2J";
+    std::cout << "\033[" << y + 1 << ";" << x + 1 << "H";
 }
 
 void Draw::drawPoint(
