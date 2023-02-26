@@ -18,7 +18,6 @@ void Pendulo::draw() {
             trace[i][j] = 0;
         }
     }
-
     // loop
     while (true) {
         system("clear");
@@ -67,12 +66,12 @@ void Pendulo::draw() {
                 if (platno[i][j] == '@') {
                     trace[i][j] = fps;
                 }
-                if (trace[i][j] >= 3 * static_cast<std::uint32_t>(fps / 4)) {
+                if (trace[i][j] >= 3 * static_cast<int>(fps / 4)) {
                     platno[i][j] = ':';
                 } else if (trace[i][j] >=
-                           2 * static_cast<std::uint32_t>(fps / 4)) {
+                           2 * static_cast<int>(fps / 4)) {
                     platno[i][j] = '.';
-                } else if (trace[i][j] >= static_cast<std::uint32_t>(fps / 4)) {
+                } else if (trace[i][j] >= static_cast<int>(fps / 4)) {
                     (i + j) % 2 ? platno[i][j] = '.' : platno[i][j] = ' ';
                 } else {
                     platno[i][j] = ' ';
@@ -80,11 +79,11 @@ void Pendulo::draw() {
             }
         }
 
-        std::uint32_t x1 = (WIDTH / 2 + sin(O1) * l1 + dW * 0.5f) / dW;
-        std::uint32_t y1 = (cos(O1) * l1 + dH * 0.5f) / dH + HEIGHT / dH / 2;
+        int x1 = (WIDTH / 2 + sin(O1) * l1 + dW * 0.5f) / dW;
+        int y1 = (cos(O1) * l1 + dH * 0.5f) / dH + HEIGHT / dH / 2;
 
-        std::uint32_t x2 = x1 + (sin(O2) * l2 + dW * 0.5f) / dW;
-        std::uint32_t y2 = y1 + (cos(O2) * l2 + dH * 0.5f) / dH;
+        int x2 = x1 + (sin(O2) * l2 + dW * 0.5f) / dW;
+        int y2 = y1 + (cos(O2) * l2 + dH * 0.5f) / dH;
 
         d.drawLine(platno, WIDTH / 2 / dW, HEIGHT / dH / 2, x1, y1, '#');
         d.drawLine(platno, x1, y1, x2, y2, '#');
@@ -95,12 +94,8 @@ void Pendulo::draw() {
         
         for (std::size_t i{}; i < HEIGHT / dH; i++) {
             for (std::size_t j{}; j < WIDTH / dW; ++j) {
-                buffer[sizeBuff + j] = platno[i][j];
+                std::cout << platno[i][j];
             }
-        }
-        std::cout << "\x1b[H";
-        for (std::size_t k{}; k < (HEIGHT / dH) * (WIDTH / dW); ++k) {
-            std::putchar(k % (WIDTH / dW + 1) ? buffer[k] : 0);
         }
 
     }

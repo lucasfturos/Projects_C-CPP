@@ -1,8 +1,6 @@
 #pragma once
 
-#include <array>
 #include <cstdio>
-#include <cstring>
 #include <iostream>
 
 #include "../draw/draw.hpp"
@@ -28,16 +26,13 @@ class Pendulo : public Draw {
         w1{0.0f}, w2{0.0f},        // velocidade angular
         g{9.81f};                  // aceleração gravitacional
     
-    static constexpr std::uint32_t WIDTH{Draw::WIDTH};
-    static constexpr std::uint32_t HEIGHT{Draw::HEIGHT};
-    static constexpr std::uint32_t dW{Draw::dW};
-    static constexpr std::uint32_t dH{Draw::dH};
-    static constexpr std::uint32_t sizeBuff{(HEIGHT / dH) * (WIDTH / dW + 1)};
+    static constexpr int WIDTH{Draw::WIDTH};
+    static constexpr int HEIGHT{Draw::HEIGHT};
+    static constexpr int dW{Draw::dW};
+    static constexpr int dH{Draw::dH};
 
-    std::array<char, sizeBuff> buffer;
-    std::array<char, sizeBuff> bufferT;
+    std::array<std::array<int, HEIGHT / dH>, WIDTH / dW> trace;
     std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno;
-    std::array<std::array<std::uint32_t, HEIGHT / dH>, WIDTH / dW> trace;
 
    public:
     void draw();

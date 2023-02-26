@@ -6,30 +6,30 @@
 
 class Draw {
    public:
-    static constexpr std::uint32_t WIDTH{800};
-    static constexpr std::uint32_t HEIGHT{600};
-    static constexpr std::uint32_t dW{8};
-    static constexpr std::uint32_t dH{16};
+    static constexpr int WIDTH{800};
+    static constexpr int HEIGHT{600};
+    static constexpr int dW{8};
+    static constexpr int dH{16};
 
-    void gotoxy(std::uint32_t x, std::uint32_t y);
+    void gotoxy(short x, short y);
 
     void drawPoint(
         std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
-        std::uint32_t A, std::uint32_t B, char c);
+        int A, int B, char c);
 
     void drawLine(
         std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
-        std::uint32_t A, std::uint32_t B, std::uint32_t C, std::uint32_t D,
+        int A, int B, int C, int D,
         char c);
 
-   private:
+   protected:
     void plotLineLow(
         std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
-        std::uint32_t x0, std::uint32_t y0, std::uint32_t x1, std::uint32_t y1,
+        int x0, int y0, int x1, int y1,
         char c);
 
     void plotLineHigh(
         std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
-        std::uint32_t x0, std::uint32_t y0, std::uint32_t x1, std::uint32_t y1,
+        int x0, int y0, int x1, int y1,
         char c);
 };

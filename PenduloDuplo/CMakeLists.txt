@@ -32,8 +32,3 @@ add_executable(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} 
   PRIVATE src
 )
-
-# Specify libraries or flags to use when linking a given target and/or its dependents
-#target_link_libraries(${PROJECT_NAME}
-#  PRIVATE ncurses
-#)
