@@ -14,22 +14,21 @@ class Draw {
     void gotoxy(short x, short y);
 
     void drawPoint(
-        std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
+        char plan[HEIGHT / dH][WIDTH / dW + 1],
         int A, int B, char c);
 
     void drawLine(
-        std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
+        char plan[HEIGHT / dH][WIDTH / dW + 1],
         int A, int B, int C, int D,
         char c);
 
-   protected:
     void plotLineLow(
-        std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
+        char plan[HEIGHT / dH][WIDTH / dW + 1],
         int x0, int y0, int x1, int y1,
         char c);
 
     void plotLineHigh(
-        std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
+        char plan[HEIGHT / dH][WIDTH / dW + 1],
         int x0, int y0, int x1, int y1,
         char c);
 };

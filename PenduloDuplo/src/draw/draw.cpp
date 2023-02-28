@@ -1,20 +1,20 @@
 #include "draw.hpp"
 
 void Draw::gotoxy(short x, short y) {
-    printf("\033[%d;%dH", y + 1, x + 1);}
-
+    printf("\033[%d;%dH", y + 1, x + 1);
+}
 
 void Draw::drawPoint(
-    std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    char plan[HEIGHT / dH][WIDTH / dW + 1],
     int A, int B, char c) {
     if (A < 0 || B < 0 || A >= WIDTH / dW || B >= HEIGHT / dH) {
         return;
     };
-    platno[B][A] = c;
+    plan[B][A] = c;
 }
 
 void Draw::drawLine(
-    std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    char plan[HEIGHT / dH][WIDTH / dW + 1],
     int A, int B, int C, int D,
     char c) {
     // Ordenação
@@ -30,7 +30,7 @@ void Draw::drawLine(
     // algoritmo
     if (B == D) {
         for (int i = A; i <= C; i++) {
-            drawPoint(platno, i, B, c);  // platno[B][i]=c;
+            drawPoint(plan, i, B, c);  // plan[B][i]=c;
         }
         return;
     }
@@ -41,23 +41,23 @@ void Draw::drawLine(
             max = B;
         }
         for (int i = min; i <= max; i++) {
-            drawPoint(platno, A, i, c);  // platno[i][A]=c;
+            drawPoint(plan, A, i, c);  // plan[i][A]=c;
         }
         return;
     }
     if (std::abs(static_cast<int>(D - B)) < std::abs(static_cast<int>(C - A))) {
-        plotLineLow(platno, A, B, C, D, c);
+        plotLineLow(plan, A, B, C, D, c);
     } else {
         if (B > D) {
-            plotLineHigh(platno, C, D, A, B, c);
+            plotLineHigh(plan, C, D, A, B, c);
         } else {
-            plotLineHigh(platno, A, B, C, D, c);
+            plotLineHigh(plan, A, B, C, D, c);
         }
     }
 }
 
 void Draw::plotLineLow(
-    std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    char plan[HEIGHT / dH][WIDTH / dW + 1],
     int x0, int y0, int x1, int y1,
     char c) {
     int dx = x1 - x0, dy = y1 - y0, yi = 1;
@@ -69,7 +69,7 @@ void Draw::plotLineLow(
     int y = y0;
 
     for (int x = x0; x <= x1; x++) {
-        drawPoint(platno, x, y, c);
+        drawPoint(plan, x, y, c);
         if (D > 0) {
             y += yi;
             D -= 2 * dx;
@@ -79,7 +79,7 @@ void Draw::plotLineLow(
 }
 
 void Draw::plotLineHigh(
-    std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno,
+    char plan[HEIGHT / dH][WIDTH / dW + 1],
     int x0, int y0, int x1, int y1,
     char c) {
     int dx = x1 - x0, dy = y1 - y0, xi = 1;
@@ -91,11 +91,12 @@ void Draw::plotLineHigh(
     int x = x0;
 
     for (int y = y0; y <= y1; y++) {
-        drawPoint(platno, x, y, c);
+        drawPoint(plan, x, y, c);
         if (D > 0) {
             x += xi;
             D -= 2 * dy;
         }
         D += 2 * dx;
     }
+    return;
 }

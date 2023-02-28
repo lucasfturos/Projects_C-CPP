@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cstdio>
+#include <cstdlib>
 #include <iostream>
 
 #include "../draw/draw.hpp"
@@ -9,7 +9,6 @@
 class Pendulo : public Draw {
    protected:
     Timer tmr;
-    Draw d;
 
     static constexpr float pi{3.14159265358979323846f};
     static constexpr float fps{300.0f};
@@ -31,9 +30,15 @@ class Pendulo : public Draw {
     static constexpr int dW{Draw::dW};
     static constexpr int dH{Draw::dH};
 
-    std::array<std::array<int, HEIGHT / dH>, WIDTH / dW> trace;
-    std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> platno;
+    //std::array<std::array<int, HEIGHT / dH>, WIDTH / dW> trace;
+    //std::array<std::array<char, HEIGHT / dH>, WIDTH / dW + 1> plan;
+    int trace[HEIGHT / dH][WIDTH / dW];
+    char plan[HEIGHT / dH][WIDTH / dW + 1];
 
+    void planSetup();
+    void traceSetup();
+    void tempoSetup();
+    void formulaSetup();
    public:
     void draw();
 };
