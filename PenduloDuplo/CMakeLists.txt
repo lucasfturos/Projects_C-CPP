@@ -11,14 +11,14 @@ project(${PROJECT_NAME})              # Create project "PenduloDuplo"
 set(CMAKE_CXX_STANDARD 11)            # Enable c++11 standard
 
 set(PROJECT_HEADER                    # Directory of all header file
-  src/timer/timer.hpp
   src/pendulo/pendulo.hpp
-  src/draw/draw.hpp
+  src/timer/timer.hpp
+  src/plot/plot.hpp
 )
 
 set(PROJECT_SOURCE                    # Directory of all source file
   src/pendulo/pendulo.cpp
-  src/draw/draw.cpp
+  src/plot/plot.cpp
   src/main.cpp
 )
 

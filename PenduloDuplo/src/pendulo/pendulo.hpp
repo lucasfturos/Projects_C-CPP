@@ -1,19 +1,19 @@
 #ifndef PENDULO_HPP
 #define PENDULO_HPP
 
-#include <cstdlib>
-#include <cstring>
+#include <cstdio>
+#include <vector>
 #include <iostream>
 
+#include "../plot/plot.hpp"
 #include "../timer/timer.hpp"
-#include "../draw/draw.hpp"
 
-class Pendulo : public Draw, Timer {
+class Pendulo : public Plot, Timer {
    protected:
-    static constexpr int WIDTH{Draw::WIDTH};
-    static constexpr int HEIGHT{Draw::HEIGHT};
-    static constexpr int dW{Draw::dW};
-    static constexpr int dH{Draw::dH};
+    static constexpr int WIDTH{Plot::WIDTH};
+    static constexpr int HEIGHT{Plot::HEIGHT};
+    static constexpr int dW{Plot::dW};
+    static constexpr int dH{Plot::dH};
 
     static constexpr float pi{3.14159265358979323846f};
     static constexpr float fps{300.0f};
@@ -26,21 +26,20 @@ class Pendulo : public Draw, Timer {
     float l1{150.0f}, l2{150.0f},  // tamanho da corda
         m1{10.0f}, m2{10.0f},      // massa da esfera na extremidade
         O1{2.0f * pi / 2.0f},      // thetas O1 e O2 do angulo
-        O2{2.0f * pi / 3.0f}, 
-        w1{0.0f}, w2{0.0f},        // velocidade angular
-        g{9.81f};                  // aceleração gravitacional
-    
-    std::vector<std::vector<int>> trace;
-    std::vector<std::vector<char>> plan;
+        O2{2.0f * pi / 3.0f}, w1{0.0f}, w2{0.0f},  // velocidade angular
+        g{9.81f};                                  // aceleração gravitacional
 
-    void planSetup();
-    void traceSetup();
+    std::vector<std::vector<int>> trace;
+    char canvas[HEIGHT / dH][WIDTH / dW + 1];
+
     void tempoSetup();
     void formulaSetup();
-    void setupDrawing();
 
    public:
+    void canvasSetup();
+    void traceSetup();
     void draw();
 };
 
-#endif // !PENDULO_HPP
+#endif  // !PENDULO_HPP
+
