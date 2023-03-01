@@ -7,6 +7,4 @@ int main() {
     while (true) {
         p.draw();
     }
-    return 0;
 }
-

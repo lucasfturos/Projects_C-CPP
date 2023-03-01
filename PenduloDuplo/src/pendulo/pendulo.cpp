@@ -1,14 +1,14 @@
 #include "pendulo.hpp"
 
 void Pendulo::canvasSetup() {
-    for (int i{}; i < HEIGHT / dH - 1; ++i) {
+    for (std::size_t i{}; i < HEIGHT / dH - 1; ++i) {
         canvas[i][WIDTH / dW] = '\n';
     }
 
     canvas[HEIGHT / dH - 1][WIDTH / dW] = '\0';
 
-    for (int i{}; i < HEIGHT / dH; ++i) {
-        for (int j{}; j < WIDTH / dW; ++j) {
+    for (std::size_t i{}; i < HEIGHT / dH; ++i) {
+        for (std::size_t j{}; j < WIDTH / dW; ++j) {
             canvas[i][j] = ' ';
         }
     }
@@ -16,12 +16,12 @@ void Pendulo::canvasSetup() {
 
 void Pendulo::traceSetup() {
     trace.resize(HEIGHT / dH);
-    for (int k{}; k < trace.size(); k++) {
+    for (std::size_t k{}; k < trace.size(); ++k) {
         trace[k].resize(WIDTH / dW);
     }
 
-    for (int i{}; i < HEIGHT / dH; i++) {
-        for (int j{}; j < WIDTH / dW; ++j) {
+    for (std::size_t i{}; i < HEIGHT / dH; ++i) {
+        for (std::size_t j{}; j < WIDTH / dW; ++j) {
             trace[i][j] = 0;
         }
     }
@@ -60,8 +60,8 @@ void Pendulo::formulaSetup() {
 
         accumulator -= dt;
 
-        for (int i{}; i < HEIGHT / dH; i++) {
-            for (int j{}; j < WIDTH / dW; ++j) {
+        for (std::size_t i{}; i < HEIGHT / dH; ++i) {
+            for (std::size_t j{}; j < WIDTH / dW; ++j) {
                 if (trace[i][j] > 0) {
                     trace[i][j]--;
                 }
@@ -71,15 +71,15 @@ void Pendulo::formulaSetup() {
 }
 
 void Pendulo::draw() {
-    system("clear || cls");
+    system("clear");
+
     formulaSetup();
     // drawing
-    for (int i{}; i < HEIGHT / dH; i++) {
-        for (int j{}; j < WIDTH / dW; ++j) {
+    for (std::size_t i{}; i < HEIGHT / dH; ++i) {
+        for (std::size_t j{}; j < WIDTH / dW; ++j) {
             if (canvas[i][j] == '@') {
                 trace[i][j] = fps;
             }
-
             if (trace[i][j] >= 3 * static_cast<int>(fps / 4)) {
                 canvas[i][j] = ':';
             } else if (trace[i][j] >= 2 * static_cast<int>(fps / 4)) {
@@ -97,11 +97,12 @@ void Pendulo::draw() {
     int x2 = x1 + (sin(O2) * l2 + dW * 0.5f) / dW;
     int y2 = y1 + (cos(O2) * l2 + dH * 0.5f) / dH;
 
-    Plot::drawLine(canvas, WIDTH / dW / 2, HEIGHT / dH / 2, x1, y1, '#');
+    Plot::drawLine(canvas, WIDTH / 2 / dW, HEIGHT / dH / 2, x1, y1, '#');
     Plot::drawLine(canvas, x1, y1, x2, y2, '#');
 
-    Plot::drawPoint(canvas, WIDTH / 2 / dW, HEIGHT / dH / 2, 'O');
+    Plot::drawPoint(canvas, WIDTH / dW / 2, HEIGHT / dH / 2, 'O');
     Plot::drawPoint(canvas, x1, y1, '@');
     Plot::drawPoint(canvas, x2, y2, '@');
-    puts(canvas[0]);
+
+    std::puts(canvas[0]);
 }
