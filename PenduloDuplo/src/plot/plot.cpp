@@ -1,6 +1,6 @@
-#include "draw.hpp"
+#include "plot.hpp"
 
-void Draw::drawPoint(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
+void Plot::drawPoint(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
                      char c) {
     if (A < 0 || B < 0 || A >= WIDTH / dW || B >= HEIGHT / dH) {
         return;
@@ -8,7 +8,7 @@ void Draw::drawPoint(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
     canvas[B][A] = c;
 }
 
-void Draw::drawLine(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
+void Plot::drawLine(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
                     int C, int D, char c) {
     // Ordenação
     if (A > C) {
@@ -49,7 +49,7 @@ void Draw::drawLine(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
     }
 }
 
-void Draw::plotLineLow(char canvas[HEIGHT / dH][WIDTH / dW + 1], int x0, int y0,
+void Plot::plotLineLow(char canvas[HEIGHT / dH][WIDTH / dW + 1], int x0, int y0,
                        int x1, int y1, char c) {
     int dx = x1 - x0, dy = y1 - y0, yi = 1;
     if (dy < 0) {
@@ -69,7 +69,7 @@ void Draw::plotLineLow(char canvas[HEIGHT / dH][WIDTH / dW + 1], int x0, int y0,
     }
 }
 
-void Draw::plotLineHigh(char canvas[HEIGHT / dH][WIDTH / dW + 1], int x0,
+void Plot::plotLineHigh(char canvas[HEIGHT / dH][WIDTH / dW + 1], int x0,
                         int y0, int x1, int y1, char c) {
     int dx = x1 - x0, dy = y1 - y0, xi = 1;
     if (dx < 0) {

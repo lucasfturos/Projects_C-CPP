@@ -1,32 +1,30 @@
 #include "pendulo.hpp"
 
 void Pendulo::canvasSetup() {
-    for (std::size_t i{}; i < HEIGHT / dH - 1; ++i) {
+    for (int i{}; i < HEIGHT / dH - 1; ++i) {
         canvas[i][WIDTH / dW] = '\n';
     }
 
     canvas[HEIGHT / dH - 1][WIDTH / dW] = '\0';
 
-    for (std::size_t i{}; i < HEIGHT / dH; ++i) {
-        for (std::size_t j{}; j < WIDTH / dW; ++j) {
+    for (int i{}; i < HEIGHT / dH; ++i) {
+        for (int j{}; j < WIDTH / dW; ++j) {
             canvas[i][j] = ' ';
         }
     }
-    return;
 }
 
 void Pendulo::traceSetup() {
     trace.resize(HEIGHT / dH);
-    for (std::size_t k{}; k < trace.size(); k++) {
+    for (int k{}; k < trace.size(); k++) {
         trace[k].resize(WIDTH / dW);
     }
 
-    for (std::size_t i{}; i < HEIGHT / dH; i++) {
-        for (std::size_t j{}; j < WIDTH / dW; ++j) {
+    for (int i{}; i < HEIGHT / dH; i++) {
+        for (int j{}; j < WIDTH / dW; ++j) {
             trace[i][j] = 0;
         }
     }
-    return;
 }
 
 void Pendulo::tempoSetup() {
@@ -55,15 +53,15 @@ void Pendulo::formulaSetup() {
 
         // O tempo esta com uma aceleração de 10 vezes por segundo para
         // melhorar o efeito
-        w1 += 10 * dt * alpha1;
-        w2 += 10 * dt * alpha2;
+        w1 += 10 * dt * static_cast<float>(alpha1);
+        w2 += 10 * dt * static_cast<float>(alpha2);
         O1 += 10 * dt * w1;
         O2 += 10 * dt * w2;
 
         accumulator -= dt;
 
-        for (std::size_t i{}; i < HEIGHT / dH; i++) {
-            for (std::size_t j{}; j < WIDTH / dW; ++j) {
+        for (int i{}; i < HEIGHT / dH; i++) {
+            for (int j{}; j < WIDTH / dW; ++j) {
                 if (trace[i][j] > 0) {
                     trace[i][j]--;
                 }
@@ -73,15 +71,15 @@ void Pendulo::formulaSetup() {
 }
 
 void Pendulo::draw() {
-    system("clear");
-
+    system("clear || cls");
     formulaSetup();
     // drawing
-    for (std::size_t i{}; i < HEIGHT / dH; i++) {
-        for (std::size_t j{}; j < WIDTH / dW; ++j) {
+    for (int i{}; i < HEIGHT / dH; i++) {
+        for (int j{}; j < WIDTH / dW; ++j) {
             if (canvas[i][j] == '@') {
                 trace[i][j] = fps;
             }
+
             if (trace[i][j] >= 3 * static_cast<int>(fps / 4)) {
                 canvas[i][j] = ':';
             } else if (trace[i][j] >= 2 * static_cast<int>(fps / 4)) {
@@ -99,11 +97,11 @@ void Pendulo::draw() {
     int x2 = x1 + (sin(O2) * l2 + dW * 0.5f) / dW;
     int y2 = y1 + (cos(O2) * l2 + dH * 0.5f) / dH;
 
-    Plot::drawLine(canvas, WIDTH / 2 / dW, HEIGHT / dH / 2, x1, y1, '#');
+    Plot::drawLine(canvas, WIDTH / dW / 2, HEIGHT / dH / 2, x1, y1, '#');
     Plot::drawLine(canvas, x1, y1, x2, y2, '#');
 
     Plot::drawPoint(canvas, WIDTH / 2 / dW, HEIGHT / dH / 2, 'O');
     Plot::drawPoint(canvas, x1, y1, '@');
     Plot::drawPoint(canvas, x2, y2, '@');
-    std::puts(canvas[0]);
+    puts(canvas[0]);
 }
