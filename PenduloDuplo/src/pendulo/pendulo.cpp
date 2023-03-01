@@ -1,10 +1,15 @@
 #include "pendulo.hpp"
 
 void Pendulo::planSetup() {
+    plan.resize(HEIGHT/dH+1);
+    for (std::size_t k{}; k < plan.size(); k++) {
+        plan[k].resize(WIDTH / dW);
+    }
+
     for (std::size_t i{}; i < HEIGHT / dH - 1; ++i) {
         plan[i][WIDTH / dW] = '\n';
     }
-
+    
     plan[HEIGHT / dH - 1][WIDTH / dW] = '\0';
 
     for (std::size_t i{}; i < HEIGHT / dH; ++i) {
@@ -15,6 +20,11 @@ void Pendulo::planSetup() {
 }
 
 void Pendulo::traceSetup() {
+    trace.resize(HEIGHT / dH);
+    for (std::size_t k{}; k < trace.size(); k++) {
+        trace[k].resize(WIDTH / dW);
+    }
+    
     for (std::size_t i{}; i < HEIGHT / dH; i++) {
         for (std::size_t j{}; j < WIDTH / dW; ++j) {
             trace[i][j] = 0;
@@ -65,53 +75,50 @@ void Pendulo::formulaSetup() {
     }
 }
 
-void Pendulo::draw() {
-    planSetup();
-
-    traceSetup();
- 
-    // loop
-    while (true) {
-        system("clear");
-        Draw::gotoxy(0, 0);
-        
-        formulaSetup();
-
-        // drawing
-        for (std::size_t i{}; i < HEIGHT / dH; i++) {
-            for (std::size_t j{}; j < WIDTH / dW; ++j) {
-                if (plan[i][j] == '@') {
-                    trace[i][j] = fps;
-                }
-                if (trace[i][j] >= 3 * static_cast<int>(fps / 4)) {
-                    plan[i][j] = ':';
-                } else if (trace[i][j] >=
-                           2 * static_cast<int>(fps / 4)) {
-                    plan[i][j] = '.';
-                } else if (trace[i][j] >= static_cast<int>(fps / 4)) {
-                    (i + j) % 2 ? plan[i][j] = '.' : plan[i][j] = ' ';
-                } else {
-                    plan[i][j] = ' ';
-                }
+void Pendulo::setupDrawing() {
+    system("clear");
+    Draw::gotoxy(0, 0);
+    
+    formulaSetup();
+    // drawing
+    for (std::size_t i{}; i < HEIGHT / dH; i++) {
+        for (std::size_t j{}; j < WIDTH / dW; ++j) {
+            if (plan[i][j] == '@') {
+                trace[i][j] = fps;
             }
+            if (trace[i][j] >= 3 * static_cast<int>(fps / 4)) {
+                plan[i][j] = ':';
+            } else if (trace[i][j] >=
+                       2 * static_cast<int>(fps / 4)) {
+                plan[i][j] = '.';
+            } else if (trace[i][j] >= static_cast<int>(fps / 4)) {
+                (i + j) % 2 ? plan[i][j] = '.' : plan[i][j] = ' ';
+            } else {
+                plan[i][j] = ' ';
+            }
+
+    int x1 = (WIDTH / 2 + sin(O1) * l1 + dW * 0.5f) / dW;
+    int y1 = (cos(O1) * l1 + dH * 0.5f) / dH + HEIGHT / dH / 2;
+
+    int x2 = x1 + (sin(O2) * l2 + dW * 0.5f) / dW;
+    int y2 = y1 + (cos(O2) * l2 + dH * 0.5f) / dH;
+
+    Draw::drawLine(plan, WIDTH / 2 / dW, HEIGHT / dH / 2, x1, y1, '#');
+    Draw::drawLine(plan, x1, y1, x2, y2, '#');
+
+    Draw::drawPoint(plan, WIDTH / 2 / dW, HEIGHT / dH / 2, 'O');
+    Draw::drawPoint(plan, x1, y1, '@');
+    Draw::drawPoint(plan, x2, y2, '@');
+    std::cout<< plan[i][j];
         }
-
-        int x1 = (WIDTH / 2 + sin(O1) * l1 + dW * 0.5f) / dW;
-        int y1 = (cos(O1) * l1 + dH * 0.5f) / dH + HEIGHT / dH / 2;
-
-        int x2 = x1 + (sin(O2) * l2 + dW * 0.5f) / dW;
-        int y2 = y1 + (cos(O2) * l2 + dH * 0.5f) / dH;
-
-        Draw::drawLine(plan, WIDTH / 2 / dW, HEIGHT / dH / 2, x1, y1, '#');
-        Draw::drawLine(plan, x1, y1, x2, y2, '#');
-
-        Draw::drawPoint(plan, WIDTH / 2 / dW, HEIGHT / dH / 2, 'O');
-        Draw::drawPoint(plan, x1, y1, '@');
-        Draw::drawPoint(plan, x2, y2, '@');
-
-        // char buffer[(HEIGHT / dH) * ( WIDTH / dW + 1)];
-        std::printf(plan[0]);
-        std::getchar();
     }
 }
 
+void Pendulo::draw() {
+    planSetup();
+    traceSetup();
+    // loop
+    while (true) {
+        setupDrawing();
+    }
+}

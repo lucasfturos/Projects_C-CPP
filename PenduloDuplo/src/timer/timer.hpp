@@ -1,4 +1,6 @@
-#pragma once
+#ifndef  TIMER_HPP
+#define TIMER_HPP
+
 #include <chrono>
 
 class Timer {
@@ -15,3 +17,5 @@ class Timer {
     typedef std::chrono::duration<float, std::ratio<1> > second_;
     std::chrono::time_point<clock_> beg_;
 };
+
+#endif // !TIMER_HPP

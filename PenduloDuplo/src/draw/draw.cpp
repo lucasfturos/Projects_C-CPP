@@ -5,7 +5,7 @@ void Draw::gotoxy(short x, short y) {
 }
 
 void Draw::drawPoint(
-    char plan[HEIGHT / dH][WIDTH / dW + 1],
+    std::vector<std::vector<char>> plan,
     int A, int B, char c) {
     if (A < 0 || B < 0 || A >= WIDTH / dW || B >= HEIGHT / dH) {
         return;
@@ -14,7 +14,7 @@ void Draw::drawPoint(
 }
 
 void Draw::drawLine(
-    char plan[HEIGHT / dH][WIDTH / dW + 1],
+    std::vector<std::vector<char>> plan,
     int A, int B, int C, int D,
     char c) {
     // Ordenação
@@ -57,7 +57,7 @@ void Draw::drawLine(
 }
 
 void Draw::plotLineLow(
-    char plan[HEIGHT / dH][WIDTH / dW + 1],
+    std::vector<std::vector<char>> plan,
     int x0, int y0, int x1, int y1,
     char c) {
     int dx = x1 - x0, dy = y1 - y0, yi = 1;
@@ -79,7 +79,7 @@ void Draw::plotLineLow(
 }
 
 void Draw::plotLineHigh(
-    char plan[HEIGHT / dH][WIDTH / dW + 1],
+    std::vector<std::vector<char>> plan,
     int x0, int y0, int x1, int y1,
     char c) {
     int dx = x1 - x0, dy = y1 - y0, xi = 1;
