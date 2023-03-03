@@ -1,10 +1,6 @@
 #include "pendulo.hpp"
 
 Pendulo::Pendulo() {
-    // Inicialização das variaveis para o tempo
-    frameStart = Timer::elapsed();
-    currentTime = Timer::elapsed();
-
     // Inicializa a area
     for (std::size_t i{}; i < HEIGHT / dH - 1; ++i) {
         canvas[i][WIDTH / dW] = '\n';
@@ -29,6 +25,13 @@ Pendulo::Pendulo() {
             trace[i][j] = 0;
         }
     }
+}
+
+void Pendulo::formulaSetup() {
+    // Inicialização das variaveis para o tempo
+    frameStart = Timer::elapsed();
+    currentTime = Timer::elapsed();
+
     // Configura o tempo de execução
     accumulator += currentTime - frameStart;
     frameStart = currentTime;
@@ -36,9 +39,7 @@ Pendulo::Pendulo() {
     if (accumulator >= 1.0F / 30.0F) {
         accumulator = 1.0F / 30.0F;
     }
-}
 
-void Pendulo::formulaSetup() {
     while (accumulator > dt) {
         // Formula lagrangiana aplicada nos dois pendulos
         float alpha1{static_cast<float>(
@@ -46,6 +47,7 @@ void Pendulo::formulaSetup() {
              2 * m2 * sin(O1 - O2) *
                  (w2 * w2 * l2 + w1 * w1 * l1 * cos(O1 - O2))) /
             (l1 * (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2))))};
+
         float alpha2{static_cast<float>(
             (2 * sin(O1 - O2)) *
             (w1 * w1 * l1 * (m1 + m2) + g * (m1 + m2) * cos(O1) +
@@ -77,7 +79,7 @@ void Pendulo::draw() {
     // drawing
     for (std::size_t i{}; i < HEIGHT / dH; ++i) {
         for (std::size_t j{}; j < WIDTH / dW; ++j) {
-            if (canvas[i][j] == '@') {
+            if (canvas[i][j] == '0') {
                 trace[i][j] = fps;
             }
             if (trace[i][j] >= 3 * static_cast<int>(fps / 4)) {
