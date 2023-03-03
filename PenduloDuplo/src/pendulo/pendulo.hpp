@@ -27,12 +27,15 @@ class Pendulo : private Timer, Plot {
         w1{0.0F}, w2{0.0F};        // velocidade angular
 
     std::vector<std::vector<int>> trace;
-    char canvas[HEIGHT / dH][WIDTH / dW + 1];
 
     void formulaSetup();
 
    public:
     Pendulo();
+    ~Pendulo();
+
+    char canvas[HEIGHT / dH][WIDTH / dW + 1];
+  
     void draw();
 };
 

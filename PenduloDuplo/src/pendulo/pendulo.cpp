@@ -27,6 +27,8 @@ Pendulo::Pendulo() {
     }
 }
 
+Pendulo::~Pendulo() {}
+
 void Pendulo::formulaSetup() {
     // Inicialização das variaveis para o tempo
     frameStart = Timer::elapsed();
@@ -110,6 +112,4 @@ void Pendulo::draw() {
                     static_cast<int>(HEIGHT / dH / 2), 'O');
     Plot::drawPoint(canvas, x1, y1, '0');
     Plot::drawPoint(canvas, x2, y2, '0');
-    std::puts(canvas[0]);
-    std::getchar();
 }
