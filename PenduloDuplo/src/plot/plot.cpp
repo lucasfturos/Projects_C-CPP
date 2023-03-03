@@ -12,7 +12,7 @@ void Plot::drawLine(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
                     int C, int D, char c) {
     // Ordenação
     if (A > C) {
-        int t;
+        int t{};
         t = A;
         A = C;
         C = t;
@@ -87,5 +87,4 @@ void Plot::plotLineHigh(char canvas[HEIGHT / dH][WIDTH / dW + 1], int x0,
         }
         D += 2 * dx;
     }
-    return;
 }

@@ -2,8 +2,6 @@
 
 int main() {
     Pendulo p;
-    p.canvasSetup();
-    p.traceSetup();
     while (true) {
         p.draw();
     }
