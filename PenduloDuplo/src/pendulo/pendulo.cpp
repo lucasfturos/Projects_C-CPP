@@ -3,14 +3,14 @@
 Pendulo::Pendulo() {
   // Inicializa a area
   for (auto i{0}; i < HEIGHT / dH - 1; ++i) {
-    canvas[i][WIDTH / dW] = '\n';
+    canvas[i][WIDTH / dW] = 10; // ascii code \n
   }
 
-  canvas[HEIGHT / dH - 1][WIDTH / dW] = '\0';
+  canvas[HEIGHT / dH - 1][WIDTH / dW] = 0; // ascii code \0
 
   for (auto i{0}; i < HEIGHT / dH; ++i) {
     for (auto j{0}; j < WIDTH / dW; ++j) {
-      canvas[i][j] = ' ';
+      canvas[i][j] = 32; // ascii code space ' '
     }
   }
 
@@ -40,16 +40,16 @@ Pendulo::Pendulo() {
 
   while (accumulator > dt) {
     // Formula lagrangiana aplicada nos pendulos
-    float alpha1{static_cast<float>(
+    alpha1 = static_cast<float>(
         (-g * (2 * m1 + m2) * sin(O1) - g * m2 * sin(O1 - 2 * O2) -
          2 * m2 * sin(O1 - O2) * (w2 * w2 * l2 + w1 * w1 * l1 * cos(O1 - O2))) /
-        (l1 * (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2))))};
+        (l1 * (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2))));
 
-    float alpha2{
+    alpha2 =
         static_cast<float>((2 * sin(O1 - O2)) *
                            (w1 * w1 * l1 * (m1 + m2) + g * (m1 + m2) * cos(O1) +
                             w2 * w2 * l2 * m2 * cos(O1 - O2)) /
-                           l2 / (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)))};
+                           l2 / (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)));
 
     // O tempo esta com uma aceleração de 10 vezes por segundo para
     // melhorar o efeito
@@ -71,20 +71,21 @@ Pendulo::Pendulo() {
 }
 
 void Pendulo::draw() {
+  Pendulo();
   // drawing
   for (auto i{0}; i < HEIGHT / dH; ++i) {
     for (auto j{0}; j < WIDTH / dW; ++j) {
-      if (canvas[i][j] == '0') {
+      if (canvas[i][j] == 48) {
         trace[i][j] = fps;
       }
       if (trace[i][j] >= 3 * static_cast<int>(fps / 4)) {
-        canvas[i][j] = ':';
+        canvas[i][j] = 58; // ascii code :
       } else if (trace[i][j] >= 2 * static_cast<int>(fps / 4)) {
-        canvas[i][j] = '.';
+        canvas[i][j] = 46; // ascii code .
       } else if (trace[i][j] >= static_cast<int>(fps / 4)) {
-        (i + j) % 2 ? canvas[i][j] = '.' : canvas[i][j] = ' ';
+        (i + j) % 2 ? canvas[i][j] = 46 : canvas[i][j] = 32;
       } else {
-        canvas[i][j] = ' ';
+        canvas[i][j] = 32; // ascii code space ' '
       }
     }
   }
@@ -96,13 +97,13 @@ void Pendulo::draw() {
   y2 = static_cast<int>(y1 + (cos(O2) * l2 + dH * 0.5f) / dH);
 
   Plot::drawLine(canvas, static_cast<int>(WIDTH / dW / 2),
-                 static_cast<int>(HEIGHT / dH / 2), x1, y1, '#');
-  Plot::drawLine(canvas, x1, y1, x2, y2, '#');
+                 static_cast<int>(HEIGHT / dH / 2), x1, y1, 35);
+  Plot::drawLine(canvas, x1, y1, x2, y2, 35); // ascii code #
 
   Plot::drawPoint(canvas, static_cast<int>(WIDTH / dW / 2),
-                  static_cast<int>(HEIGHT / dH / 2), 'O');
-  Plot::drawPoint(canvas, x1, y1, '0');
-  Plot::drawPoint(canvas, x2, y2, '0');
+                  static_cast<int>(HEIGHT / dH / 2), 79); // ascii code O
+  Plot::drawPoint(canvas, x1, y1, 48);                    // ascii code 0
+  Plot::drawPoint(canvas, x2, y2, 48);
 
   puts(canvas[0]);
   std::getchar();

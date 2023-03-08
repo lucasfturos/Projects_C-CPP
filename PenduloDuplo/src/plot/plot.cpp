@@ -1,7 +1,7 @@
 #include "plot.hpp"
 
 void Plot::drawPoint(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
-                     char c) {
+                     int c) {
   if (A < 0 || B < 0 || A >= WIDTH / dW || B >= HEIGHT / dH) {
     return;
   };
@@ -9,7 +9,7 @@ void Plot::drawPoint(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
 }
 
 void Plot::drawLine(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
-                    int C, int D, char c) {
+                    int C, int D, int c) {
   // Ordenação
   if (A > C) {
     int t{};
@@ -56,7 +56,7 @@ void Plot::drawLine(char canvas[HEIGHT / dH][WIDTH / dW + 1], int A, int B,
 }
 
 void Plot::plotLineLow(char canvas[HEIGHT / dH][WIDTH / dW + 1], int x0, int y0,
-                       int x1, int y1, char c) {
+                       int x1, int y1, int c) {
   int dx{x1 - x0};
   int dy{y1 - y0};
   int yi{1};
@@ -80,7 +80,7 @@ void Plot::plotLineLow(char canvas[HEIGHT / dH][WIDTH / dW + 1], int x0, int y0,
 }
 
 void Plot::plotLineHigh(char canvas[HEIGHT / dH][WIDTH / dW + 1], int x0,
-                        int y0, int x1, int y1, char c) {
+                        int y0, int x1, int y1, int c) {
   int dx{x1 - x0};
   int dy{y1 - y0};
   int xi{1};

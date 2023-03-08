@@ -7,5 +7,4 @@ int main() {
     system("clear");
     p.draw();
   }
-  return 0;
 }

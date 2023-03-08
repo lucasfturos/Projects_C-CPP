@@ -21,6 +21,7 @@ private:
   float frameStart{0.0F};
   float currentTime{0.0F};
 
+  float alpha1{0.0F}, alpha2{0.0F};
   float 
       l1{120.0F}, l2{120.0F},   // tamanho da corda
       m1{10.0F}, m2{10.0F},     // massa da esfera na extremidade
