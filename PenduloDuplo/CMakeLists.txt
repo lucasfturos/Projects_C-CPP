@@ -17,6 +17,7 @@ set(PROJECT_HEADER                    # Directory of all header file
 )
 
 set(PROJECT_SOURCE                    # Directory of all source file
+  src/timer/timer.cpp
   src/plot/plot.cpp
   src/pendulo/pendulo.cpp
   src/main.cpp

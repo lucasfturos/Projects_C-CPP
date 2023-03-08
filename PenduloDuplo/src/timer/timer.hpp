@@ -5,10 +5,8 @@
 class Timer {
 public:
   Timer() : beg_(clock_::now()) {}
-  void reset() { beg_ = clock_::now(); }
-  float elapsed() const {
-    return std::chrono::duration_cast<second_>(clock_::now() - beg_).count();
-  }
+  void reset();
+  float elapsed() const;
 
 private:
   typedef std::chrono::high_resolution_clock clock_;
