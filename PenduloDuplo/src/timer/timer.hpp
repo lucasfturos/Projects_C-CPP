@@ -1,5 +1,4 @@
-#ifndef TIMER_HPP
-#define TIMER_HPP
+#pragma once
 
 #include <chrono>
 
@@ -16,5 +15,3 @@ private:
   typedef std::chrono::duration<float, std::ratio<1>> second_;
   std::chrono::time_point<clock_> beg_;
 };
-
-#endif // !TIMER_HPP

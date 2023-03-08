@@ -1,9 +1,8 @@
-#ifndef PENDULO_HPP
-#define PENDULO_HPP
+#pragma once
 
+#include <vector>
 #include <cstdlib>
 #include <iostream>
-#include <vector>
 
 #include "../plot/plot.hpp"
 #include "../timer/timer.hpp"
@@ -15,9 +14,12 @@ private:
   static constexpr float dt{1.0F / fps};
   static constexpr float g{9.81F}; // aceleração gravitacional
 
+  int x1{}, x2{};
+  int y1{}, y2{};
+  
   float accumulator{0.0F};
-  float frameStart{};
-  float currentTime{};
+  float frameStart{0.0F};
+  float currentTime{0.0F};
 
   float 
       l1{120.0F}, l2{120.0F},   // tamanho da corda
@@ -33,5 +35,3 @@ public:
   Pendulo();
   void draw();
 };
-
-#endif // !PENDULO_HPP

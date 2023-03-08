@@ -1,5 +1,4 @@
-#ifndef PLOT_HPP
-#define PLOT_HPP
+#pragma once
 
 #include <cmath>
 
@@ -23,5 +22,3 @@ protected:
   void plotLineHigh(char canvas[HEIGHT / dH][WIDTH / dW + 1], int x0, int y0,
                     int x1, int y1, char c);
 };
-
-#endif // !PLOT_HPP

@@ -2,26 +2,26 @@
 
 Pendulo::Pendulo() {
   // Inicializa a area
-  for (std::size_t i{}; i < HEIGHT / dH - 1; ++i) {
+  for (auto i{0}; i < HEIGHT / dH - 1; ++i) {
     canvas[i][WIDTH / dW] = '\n';
   }
 
   canvas[HEIGHT / dH - 1][WIDTH / dW] = '\0';
 
-  for (std::size_t i{}; i < HEIGHT / dH; ++i) {
-    for (std::size_t j{}; j < WIDTH / dW; ++j) {
+  for (auto i{0}; i < HEIGHT / dH; ++i) {
+    for (auto j{0}; j < WIDTH / dW; ++j) {
       canvas[i][j] = ' ';
     }
   }
 
   // Inicializa a área do traço
   trace.resize(HEIGHT / dH);
-  for (std::size_t k{}; k < trace.size(); ++k) {
+  for (auto k{0}; k < trace.size(); ++k) {
     trace[k].resize(WIDTH / dW);
   }
 
-  for (std::size_t i{}; i < HEIGHT / dH; ++i) {
-    for (std::size_t j{}; j < WIDTH / dW; ++j) {
+  for (auto i{0}; i < HEIGHT / dH; ++i) {
+    for (auto j{0}; j < WIDTH / dW; ++j) {
       trace[i][j] = 0;
     }
   }
@@ -39,7 +39,7 @@ Pendulo::Pendulo() {
   }
 
   while (accumulator > dt) {
-    // Formula lagrangiana aplicada nos dois pendulos
+    // Formula lagrangiana aplicada nos pendulos
     float alpha1{static_cast<float>(
         (-g * (2 * m1 + m2) * sin(O1) - g * m2 * sin(O1 - 2 * O2) -
          2 * m2 * sin(O1 - O2) * (w2 * w2 * l2 + w1 * w1 * l1 * cos(O1 - O2))) /
@@ -60,8 +60,8 @@ Pendulo::Pendulo() {
 
     accumulator -= dt;
 
-    for (std::size_t i{}; i < HEIGHT / dH; ++i) {
-      for (std::size_t j{}; j < WIDTH / dW; ++j) {
+    for (auto i{0}; i < HEIGHT / dH; ++i) {
+      for (auto j{0}; j < WIDTH / dW; ++j) {
         if (trace[i][j] > 0) {
           trace[i][j]--;
         }
@@ -71,10 +71,9 @@ Pendulo::Pendulo() {
 }
 
 void Pendulo::draw() {
-  system("clear");
   // drawing
-  for (std::size_t i{}; i < HEIGHT / dH; ++i) {
-    for (std::size_t j{}; j < WIDTH / dW; ++j) {
+  for (auto i{0}; i < HEIGHT / dH; ++i) {
+    for (auto j{0}; j < WIDTH / dW; ++j) {
       if (canvas[i][j] == '0') {
         trace[i][j] = fps;
       }
@@ -89,8 +88,6 @@ void Pendulo::draw() {
       }
     }
   }
-
-  int x1{}, x2{}, y1{}, y2{};
 
   x1 = static_cast<int>((WIDTH / 2 + sin(O1) * l1 + dW * 0.5f) / dW);
   y1 = static_cast<int>((cos(O1) * l1 + dH * 0.5f) / dH + HEIGHT / dH / 2);
