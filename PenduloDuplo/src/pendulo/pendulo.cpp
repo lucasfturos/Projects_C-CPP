@@ -67,11 +67,11 @@ Pendulo::Pendulo() {
         }
       }
     }
+
   }
 }
 
 void Pendulo::draw() {
-  Pendulo();
   // drawing
   for (auto i{0}; i < HEIGHT / dH; ++i) {
     for (auto j{0}; j < WIDTH / dW; ++j) {
