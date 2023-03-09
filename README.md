@@ -31,4 +31,5 @@ sudo apt install cmake make gcc g++
 ```
 
 - Instalação no Windows:
+
 No Windows use o MinGW e instale o gcc, g++, cmake e make
