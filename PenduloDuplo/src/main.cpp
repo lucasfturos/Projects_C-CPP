@@ -1,3 +1,5 @@
+#include "plot/plot.hpp"
+#include "timer/timer.hpp"
 #include "pendulo/pendulo.hpp"
 
 int main() {

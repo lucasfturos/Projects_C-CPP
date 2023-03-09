@@ -26,8 +26,12 @@ Pendulo::Pendulo() {
     }
   }
 
-  // Inicialização das variaveis para o tempo
+  // Inicialização da variavel para o tempo
   frameStart = Timer::elapsed();
+}
+
+void Pendulo::formulation() {
+  // Inicialização da variavel para o tempo
   currentTime = Timer::elapsed();
 
   // Configura o tempo de execução
@@ -67,12 +71,12 @@ Pendulo::Pendulo() {
         }
       }
     }
-
   }
 }
 
 void Pendulo::draw() {
-  // drawing
+  formulation();
+
   for (auto i{0}; i < HEIGHT / dH; ++i) {
     for (auto j{0}; j < WIDTH / dW; ++j) {
       if (canvas[i][j] == 48) {
@@ -96,15 +100,12 @@ void Pendulo::draw() {
   x2 = static_cast<int>(x1 + (sin(O2) * l2 + dW * 0.5f) / dW);
   y2 = static_cast<int>(y1 + (cos(O2) * l2 + dH * 0.5f) / dH);
 
-  Plot::drawLine(canvas, static_cast<int>(WIDTH / dW / 2),
-                 static_cast<int>(HEIGHT / dH / 2), x1, y1, 35);
+  Plot::drawLine(canvas, WIDTH / dW / 2, HEIGHT / dH / 2, x1, y1, 35);
   Plot::drawLine(canvas, x1, y1, x2, y2, 35); // ascii code #
 
-  Plot::drawPoint(canvas, static_cast<int>(WIDTH / dW / 2),
-                  static_cast<int>(HEIGHT / dH / 2), 79); // ascii code O
-  Plot::drawPoint(canvas, x1, y1, 48);                    // ascii code 0
+  Plot::drawPoint(canvas, WIDTH / dW / 2, HEIGHT / dH / 2, 79); // ascii code O
+  Plot::drawPoint(canvas, x1, y1, 48);                          // ascii code 0
   Plot::drawPoint(canvas, x2, y2, 48);
 
-  puts(canvas[0]);
-  std::getchar();
+  std::puts(canvas[0]);
 }

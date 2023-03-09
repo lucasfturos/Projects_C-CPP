@@ -10,7 +10,7 @@
 class Pendulo : public Timer, public Plot {
 private:
   static constexpr float pi{3.14159265358979323846F};
-  static constexpr float fps{300.0F};
+  static constexpr float fps{300.0f};
   static constexpr float dt{1.0F / fps};
   static constexpr float g{9.81F}; // aceleração gravitacional
 
@@ -31,6 +31,8 @@ private:
 
   std::vector<std::vector<int>> trace;
   char canvas[HEIGHT / dH][WIDTH / dW + 1];
+  
+  void formulation();
 
 public:
   Pendulo();
