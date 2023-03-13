@@ -107,5 +107,5 @@ void Pendulo::draw() {
   Plot::drawPoint(canvas, x1, y1, 48);                          // ascii code 0
   Plot::drawPoint(canvas, x2, y2, 48);
 
-  std::puts(canvas[0]);
+  std::cout << canvas[0];
 }
