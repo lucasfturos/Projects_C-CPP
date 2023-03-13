@@ -4,7 +4,7 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
 
 ## Sobre eles:
 
-<details>
+<details><summary>Detalhes</summary>
 
    - Tic-Tac-Toe é o jogo da velha feito em C++ usando classes (uma tentativa de classe abstrata). Foi feito no Linux.
 
@@ -22,6 +22,7 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
      - OBS: Este projeto foi feito com base no vídeo do canal [Servet Guinarogiu](https://youtu.be/p09i_hoFdd0) para praticar C++.
    - PenduloDuplo é uma simulação do movimento caótico de um pêndulo duplo, seu plot é em modo texto (ASCII). Foi feito no Linux.
      - OBS: Esta simulação foi feita com base no código do [DinoZ1729](https://github.com/DinoZ1729/Double-Pendulum) para estudar sobre simulações de movimentos caóticos e praticar C++.
+
 </details>
 
 ## Instalação 
