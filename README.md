@@ -3,8 +3,8 @@
 Repositório focado para salvar meus estudos nas linguagens C e C++
 
 
-<details><h2>Sobre eles:</h2>
-
+<summary><h2>Sobre eles:</h2></summary>
+<details>
    - Tic-Tac-Toe é o jogo da velha feito em C++ usando classes (uma tentativa de classe abstrata). Foi feito no Linux.
 
    - SnakeGame é o jogo da cobrinha feito em C. Foi feito no Linux.
