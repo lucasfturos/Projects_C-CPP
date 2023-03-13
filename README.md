@@ -4,7 +4,7 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
 
 ## Sobre eles:
 
-<details><summary>Detalhes</summary>
+<details><summary>Show</summary>
 
    - Tic-Tac-Toe é o jogo da velha feito em C++ usando classes (uma tentativa de classe abstrata). Foi feito no Linux.
 
