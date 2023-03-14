@@ -7,8 +7,8 @@ constexpr int WIDTH{600};
 constexpr int HEIGHT{600};
 constexpr int dW{8};
 constexpr int dH{16};
-constexpr int line{WIDTH / dW};
-constexpr int col{HEIGHT / dH};
+constexpr int line{75};
+constexpr int col{37};
 
 class Plot {
 public:
