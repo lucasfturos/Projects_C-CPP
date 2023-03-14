@@ -27,7 +27,7 @@ private:
       O2{2.0F * pi / 3.0F}, w1{0.0F}, w2{0.0F}; // velocidade angular
 
   std::vector<std::vector<int>> trace;
-  char canvas[HEIGHT / dH][WIDTH / dW + 1];
+  char canvas[col][line + 1];
 
   void formulation();
 

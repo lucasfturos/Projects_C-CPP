@@ -2,26 +2,26 @@
 
 Pendulo::Pendulo() {
   // Inicializa a area
-  for (auto i{0}; i < HEIGHT / dH - 1; ++i) {
-    canvas[i][WIDTH / dW] = 10; // ascii code \n
+  for (auto i{0}; i < col - 1; ++i) {
+    canvas[i][line] = 10; // ascii code \n
   }
 
-  canvas[HEIGHT / dH - 1][WIDTH / dW] = 0; // ascii code \0
+  canvas[col - 1][line] = 0; // ascii code \0
 
-  for (auto i{0}; i < HEIGHT / dH; ++i) {
-    for (auto j{0}; j < WIDTH / dW; ++j) {
+  for (auto i{0}; i < col; ++i) {
+    for (auto j{0}; j < line; ++j) {
       canvas[i][j] = 32; // ascii code space ' '
     }
   }
 
   // Inicializa a área do traço
-  trace.resize(HEIGHT / dH);
+  trace.resize(col);
   for (auto k{0}; k < trace.size(); ++k) {
-    trace[k].resize(WIDTH / dW);
+    trace[k].resize(line);
   }
 
-  for (auto i{0}; i < HEIGHT / dH; ++i) {
-    for (auto j{0}; j < WIDTH / dW; ++j) {
+  for (auto i{0}; i < col; ++i) {
+    for (auto j{0}; j < line; ++j) {
       trace[i][j] = 0;
     }
   }
@@ -64,8 +64,8 @@ void Pendulo::formulation() {
 
     accumulator -= dt;
 
-    for (auto i{0}; i < HEIGHT / dH; ++i) {
-      for (auto j{0}; j < WIDTH / dW; ++j) {
+    for (auto i{0}; i < col; ++i) {
+      for (auto j{0}; j < line; ++j) {
         if (trace[i][j] > 0) {
           trace[i][j]--;
         }
@@ -77,8 +77,8 @@ void Pendulo::formulation() {
 void Pendulo::draw() {
   formulation();
 
-  for (auto i{0}; i < HEIGHT / dH; ++i) {
-    for (auto j{0}; j < WIDTH / dW; ++j) {
+  for (auto i{0}; i < col; ++i) {
+    for (auto j{0}; j < line; ++j) {
       if (canvas[i][j] == 48) {
         trace[i][j] = fps;
       }
@@ -95,16 +95,16 @@ void Pendulo::draw() {
   }
 
   x1 = static_cast<int>((WIDTH / 2 + sin(O1) * l1 + dW * 0.5f) / dW);
-  y1 = static_cast<int>((cos(O1) * l1 + dH * 0.5f) / dH + HEIGHT / dH / 2);
+  y1 = static_cast<int>((cos(O1) * l1 + dH * 0.5f) / dH + col / 2);
 
   x2 = static_cast<int>(x1 + (sin(O2) * l2 + dW * 0.5f) / dW);
   y2 = static_cast<int>(y1 + (cos(O2) * l2 + dH * 0.5f) / dH);
 
-  Plot::drawLine(canvas, WIDTH / dW / 2, HEIGHT / dH / 2, x1, y1, 35);
+  Plot::drawLine(canvas, line / 2, col / 2, x1, y1, 35);
   Plot::drawLine(canvas, x1, y1, x2, y2, 35); // ascii code #
 
-  Plot::drawPoint(canvas, WIDTH / dW / 2, HEIGHT / dH / 2, 79); // ascii code O
-  Plot::drawPoint(canvas, x1, y1, 48);                          // ascii code 0
+  Plot::drawPoint(canvas, line / 2, col / 2, 79); // ascii code O
+  Plot::drawPoint(canvas, x1, y1, 48);            // ascii code 0
   Plot::drawPoint(canvas, x2, y2, 48);
 
   std::cout << canvas[0];
