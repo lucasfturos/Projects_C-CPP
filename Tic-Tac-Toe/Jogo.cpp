@@ -1,10 +1,10 @@
 #define MAX 3
 #include <iostream>
 using namespace std;
+#include "Tabuleiro.h"
+#include "Jogador.h"
 #include "Computador.h"
 #include "Dificuldade.h"
-#include "Jogador.h"
-#include "Tabuleiro.h"
 
 int main() {
     Tabuleiro tab;
