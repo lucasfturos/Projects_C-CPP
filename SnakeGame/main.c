@@ -27,17 +27,21 @@ void clean() {
             if (i == 0 || i == w - 1 || j == 0 || j == h - 1)
                 camp[i][j] = '#';
 
-            else camp[i][j] = ' ';
+            else
+                camp[i][j] = ' ';
 
-            if (i == y && j == x) camp[i][j] = '0';
+            if (i == y && j == x)
+                camp[i][j] = '0';
 
-            else if (j == appleX && i == appleY) camp[i][j] = '@';
+            else if (j == appleX && i == appleY)
+                camp[i][j] = '@';
 
             else {
                 int print = 1;
                 for (k = 0; k < nTail; k++) {
                     if (tailX[k] == j && tailY[k] == i) {
-                        camp[i][j] = '0'; print = 0;
+                        camp[i][j] = '0';
+                        print = 0;
                     }
                 }
             }
@@ -60,11 +64,21 @@ void draw() {
 void input() {
     if (kbhit()) {
         switch (getch()) {
-        case 'a': flag = 1; break;
-        case 's': flag = 2; break;
-        case 'd': flag = 3; break;
-        case 'w': flag = 4; break;
-        case 'x': defeat = 1; break;
+        case 'a':
+            flag = 1;
+            break;
+        case 's':
+            flag = 2;
+            break;
+        case 'd':
+            flag = 3;
+            break;
+        case 'w':
+            flag = 4;
+            break;
+        case 'x':
+            defeat = 1;
+            break;
         }
     }
 }
@@ -87,17 +101,28 @@ void logic() {
     }
 
     switch (flag) {
-    case 1: x--; break;
-    case 2: y++; break;
-    case 3: x++; break;
-    case 4: y--; break;
-    default: break;
+    case 1:
+        x--;
+        break;
+    case 2:
+        y++;
+        break;
+    case 3:
+        x++;
+        break;
+    case 4:
+        y--;
+        break;
+    default:
+        break;
     }
 
-    if (x < 0 || x > w - 2 || y < 0 || y > h - 2) defeat = 1;
+    if (x < 0 || x > w - 2 || y < 0 || y > h - 2)
+        defeat = 1;
 
     for (k = 0; k < nTail; k++) {
-        if (tailX[k] == x && tailY[k] == y) defeat = 1;
+        if (tailX[k] == x && tailY[k] == y)
+            defeat = 1;
     }
 
     if (x == appleX && y == appleY) {

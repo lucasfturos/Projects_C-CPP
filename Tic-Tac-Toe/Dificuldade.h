@@ -1,16 +1,15 @@
 #ifndef DIFICULDADE_H
 
 class Dificuldade : public Computador {
-public:
-
-    void Jogar(Tabuleiro& tab, int opc) {
+  public:
+    void Jogar(Tabuleiro &tab, int opc) {
         if (opc == 1)
             Easy(tab);
         else if (opc == 2)
             Hard(tab);
     }
 
-    void Easy(Tabuleiro& tab) {
+    void Easy(Tabuleiro &tab) {
         bool marcou = false;
         for (int i = 0; i < MAX; i++) {
             for (int j = 0; j < MAX; j++) {
@@ -23,7 +22,7 @@ public:
             }
         }
     }
-    void Hard(Tabuleiro& tab) {
+    void Hard(Tabuleiro &tab) {
         bool marcou = false;
         for (int i = 0; i < MAX; i++) {
             for (int j = 0; j < MAX; j++) {

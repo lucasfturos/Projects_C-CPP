@@ -1,25 +1,20 @@
 #ifndef CUBO_HPP
 #define CUBO_HPP
-#include <cmath>
 #include <array>
-#include <thread>
+#include <cmath>
 #include <cstring>
 #include <iostream>
+#include <thread>
 
 class Cubo {
     std::array<char, 160 * 44> buffer;
     std::array<float, 160 * 44> zBuffer;
-    int
-        w{ 80 }, h{ 40 },
-        distance{ 100 },
-        xp{}, yp{}, idx{};
+    int w{80}, h{40}, distance{100}, xp{}, yp{}, idx{};
 
-    float
-        A{}, B{}, C{}, K1{ 40.0f },
-        cubeWidth{ 20.0f }, horizontalOffSet{},
-        x{}, y{}, z{}, ooz{}, speed{ 0.6 };
+    float A{}, B{}, C{}, K1{40.0f}, cubeWidth{20.0f}, horizontalOffSet{}, x{},
+        y{}, z{}, ooz{}, speed{0.6};
 
-protected:
+  protected:
     float calculaX(int i, int j, int k);
 
     float calculaY(int i, int j, int k);
@@ -28,7 +23,7 @@ protected:
 
     void calculaSuperficie(float cubeX, float cubeY, float cubeZ, int ch);
 
-public:
+  public:
     void draw();
 };
 

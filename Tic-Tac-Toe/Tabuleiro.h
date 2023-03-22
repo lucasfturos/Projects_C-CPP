@@ -1,21 +1,29 @@
 #ifndef TABULEIRO_H
 
 class Tabuleiro {
-public:
+  public:
     int tabuleiro[MAX][MAX] = {};
 
     friend class Jogador;
     friend class Computador;
 
     bool situacao(int player, int vezes) {
-        if (((tabuleiro[0][0] == player) && (tabuleiro[0][1] == player) && (tabuleiro[0][2] == player))
-            || ((tabuleiro[1][0] == player) && (tabuleiro[1][1] == player) && (tabuleiro[1][2] == player))
-            || ((tabuleiro[2][0] == player) && (tabuleiro[2][1] == player) && (tabuleiro[2][2] == player))
-            || ((tabuleiro[0][0] == player) && (tabuleiro[1][0] == player) && (tabuleiro[2][0] == player))
-            || ((tabuleiro[0][1] == player) && (tabuleiro[1][1] == player) && (tabuleiro[2][1] == player))
-            || ((tabuleiro[0][2] == player) && (tabuleiro[1][2] == player) && (tabuleiro[2][2] == player))
-            || ((tabuleiro[0][0] == player) && (tabuleiro[1][1] == player) && (tabuleiro[2][2] == player))
-            || ((tabuleiro[2][0] == player) && (tabuleiro[1][1] == player) && (tabuleiro[0][2] == player))) {
+        if (((tabuleiro[0][0] == player) && (tabuleiro[0][1] == player) &&
+             (tabuleiro[0][2] == player)) ||
+            ((tabuleiro[1][0] == player) && (tabuleiro[1][1] == player) &&
+             (tabuleiro[1][2] == player)) ||
+            ((tabuleiro[2][0] == player) && (tabuleiro[2][1] == player) &&
+             (tabuleiro[2][2] == player)) ||
+            ((tabuleiro[0][0] == player) && (tabuleiro[1][0] == player) &&
+             (tabuleiro[2][0] == player)) ||
+            ((tabuleiro[0][1] == player) && (tabuleiro[1][1] == player) &&
+             (tabuleiro[2][1] == player)) ||
+            ((tabuleiro[0][2] == player) && (tabuleiro[1][2] == player) &&
+             (tabuleiro[2][2] == player)) ||
+            ((tabuleiro[0][0] == player) && (tabuleiro[1][1] == player) &&
+             (tabuleiro[2][2] == player)) ||
+            ((tabuleiro[2][0] == player) && (tabuleiro[1][1] == player) &&
+             (tabuleiro[0][2] == player))) {
             if (player == 1)
                 cout << "\n\nJogador Ganhou";
             else if (player == -1)
@@ -23,14 +31,13 @@ public:
             drawBoard();
             exit(0);
             return true;
-        }
-        else if (vezes == 9) {
+        } else if (vezes == 9) {
             cout << "Deu Velha!";
             drawBoard();
             exit(0);
             return true;
-        }
-        else return false;
+        } else
+            return false;
     }
 
     void drawBoard() {

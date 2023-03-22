@@ -1,11 +1,9 @@
-// comando para compilar g++ main.cpp -o main -lglut -lGL
-
 #include <GL/glut.h>
 
 void inicio(void);
 void desenha(void);
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(100, 100);
@@ -19,9 +17,7 @@ int main(int argc, char** argv) {
     glutMainLoop();
 }
 
-void inicio(void) {
-    glClearColor(0, 0, 0, 0);
-}
+void inicio(void) { glClearColor(0, 0, 0, 0); }
 
 void desenha(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -42,5 +38,4 @@ void desenha(void) {
     glEnd();
 
     glutSwapBuffers();
-
 }

@@ -1,16 +1,14 @@
 #include "cubo.hpp"
 
 float Cubo::calculaX(int i, int j, int k) {
-    return
-        j * sin(A) * sin(B) * cos(C) - k * cos(A) * sin(B) * cos(C) +
-        j * cos(A) * sin(C) + k * sin(A) * sin(C) + i * cos(B) * cos(C);
+    return j * sin(A) * sin(B) * cos(C) - k * cos(A) * sin(B) * cos(C) +
+           j * cos(A) * sin(C) + k * sin(A) * sin(C) + i * cos(B) * cos(C);
 }
 
 float Cubo::calculaY(int i, int j, int k) {
-    return
-        j * cos(A) * cos(C) + k * sin(A) * cos(C) -
-        j * sin(A) * sin(B) * sin(C) + k * cos(A) *
-        sin(B) * sin(C) - i * cos(B) * sin(C);
+    return j * cos(A) * cos(C) + k * sin(A) * cos(C) -
+           j * sin(A) * sin(B) * sin(C) + k * cos(A) * sin(B) * sin(C) -
+           i * cos(B) * sin(C);
 }
 
 float Cubo::calculaZ(int i, int j, int k) {
@@ -40,17 +38,20 @@ void Cubo::draw() {
     std::cout << "\x1b[2J";
 
     while (1) {
-        memset(buffer.data(), 32, (w * h)); // 32 code ASCII of space
+        memset(buffer.data(), 32, (w * h));   // 32 code ASCII of space
         memset(zBuffer.data(), 0, w * h * 4); // 0 code ASCII of Null
 
         cubeWidth = 20;
         horizontalOffSet *= cubeWidth;
         for (float cubeX = -cubeWidth; cubeX < cubeWidth; cubeX += speed) {
             for (float cubeY = -cubeWidth; cubeY < cubeWidth; cubeY += speed) {
-                calculaSuperficie(cubeX, cubeY, -cubeWidth, 64); // 64 code ASCII of @
-                calculaSuperficie(cubeWidth, cubeY, cubeX, 47); // 47 code ASCII of /
+                calculaSuperficie(cubeX, cubeY, -cubeWidth,
+                                  64); // 64 code ASCII of @
+                calculaSuperficie(cubeWidth, cubeY, cubeX,
+                                  47); // 47 code ASCII of /
                 calculaSuperficie(-cubeWidth, cubeY, -cubeX, 64);
-                calculaSuperficie(-cubeX, cubeY, cubeWidth, 35); // 35 code ASCII of #
+                calculaSuperficie(-cubeX, cubeY, cubeWidth,
+                                  35); // 35 code ASCII of #
                 calculaSuperficie(cubeX, -cubeWidth, -cubeY, 47);
                 calculaSuperficie(cubeX, cubeWidth, cubeY, 35);
             }

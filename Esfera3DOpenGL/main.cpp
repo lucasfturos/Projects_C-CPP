@@ -1,4 +1,3 @@
-// Compile g++ main.cpp -o esfera -Wall -lGL -lglut -lGLU
 #include <GL/glut.h>
 
 GLfloat xRotated, yRotated, zRotated;
@@ -32,7 +31,8 @@ void displaySphere(void) {
 }
 
 void reshapeSphere(int x, int y) {
-    if (y == 0 || x == 0) return;
+    if (y == 0 || x == 0)
+        return;
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -42,22 +42,21 @@ void reshapeSphere(int x, int y) {
 }
 
 void idleSphere(void) {
-    //xRotated += 0.01;
+    // xRotated += 0.01;
     yRotated += 0.01;
-    //zRotated += 0.01;
+    // zRotated += 0.01;
     displaySphere();
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
     int w = 640, h = 640;
 
     glutInit(&argc, argv);
 
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 
-    glutInitWindowPosition(
-        (glutGet(GLUT_SCREEN_WIDTH) - w) / 2,
-        (glutGet(GLUT_SCREEN_HEIGHT) - h) / 2);
+    glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - w) / 2,
+                           (glutGet(GLUT_SCREEN_HEIGHT) - h) / 2);
 
     glutInitWindowSize(w, h);
 

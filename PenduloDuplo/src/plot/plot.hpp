@@ -11,15 +11,16 @@ constexpr int line{75};
 constexpr int col{37};
 
 class Plot {
-public:
-  void drawPoint(char canvas[col][line + 1], int A, int B, int c);
+  public:
+    void drawPoint(char canvas[col][line + 1], int A, int B, int c);
 
-  void drawLine(char canvas[col][line + 1], int A, int B, int C, int D, int c);
+    void drawLine(char canvas[col][line + 1], int A, int B, int C, int D,
+                  int c);
 
-protected:
-  void plotLineLow(char canvas[col][line + 1], int x0, int y0, int x1, int y1,
-                   int c);
+  protected:
+    void plotLineLow(char canvas[col][line + 1], int x0, int y0, int x1, int y1,
+                     int c);
 
-  void plotLineHigh(char canvas[col][line + 1], int x0, int y0, int x1, int y1,
-                    int c);
+    void plotLineHigh(char canvas[col][line + 1], int x0, int y0, int x1,
+                      int y1, int c);
 };
