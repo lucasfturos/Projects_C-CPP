@@ -29,6 +29,8 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
 
 Para usar os códigos presentes neste repositório é necessário ter as seguintes ferramentas.
 
+<details><summary>Show</summary>
+
 - O OpenGL e o Glut estão disponíveis no site:
 
 ```
@@ -55,3 +57,5 @@ No Windows use o MinGW e instale o gcc, g++, cmake e make, o link do site:
 ```
 https://www.mingw-w64.org/
 ```
+
+</details>
