@@ -9,10 +9,12 @@ class Particles {
         int life_time{};
     };
 
-    std::vector<Particle> store_particles;
+    sf::Color color;
     sf::VertexArray vertices;
-    float size{}, x{}, y{};
+    std::vector<Particle> store_particles;
+
     std::size_t count{};
+    float size{}, x{}, y{};
 
     void resetParticles();
     void resetParticle(std::size_t, bool);

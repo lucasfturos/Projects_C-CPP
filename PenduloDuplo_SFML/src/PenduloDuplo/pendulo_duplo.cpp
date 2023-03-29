@@ -1,6 +1,7 @@
 #include "pendulo_duplo.hpp"
 
-PenduloDuplo::PenduloDuplo(float l1, float l2, float m1, float m2, float O1, float O2) {
+PenduloDuplo::PenduloDuplo(float l1, float l2, float m1, float m2, float O1,
+                           float O2) {
     this->l1 = l1;
     this->l2 = l2;
     this->m1 = m1;
@@ -35,14 +36,15 @@ auto PenduloDuplo::setupRenderObjects() -> void {
 }
 
 auto PenduloDuplo::update() -> void {
-    alpha1 =
-        static_cast<float>((-g * (2 * m1 + m2) * sin(O1) - g * m2 * sin(O1 - 2 * O2) -
-                            2 * m2 * sin(O1 - O2) * (w2 * w2 * l2 + w1 * w1 * l1 * cos(O1 - O2))) /
-                           (l1 * (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2))));
-    alpha2 = static_cast<float>(
-        (2 * sin(O1 - O2)) *
-        (w1 * w1 * l1 * (m1 + m2) + g * (m1 + m2) * cos(O1) + w2 * w2 * l2 * m2 * cos(O1 - O2)) /
-        l2 / (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)));
+    alpha1 = static_cast<float>(
+        (-g * (2 * m1 + m2) * sin(O1) - g * m2 * sin(O1 - 2 * O2) -
+         2 * m2 * sin(O1 - O2) * (w2 * w2 * l2 + w1 * w1 * l1 * cos(O1 - O2))) /
+        (l1 * (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2))));
+    alpha2 =
+        static_cast<float>((2 * sin(O1 - O2)) *
+                           (w1 * w1 * l1 * (m1 + m2) + g * (m1 + m2) * cos(O1) +
+                            w2 * w2 * l2 * m2 * cos(O1 - O2)) /
+                           l2 / (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)));
 
     w1 += alpha1 * dt * 1.5f;
     w2 += alpha2 * dt * 1.5f;
@@ -56,10 +58,12 @@ auto PenduloDuplo::update() -> void {
 }
 
 auto PenduloDuplo::render() -> void {
-    sf::Vector2f end_pos1{sf::Vector2f(x1 * 100 + length_verteces[0].position.x,
-                                       y1 * 100 + length_verteces[0].position.y)};
-    sf::Vector2f end_pos2{sf::Vector2f(x2 * 100 + length_verteces[0].position.x,
-                                       y2 * 100 + length_verteces[0].position.y)};
+    sf::Vector2f end_pos1{
+        sf::Vector2f(x1 * 100 + length_verteces[0].position.x,
+                     y1 * 100 + length_verteces[0].position.y)};
+    sf::Vector2f end_pos2{
+        sf::Vector2f(x2 * 100 + length_verteces[0].position.x,
+                     y2 * 100 + length_verteces[0].position.y)};
 
     length_verteces[1].position = end_pos1;
     length_verteces[2].position = end_pos2;
