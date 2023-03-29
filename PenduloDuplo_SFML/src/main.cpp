@@ -30,7 +30,7 @@ int main() {
 
         pendulo->update();
         particles->update();
-        pendulo->render();
+        pendulo->render(particles->vertices);
 
         window->clear(sf::Color::Black);
         window->draw(*pendulo);

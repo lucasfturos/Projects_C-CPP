@@ -37,5 +37,5 @@ class PenduloDuplo : public sf::Sprite {
 
     void setupRenderObjects();
     void update();
-    void render();
+    void render(sf::VertexArray&);
 };

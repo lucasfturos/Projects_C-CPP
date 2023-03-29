@@ -57,7 +57,7 @@ auto PenduloDuplo::update() -> void {
     w2 *= 1.0f;
 }
 
-auto PenduloDuplo::render() -> void {
+auto PenduloDuplo::render(sf::VertexArray &particles_vertices) -> void {
     sf::Vector2f end_pos1{
         sf::Vector2f(x1 * 100 + length_verteces[0].position.x,
                      y1 * 100 + length_verteces[0].position.y)};

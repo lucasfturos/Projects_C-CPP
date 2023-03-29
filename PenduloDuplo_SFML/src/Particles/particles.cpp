@@ -23,7 +23,7 @@ auto Particles::resetParticle(std::size_t index, bool start = false) -> void {
     vertices[4 * index + 2].position = sf::Vector2f(x + size, y + size);
     vertices[4 * index + 3].position = sf::Vector2f(x, y + size);
 
-    color = sf::Color(rand() % 255, rand() % 255, rand() % 255, rand() % 255);
+    color = sf::Color(rand() % 255, rand() % 255, rand() % 255, rand() % 80);
 
     if (start) {
         color.a = 0;
