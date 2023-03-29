@@ -10,7 +10,7 @@ Particles::Particles(float x, float y) {
 
 auto Particles::resetParticles() -> void {
     store_particles = std::vector<Particle>(count);
-    vertices = sf::VertexArray(sf::LineStrip, count * 4);
+    vertices = sf::VertexArray(sf::Quads, count * 4);
 
     for (size_t i{0}; i < store_particles.size(); ++i) {
         resetParticle(i, true);

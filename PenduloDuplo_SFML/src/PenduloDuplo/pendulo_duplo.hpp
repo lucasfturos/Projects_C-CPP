@@ -17,10 +17,10 @@ class PenduloDuplo : public sf::Sprite {
     static constexpr float g{9.81f};
     static constexpr float dt{1.0f / fps};
 
+    float alpha1{}, alpha2{};
     float w1{}, w2{}, O1{}, O2{};
     float m1{}, m2{}, l1{}, l2{};
     float x1{}, x2{}, y1{}, y2{};
-    float alpha1{}, alpha2{};
 
     bool show_length{true};
 

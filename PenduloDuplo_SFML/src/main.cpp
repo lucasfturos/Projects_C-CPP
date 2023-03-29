@@ -29,14 +29,12 @@ int main() {
         }
 
         pendulo->update();
-        pendulo->render();
         particles->update();
+        pendulo->render();
 
         window->clear(sf::Color::Black);
-
         window->draw(*pendulo);
         window->draw(particles->vertices);
-
         window->display();
     }
 }
