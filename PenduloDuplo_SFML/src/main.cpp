@@ -1,33 +1,35 @@
 #include "PenduloDuplo/pendulo_duplo.hpp"
-#include "Particles/particles.hpp"
 
-int main(int argc, char *argv[]) {
+int main() {
+    float window_x{}, window_y{};
     std::shared_ptr<sf::RenderWindow> window;
     auto desktop = sf::VideoMode::getDesktopMode();
 
-    window = std::make_shared<sf::RenderWindow>(sf::VideoMode(900, 900), "Pendulo Duplo em SFML");
-    window->setFramerateLimit(60);
+    window =
+        std::make_shared<sf::RenderWindow>(sf::VideoMode(width, height), "Pendulo Duplo em SFML",
+                                           sf::Style::Titlebar | sf::Style::Close);
+    window->setFramerateLimit(fps);
+    window_x = static_cast<float>(window->getSize().x / 2);
+    window_y = static_cast<float>(window->getSize().y / 2);
 
-    window->setPosition(sf::Vector2i(desktop.width / 2 - window->getSize().x / 2,
-                                     desktop.height / 2 - window->getSize().y / 2));
+    window->setPosition(sf::Vector2i(desktop.width / 2 - window_x, desktop.height / 2 - window_y));
 
-    PenduloDuplo pendulo(2, 2, 10, 10, 90 * pi / 180, 90 * pi / 180);
-    pendulo.setupRenderObjects();
+    auto particles = std::make_shared<Particles>(window_x, window_y);
+    // PenduloDuplo pendulo(2, 2, 10, 10, 90 * pi / 180, 90 * pi / 180);
+    // pendulo.setupRenderObjects();
 
     while (window->isOpen()) {
-        // Process events
         sf::Event event;
         while (window->pollEvent(event)) {
-            // Close window : exit
             if (event.type == sf::Event::Closed)
                 window->close();
         }
 
-        pendulo.update();
-        pendulo.render();
-
+        // pendulo.update();
+        // pendulo.render();
+        particles->update();
         window->clear();
-        window->draw(pendulo);
+        // window->draw(pendulo);
         window->display();
     }
 }

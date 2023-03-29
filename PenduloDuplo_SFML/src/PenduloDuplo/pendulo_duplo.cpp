@@ -44,15 +44,15 @@ auto PenduloDuplo::update() -> void {
         (w1 * w1 * l1 * (m1 + m2) + g * (m1 + m2) * cos(O1) + w2 * w2 * l2 * m2 * cos(O1 - O2)) /
         l2 / (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)));
 
-    w1 += alpha1 * (1 / fps) * 1.5;
-    w2 += alpha2 * (1 / fps) * 1.5;
-    O1 += w1 * (1 / fps) * 1.5;
-    O2 += w2 * (1 / fps) * 1.5;
+    w1 += alpha1 * dt * 1.5f;
+    w2 += alpha2 * dt * 1.5f;
+    O1 += w1 * dt * 1.5f;
+    O2 += w2 * dt * 1.5f;
 
     updateXY();
 
-    w1 *= 1;
-    w2 *= 1;
+    w1 *= 1.0f;
+    w2 *= 1.0f;
 }
 
 auto PenduloDuplo::render() -> void {

@@ -5,16 +5,18 @@
 #include <memory>
 #include <vector>
 
-constexpr int trace_size{100};
-constexpr int dW{8}, dH{16};
-constexpr int width{900}, height{900};
+#include "Particles/particles.hpp"
 
-constexpr float g{9.81f};
-constexpr float pi{3.14159265358979323846F};
+constexpr int width{1000}, height{1000};
 constexpr float fps{60.0f};
+constexpr float pi{3.14159265358979323846F};
 
 class PenduloDuplo : public sf::Sprite {
   private:
+    static constexpr int trace_size{150};
+    static constexpr float g{9.81f};
+    static constexpr float dt{1.0f / fps};
+
     float w1{}, w2{}, O1{}, O2{};
     float m1{}, m2{}, l1{}, l2{};
     float x1{}, x2{}, y1{}, y2{};
@@ -31,7 +33,7 @@ class PenduloDuplo : public sf::Sprite {
     void updateXY();
 
   public:
-    PenduloDuplo(float l1, float l2, float m1, float m2, float O1, float O2);
+    PenduloDuplo(float, float, float, float, float, float);
 
     void setupRenderObjects();
     void update();

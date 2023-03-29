@@ -1,8 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <memory>
-#include <vector>
 
 class Particles {
   public:
@@ -17,8 +15,8 @@ class Particles {
     std::size_t count{};
 
     void resetParticles();
-    void resetParticle(std::size_t);
+    void resetParticle(std::size_t, bool);
     void update();
 
-    Particles(float x, float y);
+    Particles(float, float);
 };
