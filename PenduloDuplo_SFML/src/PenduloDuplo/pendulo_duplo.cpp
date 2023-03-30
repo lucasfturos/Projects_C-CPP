@@ -22,9 +22,9 @@ auto PenduloDuplo::setupRenderObjects() -> void {
     ver_buffer.create(3);
     ver_buffer.setPrimitiveType(sf::LineStrip);
 
-    length_verteces[0].position = sf::Vector2f(width / 2, height / 2);
+    length_vertices[0].position = sf::Vector2f(width / 2, height / 2.7);
     for (auto i{0}; i < 3; i++)
-        length_verteces[i].color = sf::Color::White;
+        length_vertices[i].color = sf::Color::White;
 
     mass1.setRadius(m1);
     mass1.setOrigin(mass1.getRadius(), mass1.getRadius());
@@ -46,10 +46,10 @@ auto PenduloDuplo::update() -> void {
                             w2 * w2 * l2 * m2 * cos(O1 - O2)) /
                            l2 / (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)));
 
-    w1 += alpha1 * dt * 1.5f;
-    w2 += alpha2 * dt * 1.5f;
-    O1 += w1 * dt * 1.5f;
-    O2 += w2 * dt * 1.5f;
+    w1 += alpha1 * dt * 2.5f;
+    w2 += alpha2 * dt * 2.5f;
+    O1 += w1 * dt * 2.5f;
+    O2 += w2 * dt * 2.5f;
 
     updateXY();
 
@@ -57,17 +57,17 @@ auto PenduloDuplo::update() -> void {
     w2 *= 1.0f;
 }
 
-auto PenduloDuplo::render(sf::VertexArray &particles_vertices) -> void {
+auto PenduloDuplo::render() -> void {
     sf::Vector2f end_pos1{
-        sf::Vector2f(x1 * 100 + length_verteces[0].position.x,
-                     y1 * 100 + length_verteces[0].position.y)};
+        sf::Vector2f(x1 * 100 + length_vertices[0].position.x,
+                     y1 * 100 + length_vertices[0].position.y)};
     sf::Vector2f end_pos2{
-        sf::Vector2f(x2 * 100 + length_verteces[0].position.x,
-                     y2 * 100 + length_verteces[0].position.y)};
+        sf::Vector2f(x2 * 100 + length_vertices[0].position.x,
+                     y2 * 100 + length_vertices[0].position.y)};
 
-    length_verteces[1].position = end_pos1;
-    length_verteces[2].position = end_pos2;
-    ver_buffer.update(length_verteces);
+    length_vertices[1].position = end_pos1;
+    length_vertices[2].position = end_pos2;
+    ver_buffer.update(length_vertices);
 
     mass1.setPosition(end_pos1);
     mass2.setPosition(end_pos2);
@@ -89,6 +89,7 @@ auto PenduloDuplo::render(sf::VertexArray &particles_vertices) -> void {
     texture.draw(mass1);
     texture.draw(mass2);
     texture.draw(&traces[0], traces.size(), sf::LineStrip);
+
     texture.display();
 }
 

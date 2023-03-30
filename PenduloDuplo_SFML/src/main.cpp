@@ -1,4 +1,4 @@
-#include "PenduloDuplo/pendulo_duplo.hpp"
+#include <PenduloDuplo/pendulo_duplo.hpp>
 
 int main() {
     float window_x{}, window_y{};
@@ -15,8 +15,7 @@ int main() {
     window->setPosition(sf::Vector2i(desktop.width / 2 - window_x,
                                      desktop.height / 2 - window_y));
 
-    auto particles{std::make_shared<Particles>(window_x, window_y)};
-    auto pendulo{std::make_shared<PenduloDuplo>(2, 2, 10, 10, 90 * pi / 180,
+    auto pendulo{std::make_shared<PenduloDuplo>(3, 3, 15, 15, 90 * pi / 180,
                                                 90 * pi / 180)};
 
     pendulo->setupRenderObjects();
@@ -29,12 +28,10 @@ int main() {
         }
 
         pendulo->update();
-        particles->update();
-        pendulo->render(particles->vertices);
+        pendulo->render();
 
         window->clear(sf::Color::Black);
         window->draw(*pendulo);
-        window->draw(particles->vertices);
         window->display();
     }
 }
