@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <PenduloDuplo/pendulo_duplo.hpp>
+
 class Particles {
   public:
     struct Particle {
@@ -10,6 +12,7 @@ class Particles {
     };
 
     sf::Color color;
+    sf::Vector2f pos{};
     sf::VertexArray vertices;
     std::vector<Particle> store_particles;
 

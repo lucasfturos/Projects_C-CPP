@@ -28,13 +28,15 @@ class PenduloDuplo : public sf::Sprite {
 
     sf::RenderTexture texture;
     sf::VertexBuffer ver_buffer;
-    sf::CircleShape mass1, mass2;
+    sf::CircleShape base, mass1, mass2;
     sf::Vertex length_vertices[3];
     std::vector<sf::Vertex> traces;
 
     void updateXY();
 
   public:
+    sf::Vector2f end_pos1{}, end_pos2{};
+
     void setupRenderObjects();
     void update();
     void render();

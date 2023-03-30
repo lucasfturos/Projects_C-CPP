@@ -10,7 +10,7 @@ Particles::Particles(float x, float y) {
 
 auto Particles::resetParticles() -> void {
     store_particles = std::vector<Particle>(count);
-    vertices = sf::VertexArray(sf::Quads, count * 4);
+    vertices = sf::VertexArray(sf::Points, count * 4);
 
     for (size_t i{0}; i < store_particles.size(); ++i) {
         resetParticle(i, true);
@@ -19,11 +19,11 @@ auto Particles::resetParticles() -> void {
 
 auto Particles::resetParticle(std::size_t index, bool start = false) -> void {
     vertices[4 * index + 0].position = sf::Vector2f(x, y);
-    vertices[4 * index + 1].position = sf::Vector2f(x + size, y);
+    vertices[4 * index + 1].position = sf::Vector2f(x, y);
     vertices[4 * index + 2].position = sf::Vector2f(x + size, y + size);
-    vertices[4 * index + 3].position = sf::Vector2f(x, y + size);
+    vertices[4 * index + 3].position = sf::Vector2f(x, y);
 
-    color = sf::Color(rand() % 255, rand() % 255, rand() % 255, rand() % 80);
+    color = sf::Color(rand() % 255, rand() % 255, rand() % 255, 255);
 
     if (start) {
         color.a = 0;
@@ -33,10 +33,10 @@ auto Particles::resetParticle(std::size_t index, bool start = false) -> void {
         vertices[4 * index + i].color = color;
     }
 
-    sf::Vector2f pos = {static_cast<float>(rand() / (float)RAND_MAX * 15 - 7.5f),
-                        static_cast<float>(rand() / (float)RAND_MAX * 15 - 7.5f)};
+    pos = {static_cast<float>(rand() / (float)RAND_MAX * 15 - 7.5f),
+           static_cast<float>(rand() / (float)RAND_MAX * 15 - 7.5f)};
     store_particles[index].velocity = pos;
-    store_particles[index].life_time = 30 + rand() % 60;
+    store_particles[index].life_time = 60 + rand() % 60;
 }
 
 auto Particles::update() -> void {
