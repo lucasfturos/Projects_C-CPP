@@ -8,6 +8,7 @@ int main() {
     window = std::make_shared<sf::RenderWindow>(
         sf::VideoMode(width, height), "Pendulo Duplo em SFML",
         sf::Style::Titlebar | sf::Style::Close);
+
     window->setFramerateLimit(fps);
     window_x = static_cast<float>(window->getSize().x / 2);
     window_y = static_cast<float>(window->getSize().y / 2);
@@ -15,8 +16,8 @@ int main() {
     window->setPosition(sf::Vector2i(desktop.width / 2 - window_x,
                                      desktop.height / 2 - window_y));
 
-    auto pendulo{std::make_shared<PenduloDuplo>(3, 3, 15, 15, 90 * pi / 180,
-                                                90 * pi / 180)};
+    auto pendulo{std::make_shared<PenduloDuplo>(
+        3, 3, 15, 15, 90 * pi / 180, 90 * pi / 180, window_x, window_y)};
     pendulo->setupRenderObjects();
 
     while (window->isOpen()) {
