@@ -6,11 +6,10 @@
 #include <tuple>
 #include <vector>
 
+#include <Constante/constante.hpp>
 #include <Particles/particles.hpp>
 
-constexpr int width{1300}, height{1080};
-constexpr float fps{300.0f};
-constexpr float pi{3.14159265358979323846F};
+using namespace Constantes;
 
 class PenduloDuplo : public sf::Sprite {
   private:

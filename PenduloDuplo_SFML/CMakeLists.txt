@@ -11,7 +11,7 @@ project(${PROJECT_NAME})              # Create project "SpiderJump"
 set(CMAKE_CXX_STANDARD 11)            # Enable c++11 standard
 
 set(PROJECT_HEADER                    # Directory of all header file
-  src/Contante/contante.hpp
+  src/Constante/constante.hpp
   src/Particles/particles.hpp
   src/PenduloDuplo/pendulo_duplo.hpp
 )
