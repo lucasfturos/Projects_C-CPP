@@ -4,6 +4,8 @@
 
 #include <PenduloDuplo/pendulo_duplo.hpp>
 
+using namespace Constantes;
+
 class Particles {
   public:
     struct Particle {
