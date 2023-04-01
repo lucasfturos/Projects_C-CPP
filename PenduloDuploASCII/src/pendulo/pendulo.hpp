@@ -3,8 +3,8 @@
 #include <iostream>
 #include <vector>
 
-#include "../plot/plot.hpp"
-#include "../timer/timer.hpp"
+#include <plot/plot.hpp>
+#include <timer/timer.hpp>
 
 class Pendulo : public Timer, public Plot {
   private:

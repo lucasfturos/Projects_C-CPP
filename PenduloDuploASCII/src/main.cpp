@@ -1,4 +1,4 @@
-#include "pendulo/pendulo.hpp"
+#include <pendulo/pendulo.hpp>
 
 int main() {
     Pendulo p;
