@@ -17,7 +17,6 @@ int main() {
 
     auto pendulo{std::make_shared<PenduloDuplo>(3, 3, 15, 15, 90 * pi / 180,
                                                 90 * pi / 180)};
-    auto particles{std::make_shared<Particles>(width / 2, height / 2.7)};
     pendulo->setupRenderObjects();
 
     while (window->isOpen()) {
@@ -27,14 +26,11 @@ int main() {
                 window->close();
         }
 
-        particles->update();
         pendulo->update();
         pendulo->render();
 
         window->clear(sf::Color::Black);
-
         window->draw(*pendulo);
-        window->draw(particles->vertices);
         window->display();
     }
 }

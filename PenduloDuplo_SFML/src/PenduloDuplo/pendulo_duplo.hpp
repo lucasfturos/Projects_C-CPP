@@ -7,7 +7,6 @@
 #include <vector>
 
 #include <Constante/constante.hpp>
-#include <Particles/particles.hpp>
 
 using namespace Constantes;
 
@@ -17,6 +16,8 @@ class PenduloDuplo : public sf::Sprite {
     static constexpr float g{9.81f};
     static constexpr float dt{1.0f / fps};
 
+    int trace_s{};
+
     float alpha1{}, alpha2{};
     float pos_x2{}, pos_y2{};
     float w1{}, w2{}, O1{}, O2{};
@@ -25,17 +26,17 @@ class PenduloDuplo : public sf::Sprite {
 
     bool show_length{true};
 
+    sf::Color color_trace;
     sf::RenderTexture texture;
     sf::VertexBuffer ver_buffer;
-    sf::CircleShape base, mass1, mass2;
     sf::Vertex length_vertices[3];
     std::vector<sf::Vertex> traces;
+    sf::CircleShape base, mass1, mass2;
+    sf::Vector2f end_pos1{}, end_pos2{};
 
     void updateXY();
 
   public:
-    sf::Vector2f end_pos1{}, end_pos2{};
-
     void setupRenderObjects();
     void update();
     void render();

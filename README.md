@@ -24,7 +24,7 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
 
   - OBS: Esta simulação foi feita com base no código do [DinoZ1729](https://github.com/DinoZ1729/Double-Pendulum) para estudar sobre simulações de movimentos caóticos e praticar C++.
 
-- PenduloDuplo_SFML é uma simulação de um pêndulo duplo, seu plot foi feito utilizando a biblioteca do SFML e foi adicionado um extra, um efeito de partículas para deixar mais hipnotizante sua visualização. Foi feito no sistema operacional Debian em C++.
+- PenduloDuplo_SFML é uma simulação de um pêndulo duplo, seu plot foi feito utilizando a biblioteca do SFML. Foi feito no sistema operacional Debian em C++.
 
 </details>
 

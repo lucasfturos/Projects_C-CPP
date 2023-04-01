@@ -76,14 +76,15 @@ auto PenduloDuplo::render() -> void {
     mass1.setPosition(end_pos1);
     mass2.setPosition(end_pos2);
 
-    int s = traces.size();
-    if (s < trace_size) {
-        traces.push_back(sf::Vertex(end_pos2, sf::Color::White));
+    color_trace = sf::Color(255, 255, 255, rand() % 255);
+    trace_s = traces.size();
+    if (trace_s < trace_size) {
+        traces.push_back(sf::Vertex(end_pos2, color_trace));
     } else {
-        for (int i = 0; i < s - 1; i++) {
+        for (auto i{0}; i < trace_s - 1; ++i) {
             traces[i].position = traces[i + 1].position;
         }
-        traces[s - 1].position = end_pos2;
+        traces[trace_s - 1].position = end_pos2;
     }
 
     texture.clear(sf::Color::Black);
