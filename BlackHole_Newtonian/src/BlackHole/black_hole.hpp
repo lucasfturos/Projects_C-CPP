@@ -11,10 +11,14 @@ using namespace Constantes;
 
 class BlackHole : public sf::Sprite {
   private:
+    float half_width{}, half_heigth{};
+
     sf::RenderTexture texture;
     sf::CircleShape black_hole_radius;
 
   public:
     void setupRenderObjectBlackHole();
     void render();
+
+    BlackHole(float, float);
 };

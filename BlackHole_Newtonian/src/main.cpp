@@ -12,9 +12,8 @@ auto main() -> int {
 
     window->setPosition(sf::Vector2i(desktop.width / 2 - width / 2,
                                      desktop.height / 2 - height / 2));
-    auto black_hole{std::make_shared<BlackHole>()};
-
-    black_hole->setupRenderObjectBlackHole();
+    auto black_hole = std::make_shared<BlackHole>(static_cast<float>(width / 2),
+                                             static_cast<float>(height / 2));
 
     while (window->isOpen()) {
         sf::Event event;

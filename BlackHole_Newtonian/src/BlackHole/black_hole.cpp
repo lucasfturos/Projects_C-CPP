@@ -1,7 +1,11 @@
 #include "black_hole.hpp"
 
+BlackHole::BlackHole(float half_witdh, float half_height) {
+    this->half_witdh = half_witdh;
+    this->half_height = half_height;
+}
 
-auto BlackHole::setupRenderObjectBlackHole() -> void {
+auto BlackHole::render() -> void {
     texture.create(width, height);
     this->setTexture(texture.getTexture());
 
@@ -9,10 +13,8 @@ auto BlackHole::setupRenderObjectBlackHole() -> void {
     black_hole_radius.setOrigin(black_hole_radius.getRadius(),
                                 black_hole_radius.getRadius());
     black_hole_radius.setFillColor(sf::Color::Black);
-}
+    black_hole_radius.setPosition(half_witdh, half_height);
 
-auto BlackHole::render() -> void {
-    black_hole_radius.setPosition(width / 2, height / 2);
     texture.clear(sf::Color::White);
     texture.draw(black_hole_radius);
     texture.display();
