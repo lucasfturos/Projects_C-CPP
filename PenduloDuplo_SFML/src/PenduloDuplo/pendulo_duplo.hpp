@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <memory>
-#include <tuple>
 #include <vector>
 
 #include <Constante/constante.hpp>
