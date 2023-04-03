@@ -6,4 +6,7 @@ constexpr float fps{300.0f};
 constexpr float pi{3.14159265358979323846F};
 constexpr float M_SOL{1.989e+30}; // Massa do Sol em quilograma
 constexpr float mass_bh{M_SOL * 10};
+constexpr float c{299792458.0f};
+constexpr float G{6.6743e-11};
+constexpr float radius{2 * G * mass_bh / (c * c)};
 } // namespace Constantes
