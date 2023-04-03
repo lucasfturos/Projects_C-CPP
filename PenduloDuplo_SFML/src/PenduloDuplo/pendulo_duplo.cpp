@@ -112,6 +112,7 @@ auto PenduloDuplo::render() -> void {
 auto PenduloDuplo::updateXY() -> void {
     x1 = l1 * sin(O1);
     y1 = l1 * cos(O1);
+
     x2 = x1 + l2 * sin(O2);
     y2 = y1 + l2 * cos(O2);
 }
