@@ -1,3 +1,0 @@
-/home/LucasTuros/Documentos/Programacao/Github/Projects_C-CPP/PenduloDuplo_SFML/build/CMakeFiles/rebuild_cache.dir
-/home/LucasTuros/Documentos/Programacao/Github/Projects_C-CPP/PenduloDuplo_SFML/build/CMakeFiles/edit_cache.dir
-/home/LucasTuros/Documentos/Programacao/Github/Projects_C-CPP/PenduloDuplo_SFML/build/CMakeFiles/PenduloDuplo_SFML.dir
