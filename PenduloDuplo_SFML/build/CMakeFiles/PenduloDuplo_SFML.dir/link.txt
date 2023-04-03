@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/PenduloDuplo_SFML.dir/src/PenduloDuplo/pendulo_duplo.cpp.o CMakeFiles/PenduloDuplo_SFML.dir/src/main.cpp.o -o PenduloDuplo_SFML  -lsfml-graphics -lsfml-window -lsfml-system 

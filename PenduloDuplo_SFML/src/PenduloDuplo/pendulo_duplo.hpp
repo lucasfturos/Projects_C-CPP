@@ -11,7 +11,7 @@ using namespace Constantes;
 
 class PenduloDuplo : public sf::Sprite {
   private:
-    static constexpr int trace_size{150};
+  static constexpr int trace_size{150};
     static constexpr float g{9.81f};
     static constexpr float dt{1.0f / fps};
 
