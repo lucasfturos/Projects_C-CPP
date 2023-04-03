@@ -1,22 +1,22 @@
 cmake_minimum_required(VERSION 3.5)  # CMake version check
 
 set(PROJECT_NAME                      # Define all project info
-  PenduloDuplo_SFML
+  BlackHole_Newtonian
   LANGUAGES CXX
   VERSION 1.0.0
 )
 
-project(${PROJECT_NAME})              # Create project "SpiderJump"
+project(${PROJECT_NAME})              # Create project "BlackHole_Newtonian"
 
 set(CMAKE_CXX_STANDARD 11)            # Enable c++11 standard
 
 set(PROJECT_HEADER                    # Directory of all header file
   src/Constante/constante.hpp
-  src/PenduloDuplo/pendulo_duplo.hpp
+  src/BlackHole/black_hole.hpp
 )
 
 set(PROJECT_SOURCE                    # Directory of all source file
-  src/PenduloDuplo/pendulo_duplo.cpp
+  src/BlackHole/black_hole.hpp
   src/main.cpp
 )
 

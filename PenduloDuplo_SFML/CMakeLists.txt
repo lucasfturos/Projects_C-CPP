@@ -6,7 +6,7 @@ set(PROJECT_NAME                      # Define all project info
   VERSION 1.0.0
 )
 
-project(${PROJECT_NAME})              # Create project "SpiderJump"
+project(${PROJECT_NAME})              # Create project "PenduloDuplo_SFML"
 
 set(CMAKE_CXX_STANDARD 11)            # Enable c++11 standard
 
