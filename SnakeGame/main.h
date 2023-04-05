@@ -6,8 +6,8 @@
 #elif _WIN32
 #include <conio.h>
 #endif
-#define w 40
-#define h 40
+#define w 20
+#define h 50
 
 struct Point {
     int x, y;

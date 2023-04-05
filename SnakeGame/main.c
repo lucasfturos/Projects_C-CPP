@@ -2,11 +2,11 @@
 
 void setup() {
     score = 0;
-    p.x = w / 2;
-    p.y = h / 2;
+    p.x = (int)w / 2;
+    p.y = (int)h / 2;
     defeat = 0;
-    apple.x = rand() % w;
-    apple.y = rand() % h;
+    apple.x = rand() % w - 1;
+    apple.y = rand() % h - 1;
 }
 
 void clean() {
@@ -17,14 +17,14 @@ void clean() {
             } else {
                 camp[i][j] = ' ';
             }
-            if (i == p.y && j == p.x) {
+            if (j == p.y && i == p.x) {
                 camp[i][j] = '0';
-            } else if (j == apple.x && i == apple.y) {
+            } else if (i == apple.x && j == apple.y) {
                 camp[i][j] = '@';
             } else {
                 int print = 1;
                 for (k = 0; k < nTail; k++) {
-                    if (tail[k].x == j && tail[k].y == i) {
+                    if (tail[k].x == i && tail[k].y == j) {
                         camp[i][j] = '0';
                         print = 0;
                     }
@@ -88,16 +88,16 @@ void logic() {
 
     switch (flag) {
     case 1:
-        p.x--;
+        p.y--;
         break;
     case 2:
-        p.y++;
-        break;
-    case 3:
         p.x++;
         break;
+    case 3:
+        p.y++;
+        break;
     case 4:
-        p.y--;
+        p.x--;
         break;
     default:
         break;
@@ -114,8 +114,8 @@ void logic() {
 
     if (p.x == apple.x && p.y == apple.y) {
         score += 10;
-        apple.x = rand() % w;
-        apple.y = rand() % h;
+        apple.x = (int)rand() % w - 1;
+        apple.y = (int)rand() % h - 1;
         nTail++;
     }
 }
@@ -127,6 +127,6 @@ int main() {
         draw();
         input();
         logic();
-        usleep(60000);
+        usleep(80000);
     }
 }
