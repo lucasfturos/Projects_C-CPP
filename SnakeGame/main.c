@@ -1,45 +1,30 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#ifdef __linux__
-#include "kbhitgetch.h"
-#elif _WIN32
-#include <conio.h>
-#endif
-#define w 40
-#define h 40
-
-int camp[w][h] = {}, i, j, k, flag, defeat, point;
-int x, y, appleX, appleY, tailX[100], tailY[100], nTail;
+#include "main.h"
 
 void setup() {
-    point = 0;
-    x = w / 2;
-    y = h / 2;
+    score = 0;
+    p.x = w / 2;
+    p.y = h / 2;
     defeat = 0;
-    appleX = rand() % w;
-    appleY = rand() % h;
+    apple.x = rand() % w;
+    apple.y = rand() % h;
 }
 
 void clean() {
     for (i = 0; i < w; i++) {
         for (j = 0; j < h; j++) {
-            if (i == 0 || i == w - 1 || j == 0 || j == h - 1)
+            if (i == 0 || i == w - 1 || j == 0 || j == h - 1) {
                 camp[i][j] = '#';
-
-            else
+            } else {
                 camp[i][j] = ' ';
-
-            if (i == y && j == x)
+            }
+            if (i == p.y && j == p.x) {
                 camp[i][j] = '0';
-
-            else if (j == appleX && i == appleY)
+            } else if (j == apple.x && i == apple.y) {
                 camp[i][j] = '@';
-
-            else {
+            } else {
                 int print = 1;
                 for (k = 0; k < nTail; k++) {
-                    if (tailX[k] == j && tailY[k] == i) {
+                    if (tail[k].x == j && tail[k].y == i) {
                         camp[i][j] = '0';
                         print = 0;
                     }
@@ -50,7 +35,7 @@ void clean() {
 }
 
 void draw() {
-    system("clear || cls");
+    printf("\033c");
     printf("\nSnake Game\n\n");
     for (i = 0; i < w; i++) {
         for (j = 0; j < h; j++) {
@@ -58,7 +43,7 @@ void draw() {
         }
         printf("\n");
     }
-    printf("\n\nPoints = %d\nClick X to Exit Game\n\n", point);
+    printf("\n\nPoints = %d\nClick X to Exit Game\n\n", score);
 }
 
 void input() {
@@ -78,57 +63,59 @@ void input() {
             break;
         case 'x':
             defeat = 1;
+            printf("\033c");
             break;
         }
     }
 }
 
 void logic() {
-    int prevX = tailX[0];
-    int prevY = tailY[0];
+    int prevX = tail[0].x;
+    int prevY = tail[0].y;
     int prev2X, prev2Y;
 
-    tailX[0] = x;
-    tailY[0] = y;
+    tail[0].x = p.x;
+    tail[0].y = p.y;
 
     for (k = 1; k < nTail; k++) {
-        prev2X = tailX[k];
-        prev2Y = tailY[k];
-        tailX[k] = prevX;
-        tailY[k] = prevY;
+        prev2X = tail[k].x;
+        prev2Y = tail[k].y;
+        tail[k].x = prevX;
+        tail[k].y = prevY;
         prevX = prev2X;
         prevY = prev2Y;
     }
 
     switch (flag) {
     case 1:
-        x--;
+        p.x--;
         break;
     case 2:
-        y++;
+        p.y++;
         break;
     case 3:
-        x++;
+        p.x++;
         break;
     case 4:
-        y--;
+        p.y--;
         break;
     default:
         break;
     }
 
-    if (x < 0 || x > w - 2 || y < 0 || y > h - 2)
+    if (p.x < 1 || p.x > w - 2 || p.y < 1 || p.y > h - 2) {
         defeat = 1;
+    }
 
     for (k = 0; k < nTail; k++) {
-        if (tailX[k] == x && tailY[k] == y)
+        if (tail[k].x == p.x && tail[k].y == p.y)
             defeat = 1;
     }
 
-    if (x == appleX && y == appleY) {
-        point += 10;
-        appleX = rand() % w;
-        appleY = rand() % h;
+    if (p.x == apple.x && p.y == apple.y) {
+        score += 10;
+        apple.x = rand() % w;
+        apple.y = rand() % h;
         nTail++;
     }
 }
