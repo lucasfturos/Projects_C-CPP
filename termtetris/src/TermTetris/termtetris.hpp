@@ -8,10 +8,10 @@
 
 class TermTetris {
   private:
-    static const std::uint32_t lines{20};
-    static const std::uint32_t cols{10};
-    static const std::uint32_t squares{4};
-    static const std::uint32_t shapes{7};
+    static constexpr std::uint32_t lines{20};
+    static constexpr std::uint32_t cols{10};
+    static constexpr std::uint32_t squares{4};
+    static constexpr std::uint32_t shapes{7};
 
     std::vector<std::vector<std::uint32_t>> area;
     std::vector<std::vector<std::uint32_t>> forms;
@@ -37,6 +37,5 @@ class TermTetris {
 
   public:
     TermTetris();
-    ~TermTetris();
     void run();
 };

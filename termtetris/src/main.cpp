@@ -1,6 +1,6 @@
 #include <TermTetris/termtetris.hpp>
 
 auto main() -> int {
-    TermTetris *tt = new TermTetris();
+    auto tt{std::make_shared<TermTetris>()};
     tt->run();
 }
