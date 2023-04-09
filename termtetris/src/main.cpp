@@ -1,6 +1,6 @@
-#include "termtetris/termtetris.hpp"
+#include <TermTetris/termtetris.hpp>
 
 auto main() -> int {
-    TermTetris tt;
-    tt.run();
+    TermTetris *tt = new TermTetris();
+    tt->run();
 }

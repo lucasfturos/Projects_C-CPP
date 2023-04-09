@@ -11,11 +11,11 @@ project(${PROJECT_NAME})              # Create project "termtetris"
 set(CMAKE_CXX_STANDARD 17)            # Enable c++17 standard
 
 set(PROJECT_HEADER                    # Directory of all header file
-  src/termtetris/termtetris.hpp
+  src/TermTetris/termtetris.hpp
 )
 
 set(PROJECT_SOURCE                    # Directory of all source file
-  src/termtetris/termtetris.hpp
+  src/TermTetris/termtetris.hpp
   src/main.cpp
 )
 
@@ -27,6 +27,6 @@ add_executable(${PROJECT_NAME}
 
 # Specifies include directories to use when compiling a given target
 target_include_directories(${PROJECT_NAME} 
-  PRIVATE src
   PRIVATE ncurses
+  PRIVATE src
 )

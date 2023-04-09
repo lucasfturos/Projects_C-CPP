@@ -16,6 +16,8 @@ TermTetris::TermTetris() {
     };
 }
 
+TermTetris::~TermTetris() {}
+
 auto TermTetris::clear() -> void {}
 
 auto TermTetris::draw() -> void {}

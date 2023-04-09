@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cmath>
 #include <iostream>
 #include <memory>
@@ -35,5 +37,6 @@ class TermTetris {
 
   public:
     TermTetris();
+    ~TermTetris();
     void run();
 };
