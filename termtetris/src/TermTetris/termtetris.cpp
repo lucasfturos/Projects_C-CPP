@@ -80,7 +80,6 @@ auto TermTetris::events() -> void {
             delay = 0.05f;
             break;
         case 'x':
-            std::cout << "\nSaiu do jogo" << '\n';
             gameover = true;
             break;
         default:
