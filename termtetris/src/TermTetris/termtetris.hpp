@@ -22,7 +22,7 @@ class TermTetris : public KbhitGetch {
         int x, y;
     } z[squares], k[squares];
 
-    int dirx, flags;
+    int dirx;
     bool rotate, gameover;
     float timercount, delay;
     long int score;
@@ -37,6 +37,7 @@ class TermTetris : public KbhitGetch {
     void setScore();
     void clear();
     void draw();
+    void logoGameOver();
 
     std::string scoreLimit();
 

@@ -46,12 +46,21 @@ auto TermTetris::clear() -> void {
 
 auto TermTetris::draw() -> void {
     std::cout << "\033c";
-    std::cout << "TermTetris\t\t" << scoreLimit() << '\n';
+    std::cout << "\033[1;34mTermTetris\t\t " << scoreLimit() + "\033[0m"
+              << '\n';
     for (auto i{0}; i < lines; ++i) {
-        for (size_t j{0}; j < cols; ++j) {
+        for (auto j{0}; j < cols; ++j) {
             std::cout << area[i][j];
         }
         std::cout << '\n';
+    }
+    std::cout << "\033[1;34mClique 'x' para sair do jogo\033[0m" << '\n';
+    if (gameover) {
+        std::cout << "\033c";
+        logoGameOver();
+        std::cout << "\033[1;34mSua pontuação: " + std::to_string(score)
+                  << "\033[0m" << '\n';
+        std::quick_exit(true);
     }
 }
 
@@ -60,31 +69,40 @@ auto TermTetris::events() -> void {
         switch (KbhitGetch::getch()) {
         case 'w':
             rotate = true;
+            break;
         case 'a':
-            --dirx;
-        case 'd':
             ++dirx;
+            break;
+        case 'd':
+            --dirx;
+            break;
         case 's':
             delay = 0.05f;
+            break;
         case 'x':
+            std::cout << "\nSaiu do jogo" << '\n';
             gameover = true;
-            std::quick_exit(true);
+            break;
+        default:
             break;
         }
     }
 }
 
 auto TermTetris::moveToDown() -> void {
-    for (auto i{0}; i < squares; ++i) {
-        k[i] = z[i];
-        ++z[i].x;
-    }
-    if (maxLimit()) {
-        int number = std::rand() % shapes;
+    if (timercount > delay) {
         for (auto i{0}; i < squares; ++i) {
-            z[i].x = forms[number][i] % 2;
-            z[i].y = forms[number][i] / 2;
+            k[i] = z[i];
+            ++z[i].x;
         }
+        if (maxLimit()) {
+            int number = std::rand() % shapes;
+            for (auto i{0}; i < squares; ++i) {
+                z[i].x = forms[number][i] % 2;
+                z[i].y = forms[number][i] / 2;
+            }
+        }
+        timercount = 0;
     }
 }
 
@@ -160,7 +178,39 @@ auto TermTetris::scoreLimit() -> std::string {
     }
 }
 
-auto TermTetris::setScore() -> void {}
+auto TermTetris::setScore() -> void {
+    int match = lines - 1;
+    for (auto i = match; i >= 1; --i) {
+        int sum{};
+        for (auto j{0}; j < cols; ++j) {
+            if (area[i][j] == "▣") {
+                if (i == 1) {
+                    gameover = true;
+                    std::quick_exit(true);
+                }
+                ++sum;
+            }
+            area[match][j] = area[i][j];
+        }
+        if (sum < cols) {
+            --match;
+        } else {
+            ++score;
+        }
+    }
+}
+
+auto TermTetris::logoGameOver() -> void {
+    std::cout << "\033[1;31m"
+              << R"(
+ ██████   █████  ███    ███ ███████      ██████  ██    ██ ███████ ██████  
+██       ██   ██ ████  ████ ██          ██    ██ ██    ██ ██      ██   ██ 
+██   ███ ███████ ██ ████ ██ █████       ██    ██ ██    ██ █████   ██████  
+██    ██ ██   ██ ██  ██  ██ ██          ██    ██  ██  ██  ██      ██   ██ 
+ ██████  ██   ██ ██      ██ ███████      ██████    ████   ███████ ██   ██ 
+    )"
+              << "\033[0m" << '\n';
+}
 
 auto TermTetris::run() -> void {
     while (true) {
