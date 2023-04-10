@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include <plot/plot.hpp>
 #include <timer/timer.hpp>
