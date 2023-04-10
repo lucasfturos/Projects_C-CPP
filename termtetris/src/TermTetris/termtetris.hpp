@@ -1,28 +1,30 @@
 #pragma once
 
+#include <chrono>
 #include <cmath>
 #include <iostream>
 #include <memory>
-#include <ncurses.h>
+#include <thread>
 #include <vector>
 
 class TermTetris {
   private:
-    static constexpr std::uint32_t lines{20};
-    static constexpr std::uint32_t cols{10};
-    static constexpr std::uint32_t squares{4};
-    static constexpr std::uint32_t shapes{7};
+    static constexpr int lines{30};
+    static constexpr int cols{30};
+    static constexpr int squares{4};
+    static constexpr int shapes{7};
 
-    std::vector<std::vector<std::uint32_t>> area;
-    std::vector<std::vector<std::uint32_t>> forms;
+    std::vector<std::vector<std::string>> area;
+    std::vector<std::vector<int>> forms;
 
     struct Coords {
-        std::uint32_t x, y;
+        int x, y;
     } z[squares], k[squares];
 
-    int dirx, color, score;
+    int dirx, color, flags;
     bool rotate, gameover;
     float timercount, delay;
+    long int score;
 
   protected:
     void events();
@@ -31,6 +33,7 @@ class TermTetris {
     void resetValues();
     void changePosition();
     bool maxLimit();
+    std::string scoreLimit();
     void setScore();
     void clear();
     void draw();
