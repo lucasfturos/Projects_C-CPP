@@ -12,10 +12,12 @@ set(CMAKE_CXX_STANDARD 17)            # Enable c++17 standard
 
 set(PROJECT_HEADER                    # Directory of all header file
   src/TermTetris/termtetris.hpp
+  src/KbhitGetch/kbhit_getch.hpp
 )
 
 set(PROJECT_SOURCE                    # Directory of all source file
   src/TermTetris/termtetris.cpp
+  src/KbhitGetch/kbhit_getch.cpp
   src/main.cpp
 )
 

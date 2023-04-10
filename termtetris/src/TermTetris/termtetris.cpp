@@ -20,8 +20,8 @@ TermTetris::TermTetris() {
     rotate = gameover = {false};
     dirx = 0;
 
-    std::uint32_t number = std::rand() % shapes;
-    for (std::size_t i{}; i < squares; ++i) {
+    int number = std::rand() % shapes;
+    for (auto i{0}; i < squares; ++i) {
         z[i].x = forms[number][i] % 2;
         z[i].y = forms[number][i] / 2;
     }
@@ -35,9 +35,9 @@ auto TermTetris::clear() -> void {
             } else {
                 area[i][j] = " ";
             }
-            for (std::size_t k{}; k < squares; ++k) {
+            for (auto k{0}; k < squares; ++k) {
                 if (j == z[k].y && i == z[k].x) {
-                    area[i][j] = "\033[1;31m#\033[0m";
+                    area[i][j] = "\033[1;31m▣\033[0m";
                 }
             }
         }
@@ -56,37 +56,56 @@ auto TermTetris::draw() -> void {
 }
 
 auto TermTetris::events() -> void {
-    char ch = getchar();
-    switch (ch) {
-    case 'w':
-        rotate = true;
-    case 'a':
-        --dirx;
-    case 'd':
-        ++dirx;
-    case 's':
-        delay = 0.05f;
-    case 'x':
-        gameover = true;
-        break;
+    if (KbhitGetch::kbhit()) {
+        switch (KbhitGetch::getch()) {
+        case 'w':
+            rotate = true;
+        case 'a':
+            --dirx;
+        case 'd':
+            ++dirx;
+        case 's':
+            delay = 0.05f;
+        case 'x':
+            gameover = true;
+            std::quick_exit(true);
+            break;
+        }
     }
 }
 
 auto TermTetris::moveToDown() -> void {
-    for (std::size_t i{}; i < squares; ++i) {
+    for (auto i{0}; i < squares; ++i) {
         k[i] = z[i];
         ++z[i].x;
     }
     if (maxLimit()) {
-        std::uint32_t number = std::rand() % shapes;
-        for (std::size_t i{}; i < squares; ++i) {
+        int number = std::rand() % shapes;
+        for (auto i{0}; i < squares; ++i) {
             z[i].x = forms[number][i] % 2;
             z[i].y = forms[number][i] / 2;
         }
     }
 }
 
-auto TermTetris::setRotate() -> void {}
+auto TermTetris::setRotate() -> void {
+    if (rotate) {
+        Coords coords = z[1];
+        for (auto i{0}; i < squares; ++i) {
+            int x = z[i].y - coords.y;
+            int y = z[i].x - coords.x;
+
+            z[i].x = coords.x - x;
+            z[i].y = coords.y + y;
+        }
+
+        if (maxLimit()) {
+            for (auto i{0}; i < squares; ++i) {
+                z[i] = k[i];
+            }
+        }
+    }
+}
 
 auto TermTetris::resetValues() -> void {
     dirx = 0;
@@ -94,16 +113,26 @@ auto TermTetris::resetValues() -> void {
     delay = 0.3f;
 }
 
-auto TermTetris::changePosition() -> void {}
+auto TermTetris::changePosition() -> void {
+    for (auto i{0}; i < squares; ++i) {
+        k[i] = z[i];
+        z[i].x += dirx;
+    }
+
+    if (maxLimit()) {
+        for (auto i{0}; i < squares; ++i) {
+            z[i] = k[i];
+        }
+    }
+}
 
 auto TermTetris::maxLimit() -> bool {
-    for (std::size_t i{}; i < squares; ++i) {
+    for (auto i{0}; i < squares; ++i) {
         if (z[i].x < 1 || z[i].x >= lines - 1 || z[i].y >= cols - 1 ||
-            z[i].y < 1 || area[z[i].y][z[i].x] == "") {
+            z[i].y < 1 || area[z[i].y][z[i].x] == "\0") {
             return true;
         }
     }
-
     return false;
 }
 
@@ -135,7 +164,14 @@ auto TermTetris::setScore() -> void {}
 
 auto TermTetris::run() -> void {
     while (true) {
-        moveToDown();
+        events();
+        if (!gameover) {
+            changePosition();
+            setRotate();
+            moveToDown();
+            setScore();
+            resetValues();
+        }
         clear();
         draw();
         std::this_thread::sleep_for(std::chrono::microseconds(60000));

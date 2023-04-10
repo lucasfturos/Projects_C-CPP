@@ -1,5 +1,6 @@
 #pragma once
 
+#include <KbhitGetch/kbhit_getch.hpp>
 #include <chrono>
 #include <cmath>
 #include <iostream>
@@ -7,7 +8,7 @@
 #include <thread>
 #include <vector>
 
-class TermTetris {
+class TermTetris : public KbhitGetch {
   private:
     static constexpr int lines{30};
     static constexpr int cols{31};
@@ -21,7 +22,7 @@ class TermTetris {
         int x, y;
     } z[squares], k[squares];
 
-    int dirx, color, flags;
+    int dirx, flags;
     bool rotate, gameover;
     float timercount, delay;
     long int score;
@@ -38,7 +39,6 @@ class TermTetris {
     void draw();
 
     std::string scoreLimit();
-    int colorRand();
 
   public:
     TermTetris();
