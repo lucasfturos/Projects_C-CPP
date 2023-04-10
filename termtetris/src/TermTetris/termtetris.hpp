@@ -10,7 +10,7 @@
 class TermTetris {
   private:
     static constexpr int lines{30};
-    static constexpr int cols{30};
+    static constexpr int cols{31};
     static constexpr int squares{4};
     static constexpr int shapes{7};
 
@@ -33,10 +33,12 @@ class TermTetris {
     void resetValues();
     void changePosition();
     bool maxLimit();
-    std::string scoreLimit();
     void setScore();
     void clear();
     void draw();
+
+    std::string scoreLimit();
+    int colorRand();
 
   public:
     TermTetris();

@@ -15,6 +15,7 @@ TermTetris::TermTetris() {
         {3, 5, 7, 6}, // J
         {2, 3, 4, 5}, // O
     };
+
     delay = 0.3f;
     rotate = gameover = {false};
     dirx = 0;
@@ -30,13 +31,13 @@ auto TermTetris::clear() -> void {
     for (auto i{0}; i < lines; ++i) {
         for (auto j{0}; j < cols; ++j) {
             if (i == 0 || i == lines - 1 || j == 0 || j == cols - 1) {
-                area[i][j] = "#";
+                area[i][j] = "\033[1;32m█\033[0m";
             } else {
                 area[i][j] = " ";
             }
             for (std::size_t k{}; k < squares; ++k) {
                 if (j == z[k].y && i == z[k].x) {
-                    area[i][j] = "■";
+                    area[i][j] = "\033[1;31m#\033[0m";
                 }
             }
         }
@@ -97,8 +98,8 @@ auto TermTetris::changePosition() -> void {}
 
 auto TermTetris::maxLimit() -> bool {
     for (std::size_t i{}; i < squares; ++i) {
-        if (z[i].x < 0 || z[i].x >= cols - 1 || z[i].y >= lines - 1 ||
-            area[z[i].y][z[i].x] == " ") {
+        if (z[i].x < 1 || z[i].x >= lines - 1 || z[i].y >= cols - 1 ||
+            z[i].y < 1 || area[z[i].y][z[i].x] == "") {
             return true;
         }
     }
@@ -137,6 +138,6 @@ auto TermTetris::run() -> void {
         moveToDown();
         clear();
         draw();
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::microseconds(60000));
     }
 }
