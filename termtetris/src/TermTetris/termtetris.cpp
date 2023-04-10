@@ -19,6 +19,7 @@ TermTetris::TermTetris() {
     delay = 0.3f;
     rotate = gameover = {false};
     dirx = 0;
+    timercount = 0.0f;
 
     int number = std::rand() % shapes;
     for (auto i{0}; i < squares; ++i) {
@@ -71,10 +72,10 @@ auto TermTetris::events() -> void {
             rotate = true;
             break;
         case 'a':
-            ++dirx;
+            --dirx;
             break;
         case 'd':
-            --dirx;
+            ++dirx;
             break;
         case 's':
             delay = 0.05f;
@@ -200,6 +201,8 @@ auto TermTetris::setScore() -> void {
 }
 
 auto TermTetris::logoGameOver() -> void {
+    // Site
+    // https://patorjk.com/software/taag/#p=display&f=ANSI%20Regular&t=GAME%20OVER
     std::cout << "\033[1;31m"
               << R"(
  ██████   █████  ███    ███ ███████      ██████  ██    ██ ███████ ██████  
