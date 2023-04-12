@@ -1,19 +1,18 @@
 #include <BlackHole/black_hole.hpp>
 
 auto main() -> int {
-    std::shared_ptr<sf::RenderWindow> window;
     auto desktop{sf::VideoMode::getDesktopMode()};
 
-    window = std::make_shared<sf::RenderWindow>(
+    auto window{std::make_shared<sf::RenderWindow>(
         sf::VideoMode(width, height), "Black Hole Newtonian - SFML",
-        sf::Style::Titlebar | sf::Style::Close);
+        sf::Style::Titlebar | sf::Style::Close)};
 
     window->setFramerateLimit(fps);
 
     window->setPosition(sf::Vector2i(desktop.width / 2 - width / 2,
                                      desktop.height / 2 - height / 2));
-    auto black_hole = std::make_shared<BlackHole>(static_cast<float>(width / 2),
-                                             static_cast<float>(height / 2));
+    auto black_hole{std::make_shared<BlackHole>(
+        static_cast<float>(width / 2), static_cast<float>(height / 2))};
 
     while (window->isOpen()) {
         sf::Event event;

@@ -15,9 +15,12 @@ class BlackHole : public sf::Sprite {
 
     sf::RenderTexture texture;
     sf::CircleShape black_hole_radius;
+    sf::CircleShape region1_atrator;
+    sf::CircleShape region2_atrator;
 
   public:
-    void setupRenderObjectBlackHole();
+    void setupObjectBlackHole();
+    void setupObjectAtratorRegion();
     void render();
 
     BlackHole(float, float);

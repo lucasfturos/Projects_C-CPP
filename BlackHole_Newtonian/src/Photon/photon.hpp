@@ -1,18 +1,19 @@
 #pragma once
 
+#include <Constante/constante.hpp>
 #include <SFML/Graphics.hpp>
-
-#include <PenduloDuplo/pendulo_duplo.hpp>
 
 using namespace Constantes;
 
-class Particles {
+class Photon : public sf::Sprite {
   public:
     struct Particle {
         sf::Vector2f velocity;
         int life_time{};
     };
 
+    sf::CircleShape photon_radius;
+    sf::RenderTexture texture;
     sf::Color color;
     sf::Vector2f pos{};
     sf::VertexArray vertices;
@@ -25,5 +26,5 @@ class Particles {
     void resetParticle(std::size_t, bool);
     void update();
 
-    Particles();
+    Photon();
 };

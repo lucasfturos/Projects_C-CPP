@@ -12,10 +12,12 @@ set(CMAKE_CXX_STANDARD 11)            # Enable c++11 standard
 
 set(PROJECT_HEADER                    # Directory of all header file
   src/Constante/constante.hpp
+  src/Photon/photon.hpp
   src/BlackHole/black_hole.hpp
 )
 
 set(PROJECT_SOURCE                    # Directory of all source file
+  src/Photon/photon.cpp
   src/BlackHole/black_hole.cpp
   src/main.cpp
 )

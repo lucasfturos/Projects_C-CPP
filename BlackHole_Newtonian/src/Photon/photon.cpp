@@ -1,13 +1,13 @@
-#include "particles.hpp"
+#include "photon.hpp"
 
-Particles::Particles() {
+Photon::Photon() {
     count = 1024;
     x = width / 2;
     y = height / 2.7f;
     resetParticles();
 }
 
-auto Particles::resetParticles() -> void {
+auto Photon::resetParticles() -> void {
     store_particles = std::vector<Particle>(count);
     vertices = sf::VertexArray(sf::LineStrip, count * 4);
 
@@ -16,7 +16,7 @@ auto Particles::resetParticles() -> void {
     }
 }
 
-auto Particles::resetParticle(std::size_t index, bool start = false) -> void {
+auto Photon::resetParticle(std::size_t index, bool start = false) -> void {
     for (auto i{0UL}; i < 4; ++i) {
         vertices[4 * index + i].position = sf::Vector2f(x, y);
     }
@@ -37,7 +37,7 @@ auto Particles::resetParticle(std::size_t index, bool start = false) -> void {
     store_particles[index].life_time = 30 + rand() % 60;
 }
 
-auto Particles::update() -> void {
+auto Photon::update() -> void {
     for (std::size_t i{}; i < store_particles.size(); ++i) {
         if (store_particles[i].life_time == 0) {
             resetParticle(i, false);
