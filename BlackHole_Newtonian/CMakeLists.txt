@@ -16,7 +16,7 @@ set(PROJECT_HEADER                    # Directory of all header file
 )
 
 set(PROJECT_SOURCE                    # Directory of all source file
-  src/BlackHole/black_hole.hpp
+  src/BlackHole/black_hole.cpp
   src/main.cpp
 )
 
