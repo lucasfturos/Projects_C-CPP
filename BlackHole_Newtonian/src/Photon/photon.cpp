@@ -1,50 +1,39 @@
 #include "photon.hpp"
 
-Photon::Photon() {
-    count = 1024;
-    x = width / 2;
-    y = height / 2.7f;
-    resetParticles();
-}
-
-auto Photon::resetParticles() -> void {
-    store_particles = std::vector<Particle>(count);
-    vertices = sf::VertexArray(sf::LineStrip, count * 4);
-
-    for (size_t i{0}; i < store_particles.size(); ++i) {
-        resetParticle(i, true);
-    }
-}
-
-auto Photon::resetParticle(std::size_t index, bool start = false) -> void {
-    for (auto i{0UL}; i < 4; ++i) {
-        vertices[4 * index + i].position = sf::Vector2f(x, y);
-    }
-
-    color = sf::Color(rand() % 255, rand() % 255, rand() % 255, 255);
-
-    if (start) {
-        color.a = 0;
-    }
-
-    for (std::size_t i{}; i < 4; ++i) {
-        vertices[4 * index + i].color = color;
-    }
-
-    pos = {static_cast<float>(rand() / (float)RAND_MAX * 8 - 4),
-           static_cast<float>(rand() / (float)RAND_MAX * 8 - 4)};
-    store_particles[index].velocity = pos;
-    store_particles[index].life_time = 30 + rand() % 60;
+Photon::Photon(float pos_x, float pos_y, float vel_x, float vel_y) {
+    pos.x = pos_x;
+    pos.y = pos_y;
+    vel.x = vel_x;
+    vel.y = vel_y;
 }
 
 auto Photon::update() -> void {
-    for (std::size_t i{}; i < store_particles.size(); ++i) {
-        if (store_particles[i].life_time == 0) {
-            resetParticle(i, false);
-        }
-        for (auto j{0}; j < 4; ++j) {
-            vertices[4 * i + j].position += store_particles[i].velocity;
-        }
-        --store_particles[i].life_time;
-    }
+    float distance_x = width / 2 - (radius) + pos.x;
+    float distance_y = height / 2 - (radius) + pos.y;
+
+    float distance = sqrt(distance_x * distance_x + distance_y * distance_y);
+
+    float inverse_distance = 1.f / distance;
+
+    float normalized_x = inverse_distance * distance_x;
+    float normalized_y = inverse_distance * distance_y;
+
+    float inverse_square_dropoff = inverse_distance * inverse_distance;
+
+    float acceleration_x = normalized_x * 1000 * inverse_square_dropoff;
+    float acceleration_y = normalized_y * 1000 * inverse_square_dropoff;
+
+    vel.x += acceleration_x;
+    vel.y += acceleration_y;
+
+    pos.x += vel.x;
+    pos.y += vel.y;
+}
+
+auto Photon::render(sf::RenderTexture &texture) -> void {
+    photon_radius.setPosition(pos);
+    photon_radius.setFillColor(sf::Color::Red);
+    photon_radius.setRadius(8);
+    update();
+    texture.draw(photon_radius);
 }

@@ -9,4 +9,5 @@ constexpr float mass_bh{M_SOL * 5};
 constexpr float c{299792458.0f};
 constexpr float G{6.6743E-11};
 constexpr float radius{2 * G * mass_bh / (c * c)};
+constexpr float F_Gravity{G * (mass_bh / (radius * radius))};
 } // namespace Constantes

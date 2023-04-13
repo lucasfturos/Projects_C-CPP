@@ -2,29 +2,19 @@
 
 #include <Constante/constante.hpp>
 #include <SFML/Graphics.hpp>
+#include <cmath>
+#include <memory>
 
 using namespace Constantes;
 
 class Photon : public sf::Sprite {
-  public:
-    struct Particle {
-        sf::Vector2f velocity;
-        int life_time{};
-    };
-
+  private:
+    sf::Vector2f pos, vel;
     sf::CircleShape photon_radius;
-    sf::RenderTexture texture;
-    sf::Color color;
-    sf::Vector2f pos{};
-    sf::VertexArray vertices;
-    std::vector<Particle> store_particles;
 
-    std::size_t count{};
-    float size{}, x{}, y{};
-
-    void resetParticles();
-    void resetParticle(std::size_t, bool);
+  public:
     void update();
+    void render(sf::RenderTexture &);
 
-    Photon();
+    Photon(float, float, float, float);
 };

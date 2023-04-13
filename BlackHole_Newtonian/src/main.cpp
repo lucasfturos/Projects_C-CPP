@@ -1,4 +1,5 @@
 #include <BlackHole/black_hole.hpp>
+#include <Photon/photon.hpp>
 
 auto main() -> int {
     auto desktop{sf::VideoMode::getDesktopMode()};
@@ -13,6 +14,9 @@ auto main() -> int {
                                      desktop.height / 2 - height / 2));
     auto black_hole{std::make_shared<BlackHole>(
         static_cast<float>(width / 2), static_cast<float>(height / 2))};
+
+    auto photon{std::make_shared<Photon>(static_cast<float>(width / 2),
+                                         static_cast<float>(height / 2), 4, 0)};
 
     while (window->isOpen()) {
         sf::Event event;
