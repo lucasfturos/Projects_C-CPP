@@ -22,7 +22,7 @@ class TermTetris : public KbhitGetch {
         int x, y;
     } z[squares], k[squares];
 
-    int dirx;
+    int diry;
     bool rotate, gameover;
     float timercount, delay;
     long int score;
