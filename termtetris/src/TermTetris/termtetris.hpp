@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./../KbhitGetch/kbhit_getch.hpp"
+#include <KbhitGetch/kbhit_getch.hpp>
 #include <chrono>
 #include <cmath>
 #include <iostream>
@@ -11,7 +11,7 @@
 class TermTetris : public KbhitGetch {
   private:
     static constexpr int lines{30};
-    static constexpr int cols{31};
+    static constexpr int cols{30};
     static constexpr int squares{4};
     static constexpr int shapes{7};
 
@@ -37,8 +37,8 @@ class TermTetris : public KbhitGetch {
     void setScore();
     void clear();
     void draw();
+    void draw_shapes();
     void logoGameOver();
-    void gotoxy();
 
     std::string scoreLimit();
 
