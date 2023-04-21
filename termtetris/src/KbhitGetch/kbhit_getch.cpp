@@ -1,7 +1,6 @@
 #include "kbhit_getch.hpp"
 
-char KbhitGetch::getch() { /*le um caracter da entrada padrão sem o bloqueio de entrada(nao
-                  necessita apertar enter) */
+char KbhitGetch::getch() { 
     int ch;
     struct termios oldt;
     struct termios newt;

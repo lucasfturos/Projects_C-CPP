@@ -38,6 +38,7 @@ auto TermTetris::clear() -> void {
             }
         }
     }
+
     for (auto k{0}; k < squares; ++k) {
         area[z[k].x][z[k].y] = "\033[1;31m▣\033[0m";
     }

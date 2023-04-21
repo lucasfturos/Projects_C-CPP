@@ -5,7 +5,6 @@
 
 class KbhitGetch {
   public:
-    char getch(); /*le um caracter da entrada padrão sem o bloqueio de
-                     entrada(nao necessita apertar enter) */
+    char getch(); 
     int kbhit(void);
 };

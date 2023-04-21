@@ -45,5 +45,3 @@ auto TermTetris::setScore() -> void {
         }
     }
 }
-
-
