@@ -3,10 +3,12 @@
 auto TermTetris::clear() -> void {
     for (auto i{0}; i < lines; ++i) {
         for (auto j{0}; j < cols; ++j) {
-            if (i == 0 || i == lines - 1 || j == 0 || j == cols - 1) {
-                area[i][j] = "\033[1;32m█\033[0m";
-            } else {
-                area[i][j] = " ";
+            for (auto k{0}; k < squares; ++k) {
+                if (i == lines - 1 || j == 0 || j == cols - 1) {
+                    area[i][j] = "\033[1;32m█\033[0m";
+                } else {
+                    area[i][j] = " ";
+                }
             }
         }
     }
@@ -34,11 +36,9 @@ auto TermTetris::draw() -> void {
     }
 }
 
-auto TermTetris::draw_shapes() -> void {
-    for (auto i{0}; i < lines; ++i) {
-        for (auto k{0}; k < squares; ++k) {
-            area[z[k].x][z[k].y] = "\033[1;31m▣\033[0m";
-        }
+auto TermTetris::draw_shapes(int color) -> void {
+    for (auto i{0}; i < squares; ++i) {
+        area[z[i].x][z[i].y] = "\033[1;" + std::to_string(color) + "m▣\033[0m";
     }
 }
 

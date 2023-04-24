@@ -12,8 +12,13 @@ auto TermTetris::events() -> void {
         case 'd':
             ++diry;
             break;
+        case 's':
+            for (auto i{0}; i < squares; ++i) {
+                ++z[i].x;
+            }
+            break;
         case 'c':
-            delay++;
+            start++;
             break;
         case 'x':
             gameover = true;
@@ -25,14 +30,12 @@ auto TermTetris::events() -> void {
 }
 
 auto TermTetris::moveToDown() -> void {
-    if (timercount < delay) {
+    if (timercount < start) {
         for (auto i{0}; i < squares; ++i) {
             k[i] = z[i];
             ++z[i].x;
         }
-        for (auto i{0}; i < squares; ++i) {
-            area[k[i].x][k[i].y] = "\033[1;32m▣\033[0m";
-        }
+
         if (maxLimit()) {
             int number = std::rand() % shapes;
             for (auto i{0}; i < squares; ++i) {
@@ -66,13 +69,12 @@ auto TermTetris::setRotate() -> void {
 auto TermTetris::resetValues() -> void {
     diry = 0;
     rotate = false;
-    delay = .005f;
 }
 
 auto TermTetris::changePosition() -> void {
     for (auto i{0}; i < squares; ++i) {
         k[i] = z[i];
-        z[i].y += diry;
+        z[i].y += diry * 4;
     }
 
     if (maxLimit()) {

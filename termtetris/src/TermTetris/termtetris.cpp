@@ -16,7 +16,7 @@ TermTetris::TermTetris() {
         {2, 3, 4, 5}, // O
     };
 
-    delay = .005f;
+    start = .005f;
     rotate = gameover = {false};
     diry = 0;
     timercount = 1.f;
@@ -40,6 +40,7 @@ auto TermTetris::run() -> void {
             resetValues();
         }
         clear();
+        draw_shapes(color);
         draw();
         std::this_thread::sleep_for(std::chrono::microseconds(70000));
     }

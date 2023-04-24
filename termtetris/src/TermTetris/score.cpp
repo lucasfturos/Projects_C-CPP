@@ -25,7 +25,7 @@ auto TermTetris::scoreLimit() -> std::string {
 }
 
 auto TermTetris::setScore() -> void {
-    int match = lines - 1;
+    int match{lines - 1};
     for (auto i = match; i >= 1; --i) {
         int sum{};
         for (auto j{0}; j < cols; ++j) {
@@ -38,10 +38,11 @@ auto TermTetris::setScore() -> void {
             }
             area[match][j] = area[i][j];
         }
-        if (sum < cols) {
+        if (sum < lines) {
             --match;
         } else {
             ++score;
+            color = std::rand() % (37 - 31) + 31;
         }
     }
 }
