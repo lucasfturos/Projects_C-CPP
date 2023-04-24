@@ -15,7 +15,7 @@ auto TermTetris::clear() -> void {
 }
 
 auto TermTetris::draw() -> void {
-    std::cout << "\033[5;30m\033[1;34mTermTetris\t\t "
+    std::cout << "\033[5;30m\033[1;34mTermTetris\t\t"
               << scoreLimit() + "\033[0m" << '\n';
 
     for (auto i{0}; i < lines; ++i) {
@@ -47,7 +47,7 @@ auto TermTetris::maxLimit() -> bool {
         if (z[i].x < 1 || z[i].x >= lines - 1 || z[i].y >= cols - 1 ||
             z[i].y < 1) {
             return true;
-        } else if (area[z[i].y][z[i].x] == "█") {
+        } else if (area[z[i].x][z[i].y] == "█") {
             return true;
         }
     }

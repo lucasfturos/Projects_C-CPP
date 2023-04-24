@@ -29,7 +29,7 @@ auto TermTetris::setScore() -> void {
     for (auto i = match; i >= 1; --i) {
         int sum{};
         for (auto j{0}; j < cols; ++j) {
-            if (area[i][j] == "▣") {
+            if (area[i][j] == "█") {
                 if (i == 1) {
                     gameover = true;
                     std::quick_exit(true);
