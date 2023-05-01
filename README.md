@@ -18,6 +18,9 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
 
 - Esfera3DOpenGL é uma esfera feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
 
+- EsferaRayTracing é uma esfera feita em C++ utilizando técnicas da própria linguagem para fazer o plot do objeto, a técnica utilizada é o RayTracing. Também será implementado métodos de paralelismo para tornar a renderização mais eficiente e logo irei organizar melhor as pastas de conteúdo do projeto. Foi feito no Linux.
+  - OBS: Este projeto foi são frutos do meu aprendizado nas aulas do [Peter Shirley](https://raytracing.github.io/books/RayTracingInOneWeekend.html) em seu livro 'Ray Tracing in One Weekend', recomendo a leitura do livro e acesse o repositório [RayTracing](https://github.com/RayTracing/raytracing.github.io) para ter acesso a todo o conteúdo sobre essa prática da computação gráfica.
+
 - Cubo3DASCII é um cubo feito em C++ sendo feito o plot em modo texto. Foi feito no Linux.
   - OBS: Este projeto foi feito com base no vídeo do canal [Servet Guinarogiu](https://youtu.be/p09i_hoFdd0) para praticar C++.
 - PenduloDuploASCII é uma simulação do movimento caótico de um pêndulo duplo, seu plot é em modo texto (ASCII). Foi feito no Linux.

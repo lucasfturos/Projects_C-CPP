@@ -33,14 +33,13 @@ auto TermTetris::run() -> void {
         std::cout << "\033c";
         events();
         if (!gameover) {
+            clear();
             changePosition();
             setRotate();
             moveToDown();
             setScore();
             resetValues();
         }
-        clear();
-        draw_shapes(color);
         draw();
         std::this_thread::sleep_for(std::chrono::microseconds(70000));
     }

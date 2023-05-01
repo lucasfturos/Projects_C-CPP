@@ -9,6 +9,12 @@ auto TermTetris::clear() -> void {
                 } else {
                     area[i][j] = " ";
                 }
+                for (auto k{0}; k < squares; ++k) {
+                    if (j == z[k].y && i == z[k].x) {
+                        area[i][j] =
+                            "\033[1;" + std::to_string(color) + "m▣\033[0m";
+                    }
+                }
             }
         }
     }
@@ -33,12 +39,6 @@ auto TermTetris::draw() -> void {
         std::cout << "\033[1;34mSua pontuação: " + std::to_string(score)
                   << "\033[0m" << '\n';
         std::quick_exit(true);
-    }
-}
-
-auto TermTetris::draw_shapes(int color) -> void {
-    for (auto i{0}; i < squares; ++i) {
-        area[z[i].x][z[i].y] = "\033[1;" + std::to_string(color) + "m▣\033[0m";
     }
 }
 
