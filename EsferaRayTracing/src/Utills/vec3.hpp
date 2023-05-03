@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../constante.hpp"
+#include "../Utills/constante.hpp"
 #include <cmath>
 #include <iostream>
 
