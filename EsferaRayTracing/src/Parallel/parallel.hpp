@@ -7,7 +7,9 @@ class Parallel {
   private:
     static const int n_thread{12};
     std::mutex mtx;
-    std::array<std::thread, n_thread> th_color;
+    std::array<std::thread, n_thread> th_colors;
+
+    void parallelColor();
 
   public:
     Parallel();

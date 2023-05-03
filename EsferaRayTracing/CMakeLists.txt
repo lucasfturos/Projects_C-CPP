@@ -15,6 +15,7 @@ set(PROJECT_HEADER                    # Directory of all header file
   src/HitTable/hittable.hpp
   src/Parallel/parallel.hpp
   src/Utills/constante.hpp
+  src/Utills/material.hpp
   src/Utills/camera.hpp
   src/Render/render.hpp
   src/Sphere/sphere.hpp
