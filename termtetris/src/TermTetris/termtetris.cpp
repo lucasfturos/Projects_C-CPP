@@ -6,6 +6,11 @@ TermTetris::TermTetris() {
         area[i].resize(cols);
     }
 
+    blocks.resize(lines);
+    for (auto i{0}; i < area.size(); ++i) {
+        blocks[i].resize(cols);
+    }
+
     forms = {
         {1, 3, 5, 7}, // I
         {2, 4, 5, 7}, // Z
@@ -33,13 +38,13 @@ auto TermTetris::run() -> void {
         std::cout << "\033c";
         events();
         if (!gameover) {
-            clear();
             changePosition();
             setRotate();
             moveToDown();
             setScore();
             resetValues();
         }
+        clear();
         draw();
         std::this_thread::sleep_for(std::chrono::microseconds(70000));
     }

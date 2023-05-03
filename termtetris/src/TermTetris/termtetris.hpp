@@ -16,6 +16,7 @@ class TermTetris : public KbhitGetch {
     static constexpr int shapes{7};
 
     std::vector<std::vector<std::string>> area;
+    std::vector<std::vector<std::string>> blocks;
     std::vector<std::vector<int>> forms;
 
     struct Coords {
