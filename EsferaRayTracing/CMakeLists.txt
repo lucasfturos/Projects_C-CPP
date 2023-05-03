@@ -13,17 +13,19 @@ set(CMAKE_CXX_STANDARD 17)            # Enable c++11 standard
 set(PROJECT_HEADER                    # Directory of all header file
   src/HitTable/hittable_list.hpp
   src/HitTable/hittable.hpp
+  src/Parallel/parallel.hpp
+  src/Utills/constante.hpp
   src/Utills/camera.hpp
   src/Render/render.hpp
   src/Sphere/sphere.hpp
   src/Utills/vec3.hpp 
   src/Color/color.hpp
-  src/Utills/constante.hpp
   src/Utills/ray.hpp
 )
 
 set(PROJECT_SOURCE                    # Directory of all source file
   src/HitTable/hittable_list.cpp
+  src/Parallel/parallel.cpp
   src/Render/render.cpp
   src/Sphere/sphere.cpp
   src/Color/color.cpp

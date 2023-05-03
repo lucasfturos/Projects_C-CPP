@@ -1,5 +1,7 @@
 #include "parallel.hpp"
 
 Parallel::Parallel(){
-  std::mutex mtx;
+  for (auto i {0}; i < n_thread; i++) {
+    th_color[i] = std::thread();
+  }
 }
