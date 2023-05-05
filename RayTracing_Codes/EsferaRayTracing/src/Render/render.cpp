@@ -1,13 +1,33 @@
 #include "render.hpp"
 
 Render::Render() {
-    // World
-    auto material_metal{make_shared<metal>(color(.8, .8, .8),.0)};
-    auto material_lambertian{make_shared<lambertian>(color(.8, .8, 0.8))};
+    // Camera
+    // visão de frente
+    point3 lookfrom(0, 0, 0);
 
+    // Visão da diagonal
+    // point3 lookfrom(0, 2, 1);
+
+    // Visão do observador
+    point3 lookat(0, 0, -1);
+    vec3 vup(0, 1, 0);
+    cam = make_shared<camera>(lookfrom, lookat, vup, 90.0, aspect_ratio);
+
+    // World
+    auto material_metal{make_shared<metal>(color(.8, .8, .8), .0)};
+    auto material_lambertian{make_shared<lambertian>(color(.8, .8, .8))};
+    auto material_dieletric{make_shared<dielectric>(1.5)};
+
+    // Chão
     world.add(make_shared<sphere>(point3(0, -100.5, -1), 100, material_metal));
-    world.add(make_shared<sphere>(point3(0, 0, -1), 0.5, material_metal));
-    world.add(make_shared<sphere>(point3(-1.0, .0, -1.0), .5, material_lambertian));
+    // Objeto no centro
+    world.add(make_shared<sphere>(point3(.0, .0, -1.0), 0.5, material_metal));
+    // Objeto a esquerda
+    // world.add(
+    //    make_shared<sphere>(point3(-1.0, .0, -1.0), .5, material_dieletric));
+    // Objeto a direita
+    // world.add(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5,
+    // material_metal));
 
     // Renderização
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
@@ -21,7 +41,7 @@ Render::Render() {
                 auto u{(i + random_double()) / (image_width - 1)};
                 auto v{(j + random_double()) / (image_height - 1)};
 
-                ray r{cam.get_ray(u, v)};
+                ray r{cam->get_ray(u, v)};
                 pixel_color += ray_color(r, world, max_depth);
             }
             write_color(std::cout, pixel_color, samples_per_pixel);
