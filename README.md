@@ -96,7 +96,9 @@ https://www.mingw-w64.org/
 
 Após fazer a instalação das dependências acima você precisa seguir esses orientações para usar os projetos:
 
+
 <details><summary>Show</summary>
+
 
 Para os projetos com CMakeLists.txt é só rodar o comando:
 ```
