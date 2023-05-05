@@ -7,21 +7,22 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
 As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Codes e SFML_Codes), logo a baixo está presente a organização das pastas:
 <details><summary>Show</summary>
 
-├── ASCII_Codes
-│   ├── Cubo3DASCII
-│   ├── Natal code
-│   ├── PenduloDuploASCII
-│   ├── SnakeGame
-│   ├── termtetris
-│   └── Tic-Tac-Toe
-├── EsferaRayTracing
-├── OpenGL_Codes
-│   ├── Esfera3DOpenGL
-│   ├── Torus3DOpenGL
-│   └── TrianguloOpenGL
-└── SFML_Codes
-    ├── BlackHole_Newtonian
-    └── PenduloDuplo_SFML
+
+    ├── ASCII_Codes
+    │   ├── Cubo3DASCII
+    │   ├── Natal code
+    │   ├── PenduloDuploASCII
+    │   ├── SnakeGame
+    │   ├── termtetris
+    │   └── Tic-Tac-Toe
+    ├── EsferaRayTracing
+    ├── OpenGL_Codes
+    │   ├── Esfera3DOpenGL
+    │   ├── Torus3DOpenGL
+    │   └── TrianguloOpenGL
+    └── SFML_Codes
+        ├── BlackHole_Newtonian
+        └── PenduloDuplo_SFML
 
 </details>
 
@@ -60,6 +61,7 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 Para usar os códigos presentes neste repositório é necessário ter as seguintes ferramentas.
 
 <details><summary>Show</summary>
+
 
 - O OpenGL e o Glut estão disponíveis no site:
 
