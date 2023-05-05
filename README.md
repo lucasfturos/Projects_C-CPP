@@ -2,6 +2,30 @@
 
 Repositório focado para salvar meus estudos nas linguagens C e C++
 
+## Categoria
+
+As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Codes e SFML_Codes), logo a baixo está presente a organização das pastas:
+<details><summary>Show</summary>
+
+├── ASCII_Codes
+│   ├── Cubo3DASCII
+│   ├── Natal code
+│   ├── PenduloDuploASCII
+│   ├── SnakeGame
+│   ├── termtetris
+│   └── Tic-Tac-Toe
+├── EsferaRayTracing
+├── OpenGL_Codes
+│   ├── Esfera3DOpenGL
+│   ├── Torus3DOpenGL
+│   └── TrianguloOpenGL
+└── SFML_Codes
+    ├── BlackHole_Newtonian
+    └── PenduloDuplo_SFML
+
+</details>
+
+
 ## Sobre eles:
 
 <details><summary>Show</summary>
@@ -63,5 +87,38 @@ No Windows use o MinGW e instale o gcc, g++, cmake e make, o link do site:
 ```
 https://www.mingw-w64.org/
 ```
+
+</details>
+
+## Como usar
+
+Após fazer a instalação das dependências acima você precisa seguir esses orientações para usar os projetos:
+
+<details><summary>Show</summary>
+
+Para os projetos com CMakeLists.txt é só rodar o comando:
+```
+cmake -B build
+cd build/
+make
+./Nome_do_Executável
+```
+
+Para os projetos com Makefile é só rodar o comando:
+```
+make run
+```
+Ou abra o arquivo Makefile e veja quais os comandos existem e teste cada um.
+
+
+Para o projeto EsferaRayTracing você precisa fazer os seguintes passos:
+```
+cmake -B build
+cd build/
+make
+./EsferaRayTracing >> output.ppm
+eog output.ppm
+```
+O comando eog é um programa de visualização de imagens do Gnome, caso não tenha use um visualizador de imagens compatível com o formato .ppm.
 
 </details>
