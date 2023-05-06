@@ -1,6 +1,27 @@
 #include "render.hpp"
 
-Render::Render() {
+color Render::ray_color(const ray &r, const hittable &world, int depth) {
+    hit_record rec;
+    // Se exceder o limite do rebatimento dos pacotes de luz, não haverá mais
+    // coleta de luz.
+    if (depth <= 0) {
+        return color(0, 0, 0);
+    }
+
+    if (world.hit(r, .000001, infinity, rec)) {
+        ray scattered;
+        color attenuation;
+        if (rec.mat_ptr->scatter(r, rec, attenuation, scattered))
+            return attenuation * ray_color(scattered, world, depth - 1);
+        return color(0, 0, 0);
+    }
+
+    vec3 unit_direction{unit_vector(r.direction())};
+    auto t{.5 * (unit_direction.y() + 1.0)};
+    return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(.5, .7, 1.0);
+}
+
+void Render::run() {
     // Camera
     // visão de frente
     point3 lookfrom(0, 0, 0);
@@ -48,25 +69,4 @@ Render::Render() {
         }
     }
     std::cerr << "\nTerminou" << '\n';
-}
-
-color Render::ray_color(const ray &r, const hittable &world, int depth) {
-    hit_record rec;
-    // Se exceder o limite do rebatimento dos pacotes de luz, não haverá mais
-    // coleta de luz.
-    if (depth <= 0) {
-        return color(0, 0, 0);
-    }
-
-    if (world.hit(r, .000001, infinity, rec)) {
-        ray scattered;
-        color attenuation;
-        if (rec.mat_ptr->scatter(r, rec, attenuation, scattered))
-            return attenuation * ray_color(scattered, world, depth - 1);
-        return color(0, 0, 0);
-    }
-
-    vec3 unit_direction{unit_vector(r.direction())};
-    auto t{.5 * (unit_direction.y() + 1.0)};
-    return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(.5, .7, 1.0);
 }

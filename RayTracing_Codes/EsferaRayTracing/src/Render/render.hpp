@@ -24,7 +24,8 @@ class Render {
     // Camera
     shared_ptr<camera> cam;
 
-  public:
     color ray_color(const ray &r, const hittable &world, int depth);
-    Render();
+
+  public:
+    void run();
 };

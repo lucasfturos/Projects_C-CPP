@@ -13,7 +13,6 @@ set(CMAKE_CXX_STANDARD 17)            # Enable c++11 standard
 set(PROJECT_HEADER                    # Directory of all header file
   src/HitTable/hittable_list.hpp
   src/HitTable/hittable.hpp
-  src/Parallel/parallel.hpp
   src/Utills/constante.hpp
   src/Utills/material.hpp
   src/Utills/camera.hpp
@@ -26,7 +25,6 @@ set(PROJECT_HEADER                    # Directory of all header file
 
 set(PROJECT_SOURCE                    # Directory of all source file
   src/HitTable/hittable_list.cpp
-  src/Parallel/parallel.cpp
   src/Render/render.cpp
   src/Sphere/sphere.cpp
   src/Color/color.cpp
@@ -42,5 +40,9 @@ add_executable(${PROJECT_NAME}
 # Specifies include directories to use when compiling a given target
 target_include_directories(${PROJECT_NAME} 
   PRIVATE src
-  PRIVATE Threads::Threads
+)
+
+find_package(OpenMP)
+target_link_libraries(${PROJECT_NAME}
+  PUBLIC OpenMP::OpenMP_CXX
 )
