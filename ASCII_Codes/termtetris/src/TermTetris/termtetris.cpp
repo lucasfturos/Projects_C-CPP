@@ -6,11 +6,6 @@ TermTetris::TermTetris() {
         area[i].resize(cols);
     }
 
-    blocks.resize(lines);
-    for (auto i{0}; i < area.size(); ++i) {
-        blocks[i].resize(cols);
-    }
-
     forms = {
         {1, 3, 5, 7}, // I
         {2, 4, 5, 7}, // Z
@@ -35,7 +30,8 @@ TermTetris::TermTetris() {
 
 auto TermTetris::run() -> void {
     while (true) {
-        std::cout << "\033c";
+        clear();
+        draw();
         events();
         if (!gameover) {
             changePosition();
@@ -43,9 +39,13 @@ auto TermTetris::run() -> void {
             moveToDown();
             setScore();
             resetValues();
+        } else {
+            std::cout << "\033c";
+            logoGameOver();
+            std::cout << "\033[1;34mSua pontuação: " + std::to_string(score)
+                      << "\033[0m" << '\n';
+            std::quick_exit(true);
         }
-        clear();
-        draw();
         std::this_thread::sleep_for(std::chrono::microseconds(70000));
     }
 }

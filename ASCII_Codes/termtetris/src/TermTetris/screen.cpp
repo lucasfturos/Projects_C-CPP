@@ -8,16 +8,9 @@ auto TermTetris::clear() -> void {
             } else {
                 area[i][j] = " ";
             }
-        }
-    }
-
-    for (auto i{0}; i < lines; ++i) {
-        for (auto j{0}; j < cols; ++j) {
             for (auto k{0}; k < squares; ++k) {
                 if (j == z[k].y && i == z[k].x) {
-                    blocks[z[k].x][z[k].y] =
-                        "\033[1;" + std::to_string(color) + "m▣\033[0m";
-                    area[i][j] = blocks[i][j];
+                    area[i][j] = "\033[1;35m▣\033[0m";
                 }
             }
         }
@@ -25,6 +18,7 @@ auto TermTetris::clear() -> void {
 }
 
 auto TermTetris::draw() -> void {
+    std::cout << "\033c";
     std::cout << "\033[5;30m\033[1;34mTermTetris\t\t"
               << scoreLimit() + "\033[0m" << '\n';
 
@@ -37,22 +31,12 @@ auto TermTetris::draw() -> void {
 
     std::cout << "\033[1;35mClique 'c' para começar o jogo\033[0m" << '\n';
     std::cout << "\033[1;35mClique 'x' para sair do jogo\033[0m" << '\n';
-
-    if (gameover) {
-        std::cout << "\033c";
-        logoGameOver();
-        std::cout << "\033[1;34mSua pontuação: " + std::to_string(score)
-                  << "\033[0m" << '\n';
-        std::quick_exit(true);
-    }
 }
 
 auto TermTetris::maxLimit() -> bool {
     for (auto i{0}; i < squares; ++i) {
         if (z[i].x < 1 || z[i].x >= lines - 1 || z[i].y >= cols - 1 ||
-            z[i].y < 1 || blocks[z[i].x][z[i].y] == " ") {
-            return true;
-        } else if (blocks[z[i].x][z[i].y] == " ") {
+            z[i].y < 1 || area[z[i].x][z[i].y] == "▣") {
             return true;
         }
     }

@@ -13,9 +13,7 @@ auto TermTetris::events() -> void {
             ++diry;
             break;
         case 's':
-            for (auto i{0}; i < squares; ++i) {
-                ++z[i].x;
-            }
+            move_down = 1;
             break;
         case 'c':
             start++;
@@ -32,7 +30,7 @@ auto TermTetris::events() -> void {
 auto TermTetris::moveToDown() -> void {
     if (timercount < start) {
         for (auto i{0}; i < squares; ++i) {
-            k[i] = z[i];
+           // k[i] = z[i];
             ++z[i].x;
         }
 
@@ -67,11 +65,17 @@ auto TermTetris::setRotate() -> void {
 }
 
 auto TermTetris::resetValues() -> void {
-    diry = 0;
+    diry = move_down = 0;
     rotate = false;
 }
 
 auto TermTetris::changePosition() -> void {
+    if (move_down) {
+        for (auto i{0}; i < squares; ++i) {
+            ++z[i].x;
+        }
+    }
+
     for (auto i{0}; i < squares; ++i) {
         k[i] = z[i];
         z[i].y += diry * 4;

@@ -29,14 +29,14 @@ auto TermTetris::setScore() -> void {
     for (auto i = match; i >= 1; --i) {
         int sum{};
         for (auto j{0}; j < cols; ++j) {
-            if (blocks[i][j] == "█") {
+            if (area[i][j] == "█") {
                 if (i == 1) {
                     gameover = true;
                     std::quick_exit(true);
                 }
                 ++sum;
             }
-            blocks[match][j] = blocks[i][j];
+            area[match][j] = area[i][j];
         }
         if (sum < lines) {
             --match;

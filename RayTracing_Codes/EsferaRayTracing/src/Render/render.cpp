@@ -20,25 +20,49 @@ color Render::ray_color(const ray &r, const hittable &world, int depth) {
     auto t{.5 * (unit_direction.y() + 1.0)};
     return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(.5, .7, 1.0);
 }
-
-void Render::run() {
-    // Camera
-    // visão de frente
-    point3 lookfrom(0, 0, 0);
-
-    // Visão da diagonal
-    // point3 lookfrom(0, 2, 1);
-
-    // Visão do observador
-    point3 lookat(0, 0, -1);
-    vec3 vup(0, 1, 0);
-    cam = make_shared<camera>(lookfrom, lookat, vup, 90.0, aspect_ratio);
-
+hittable_list Render::random_scene() {
     // World
-    auto material_metal{make_shared<metal>(color(.8, .8, .8), .0)};
-    auto material_lambertian{make_shared<lambertian>(color(.8, .8, .8))};
-    auto material_dieletric{make_shared<dielectric>(1.5)};
+    hittable_list world;
 
+    material_lambertian = make_shared<lambertian>(color(.5, .5, .5));
+    world.add(
+        make_shared<sphere>(point3(0, -100, -1), 100, material_lambertian));
+
+    for (int a = -2; a < 2; a++) {
+        for (int b = -2; b < 2; b++) {
+            auto choose_mat = random_double();
+            point3 center(a + 0.9 * random_double(), 0.2,
+                          b + 0.9 * random_double());
+
+            if ((center - point3(4, .0, 0)).length() > 0.9) {
+                shared_ptr<material> sphere_material;
+
+                if (choose_mat < 0.8) {
+                    // diffuse
+                    auto albedo = color::random() * color::random();
+                    sphere_material = make_shared<lambertian>(albedo);
+                    world.add(
+                        make_shared<sphere>(center, 0.2, sphere_material));
+                } else {
+                    // glass
+                    sphere_material = make_shared<dielectric>(1.5);
+                    world.add(
+                        make_shared<sphere>(center, 0.2, sphere_material));
+                }
+            }
+        }
+    }
+
+    return world;
+}
+
+hittable_list Render::single_scene() {
+    // Material
+    material_metal = make_shared<metal>(color(.8, .8, .8), .0);
+    material_lambertian = make_shared<lambertian>(color(.8, .8, .8));
+    material_dieletric = make_shared<dielectric>(1.5);
+    // World
+    hittable_list world;
     // Chão
     world.add(make_shared<sphere>(point3(0, -100.5, -1), 100, material_metal));
     // Objeto no centro
@@ -49,6 +73,25 @@ void Render::run() {
     // Objeto a direita
     // world.add(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5,
     // material_metal));
+
+    return world;
+}
+
+void Render::run() {
+    // Camera
+    point3 lookfrom(13, 2, 3);
+    // point3 lookfrom(0, 0, 0); // visão de frente
+    // point3 lookfrom(3, 3, 2); // Visão da diagonal
+    // Visão do observador
+    point3 lookat(0, 0, 0);
+    vec3 vup(0, 1, 0);
+    // const double dist_to_focus{(lookfrom - lookat).length()};
+    const double dist_to_focus{10.0};
+    cam = make_shared<camera>(lookfrom, lookat, vup, vfov, aspect_ratio);
+
+    // World
+    auto world{random_scene()};
+    // auto world{single_scene()};
 
     // Renderização
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
