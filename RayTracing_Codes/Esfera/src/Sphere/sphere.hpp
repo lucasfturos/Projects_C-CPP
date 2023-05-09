@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../HitTable/hittable.hpp"
-#include "../Utills/vec3.hpp"
+#include "../../../Engine/include/vec3.hpp"
+#include "../../../Engine/src/HitTable/hittable.hpp"
 
 class sphere : public hittable {
   public:

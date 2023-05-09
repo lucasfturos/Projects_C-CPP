@@ -1,20 +1,21 @@
 #pragma once
 
-#include "../Color/color.hpp"
-#include "../HitTable/hittable_list.hpp"
+#include "../../../Engine/include/camera.hpp"
+#include "../../../Engine/include/constante.hpp"
+#include "../../../Engine/include/material.hpp"
+#include "../../../Engine/include/ray.hpp"
+#include "../../../Engine/include/vec3.hpp"
+#include "../../../Engine/src/Color/color.hpp"
+#include "../../../Engine/src/HitTable/hittable_list.hpp"
 #include "../Sphere/sphere.hpp"
-#include "../Utills/camera.hpp"
-#include "../Utills/constante.hpp"
-#include "../Utills/material.hpp"
-#include "../Utills/ray.hpp"
-#include "../Utills/vec3.hpp"
 #include <memory>
 
 class Render {
   private:
     // Imagem
-    const double aspect_ratio{3.0 / 2.0};
-    const int image_width{400};
+    const double aspect_ratio{3.0 / 2.0}; // Proporção 3:2
+    // const double aspect_ratio {16.0 / 9.0}; // Proporção 16:9
+    const int image_width{200};
     const int image_height{static_cast<int>(image_width / aspect_ratio)};
     const int samples_per_pixel{100};
     const int max_depth{50};

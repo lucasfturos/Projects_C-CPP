@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Utills/ray.hpp"
-#include "../Utills/vec3.hpp"
+#include "ray.hpp"
+#include "vec3.hpp"
 
 class camera {
   public:

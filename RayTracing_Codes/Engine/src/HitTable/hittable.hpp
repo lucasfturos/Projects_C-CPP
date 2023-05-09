@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Utills/ray.hpp"
+#include "../../include/ray.hpp"
 
 #include <memory>
 #include <vector>

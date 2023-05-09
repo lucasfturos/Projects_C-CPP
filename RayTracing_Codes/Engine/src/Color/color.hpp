@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Utills/vec3.hpp"
-#include "../Utills/constante.hpp"
+#include "../../include/constante.hpp"
+#include "../../include/vec3.hpp"
 
 void write_color(std::ostream &out, color pixel_color, int samples_per_pixel);

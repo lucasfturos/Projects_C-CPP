@@ -1,4 +1,4 @@
-#include "../HitTable/hittable.hpp"
+#include "../src/HitTable/hittable.hpp"
 
 class material {
   public:

@@ -90,8 +90,8 @@ void Render::run() {
     cam = make_shared<camera>(lookfrom, lookat, vup, vfov, aspect_ratio);
 
     // World
-    auto world{random_scene()};
-    // auto world{single_scene()};
+    // auto world{random_scene()};
+    auto world{single_scene()};
 
     // Renderização
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
