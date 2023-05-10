@@ -1,6 +1,7 @@
 #pragma once
 
 #include "constante.hpp"
+#include "perlin.hpp"
 #include "vec3.hpp"
 
 class texture {
@@ -46,4 +47,27 @@ class checker_texture : public texture {
   public:
     shared_ptr<texture> even;
     shared_ptr<texture> odd;
+};
+
+class noise_texture : public texture {
+  public:
+    noise_texture() {}
+    noise_texture(double sc) : scale(sc) {}
+
+    virtual color value(double u, double v, const point3 &p) const override {
+        // Textura de Perlin - Interpolação usando vetores aleatórios nos pontos
+        // da grade
+        // return color(1, 1, 1) * 0.5 * (1.0 + noise.noise(scale *  p));
+
+        // Textura de Perlin - Turbulência
+        // return color(1, 1, 1) * noise.turb(scale * p);
+
+        // Textura de Perlin - Turbulência com ajuste da fase
+        return color(1, 1, 1) * 0.5 *
+               (1 + sin(scale * p.z() + 10 * noise.turb(p)));
+    }
+
+  public:
+    perlin noise;
+    double scale;
 };
