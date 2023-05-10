@@ -4,11 +4,11 @@
 #include "../../../Engine/include/constante.hpp"
 #include "../../../Engine/include/material.hpp"
 #include "../../../Engine/include/ray.hpp"
+#include "../../../Engine/include/texture.hpp"
 #include "../../../Engine/include/vec3.hpp"
 #include "../../../Engine/src/Color/color.hpp"
 #include "../../../Engine/src/HitTable/hittable_list.hpp"
 #include "../Sphere/sphere.hpp"
-#include <memory>
 
 class Render {
   private:
@@ -23,7 +23,7 @@ class Render {
     // Camera
     shared_ptr<camera> cam;
     const double aperture{2.0};
-    const double vfov{20.0};
+    const double vfov{50.0};
 
     // Color
     color ray_color(const ray &r, const hittable &world, int depth);

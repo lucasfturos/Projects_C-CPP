@@ -57,16 +57,21 @@ hittable_list Render::random_scene() {
 }
 
 hittable_list Render::single_scene() {
+    // Texture
+    auto checker{make_shared<checker_texture>(color(0.2, 0.3, 0.1),
+                                              color(0.9, 0.9, 0.9))};
+
     // Material
     material_metal = make_shared<metal>(color(.8, .8, .8), .0);
-    material_lambertian = make_shared<lambertian>(color(.8, .8, .8));
+    material_lambertian = make_shared<lambertian>(checker);
     material_dieletric = make_shared<dielectric>(1.5);
     // World
     hittable_list world;
     // Chão
-    world.add(make_shared<sphere>(point3(0, -100.5, -1), 100, material_metal));
+    world.add(
+        make_shared<sphere>(point3(0, -100.5, -1), 100, material_lambertian));
     // Objeto no centro
-    world.add(make_shared<sphere>(point3(.0, .0, -1.0), 0.5, material_metal));
+    world.add(make_shared<sphere>(point3(.0, .0, -1.0), 0.5, material_lambertian));
     // Objeto a esquerda
     // world.add(
     //    make_shared<sphere>(point3(-1.0, .0, -1.0), .5, material_dieletric));
@@ -79,14 +84,14 @@ hittable_list Render::single_scene() {
 
 void Render::run() {
     // Camera
-    point3 lookfrom(13, 2, 3);
-    // point3 lookfrom(0, 0, 0); // visão de frente
+    // point3 lookfrom(13, 2, 3);
+    point3 lookfrom(0, 0, 1); // visão de frente
     // point3 lookfrom(3, 3, 2); // Visão da diagonal
     // Visão do observador
     point3 lookat(0, 0, 0);
     vec3 vup(0, 1, 0);
     // const double dist_to_focus{(lookfrom - lookat).length()};
-    const double dist_to_focus{10.0};
+    const double dist_to_focus{100.0};
     cam = make_shared<camera>(lookfrom, lookat, vup, vfov, aspect_ratio);
 
     // World

@@ -15,6 +15,7 @@ set(PROJECT_HEADER                    # Directory of all header file
   ../Engine/src/HitTable/hittable.hpp
   ../Engine/include/constante.hpp
   ../Engine/include/material.hpp
+  ../Engine/include/texture.hpp
   ../Engine/src/Color/color.hpp
   ../Engine/include/camera.hpp
   ../Engine/include/vec3.hpp 
@@ -40,9 +41,4 @@ add_executable(${PROJECT_NAME}
 # Specifies include directories to use when compiling a given target
 target_include_directories(${PROJECT_NAME} 
   PRIVATE src
-)
-
-find_package(OpenMP)
-target_link_libraries(${PROJECT_NAME}
-  PUBLIC OpenMP::OpenMP_CXX
 )
