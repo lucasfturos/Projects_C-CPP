@@ -41,16 +41,19 @@ hittable_list Render::cornell_box() {
     objects.add(make_shared<xz_rect>(0, 555, 0, 555, 555, white));
     objects.add(make_shared<xy_rect>(0, 555, 0, 555, 555, white));
 
+    objects.add(
+        make_shared<box>(point3(130, 0, 65), point3(295, 165, 230), white));
+    objects.add(
+        make_shared<box>(point3(265, 0, 295), point3(430, 330, 460), white));
     return objects;
 }
 
 void Render::run() {
     // Camera
-    point3 lookfrom(26, 3, 6);
-    // point3 lookfrom(0, 0, 1); // visão de frente
-    //  point3 lookfrom(3, 3, 2); // Visão da diagonal
+    //  Visão da sala
+    point3 lookfrom(278, 278, -800);
     //  Visão do observador
-    point3 lookat(0, 2, 0);
+    point3 lookat(278, 278, 0);
     vec3 vup(0, 1, 0);
     color background(0, 0, 0);
     background = color(0, 0, 0.1);

@@ -24,6 +24,7 @@ set(PROJECT_HEADER                    # Directory of all header file
   ../Engine/src/Rect/rect.hpp
   ../Engine/include/aabb.hpp
   ../Engine/include/vec3.hpp 
+  ../Engine/src/Box/box.hpp
   ../Engine/include/ray.hpp
   src/Render/render.hpp
 )
@@ -33,6 +34,7 @@ set(PROJECT_SOURCE                    # Directory of all source file
   ../Engine/src/Sphere/sphere.cpp
   ../Engine/src/Color/color.cpp
   ../Engine/src/Rect/rect.cpp
+  ../Engine/src/Box/box.cpp
   src/Render/render.cpp
   src/main.cpp 
 )
