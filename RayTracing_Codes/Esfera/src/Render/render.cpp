@@ -1,6 +1,7 @@
 #include "render.hpp"
 
-color Render::ray_color(const ray &r, const hittable &world, int depth) {
+color Render::ray_color(const ray &r, const color &background,
+                        const hittable &world, int depth) {
     hit_record rec;
     // Se exceder o limite do rebatimento dos pacotes de luz, não haverá mais
     // coleta de luz.
@@ -8,18 +9,23 @@ color Render::ray_color(const ray &r, const hittable &world, int depth) {
         return color(0, 0, 0);
     }
 
-    if (world.hit(r, .000001, infinity, rec)) {
-        ray scattered;
-        color attenuation;
-        if (rec.mat_ptr->scatter(r, rec, attenuation, scattered))
-            return attenuation * ray_color(scattered, world, depth - 1);
-        return color(0, 0, 0);
+    // Se o raio não atingir nada, retorna a cor de fundo.
+    if (!world.hit(r, .000001, infinity, rec)) {
+        return background;
     }
 
-    vec3 unit_direction{unit_vector(r.direction())};
-    auto t{.5 * (unit_direction.y() + 1.0)};
-    return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(.5, .7, 1.0);
+    ray scattered;
+    color attenuation;
+    color emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
+
+    if (!rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
+        return emitted;
+    }
+
+    return emitted +
+           attenuation * ray_color(scattered, background, world, depth - 1);
 }
+
 hittable_list Render::random_scene() {
     // World
     hittable_list world;
@@ -73,32 +79,63 @@ hittable_list Render::single_scene() {
     world.add(make_shared<sphere>(point3(0, -100.5, -1), 100,
                                   material_lambertian_checker));
     // Objeto no centro
-    world.add(make_shared<sphere>(point3(.0, .0, -1.0), .5,
-                                  material_lambertian_pertext));
+    world.add(
+        make_shared<sphere>(point3(.0, 2, -1), 2, material_lambertian_pertext));
     // Objeto a esquerda
-    world.add(make_shared<sphere>(point3(-1.0, .0, -1.0), .5, material_metal));
-    // Objeto a direita
+    // world.add(make_shared<sphere>(point3(-1.0, .0, -1.0), 2,
+    // material_metal)); Objeto a direita
     // world.add(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5,
     // material_metal));
 
     return world;
 }
 
+hittable_list Render::simple_light() {
+    hittable_list objects;
+
+    material_metal = make_shared<metal>(color(.8, .8, .8), .0);
+    auto pertext{make_shared<noise_texture>(4)};
+    objects.add(make_shared<sphere>(point3(0, -1000, 0), 1000,
+                                    make_shared<lambertian>(pertext)));
+    objects.add(make_shared<sphere>(point3(0, 2, 0), 2,
+                                    make_shared<lambertian>(pertext)));
+
+    auto difflight{make_shared<diffuse_light>(color(4, 4, 4))};
+    objects.add(make_shared<xy_rect>(3, 5, 1, 3, -2, difflight));
+
+    return objects;
+}
+
+/*
+hittable_list Render::solar_scene() {
+    auto solar_texture{
+        make_shared<image_texture>("solar_texture.jpg")};
+    auto solar_surface{make_shared<lambertian>(solar_texture)};
+    auto globe{make_shared<sphere>(point3(0, 0, 0), 2, solar_surface)};
+    return hittable_list(globe);
+}
+*/
+
 void Render::run() {
     // Camera
-    // point3 lookfrom(13, 2, 3);
-    point3 lookfrom(0, 0, 1); // visão de frente
-    // point3 lookfrom(3, 3, 2); // Visão da diagonal
-    // Visão do observador
-    point3 lookat(0, 0, 0);
+    point3 lookfrom(26, 3, 6);
+    // point3 lookfrom(0, 0, 1); // visão de frente
+    //  point3 lookfrom(3, 3, 2); // Visão da diagonal
+    //  Visão do observador
+    point3 lookat(0, 2, 0);
     vec3 vup(0, 1, 0);
+    color background(0, 0, 0);
+    background = color(0, 0, 0.1);
+
     // const double dist_to_focus{(lookfrom - lookat).length()};
     const double dist_to_focus{100.0};
     cam = make_shared<camera>(lookfrom, lookat, vup, vfov, aspect_ratio);
 
     // World
     // auto world{random_scene()};
-    auto world{single_scene()};
+    // auto world{single_scene()};
+    // auto world{solar_scene()};
+    auto world{simple_light()};
 
     // Renderização
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
@@ -113,7 +150,7 @@ void Render::run() {
                 auto v{(j + random_double()) / (image_height - 1)};
 
                 ray r{cam->get_ray(u, v)};
-                pixel_color += ray_color(r, world, max_depth);
+                pixel_color += ray_color(r, background, world, max_depth);
             }
             write_color(std::cout, pixel_color, samples_per_pixel);
         }

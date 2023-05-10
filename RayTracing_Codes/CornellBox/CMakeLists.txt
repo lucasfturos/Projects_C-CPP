@@ -3,12 +3,12 @@ cmake_minimum_required(VERSION 3.5)  # CMake version check
 # --- Project settings ---------------------------------------------------------
 
 set(PROJECT_NAME                      # Define all project info
-  EsferaRayTracing
+  CornellBoxRayTracing
   LANGUAGES CXX
   VERSION 1.0.0
 )
 
-project(${PROJECT_NAME})              # Create project "EsferaRayTracing"
+project(${PROJECT_NAME})              # Create project "CornellBoxRayTracing"
 
 set(CMAKE_CXX_STANDARD 17)            # Enable c++11 standard
 

@@ -32,17 +32,13 @@ class Render {
                     const hittable &world, int depth);
 
     // Material
-    shared_ptr<metal> material_metal;
-    shared_ptr<lambertian> material_lambertian;
-    shared_ptr<lambertian> material_lambertian_checker;
-    shared_ptr<lambertian> material_lambertian_pertext;
-    shared_ptr<dielectric> material_dieletric;
+    shared_ptr<lambertian> red;
+    shared_ptr<lambertian> white;
+    shared_ptr<lambertian> green;
+    shared_ptr<diffuse_light> light;
 
-    // Esferas
-    hittable_list random_scene();
-    hittable_list single_scene();
-    // hittable_list solar_scene();
-    hittable_list simple_light();
+    // Caixa de Cornell
+    hittable_list cornell_box();
 
   public:
     void run();
