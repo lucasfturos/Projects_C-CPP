@@ -5,12 +5,12 @@
 #include "../../../Engine/include/material.hpp"
 #include "../../../Engine/include/perlin.hpp"
 #include "../../../Engine/include/ray.hpp"
-#include "../../../Engine/include/texture.hpp"
 #include "../../../Engine/include/vec3.hpp"
 #include "../../../Engine/src/Color/color.hpp"
 #include "../../../Engine/src/HitTable/hittable_list.hpp"
 #include "../../../Engine/src/Rect/rect.hpp"
 #include "../../../Engine/src/Sphere/sphere.hpp"
+#include "../../../Engine/src/Texture/texture.hpp"
 
 class Render {
   private:
@@ -25,7 +25,7 @@ class Render {
     // Camera
     shared_ptr<camera> cam;
     const double aperture{2.0};
-    const double vfov{10.0};
+    const double vfov{20.0};
 
     // Color
     color ray_color(const ray &r, const color &background,
@@ -41,7 +41,7 @@ class Render {
     // Esferas
     hittable_list random_scene();
     hittable_list single_scene();
-    // hittable_list solar_scene();
+    hittable_list solar_scene();
     hittable_list simple_light();
 
   public:

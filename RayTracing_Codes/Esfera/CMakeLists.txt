@@ -15,10 +15,10 @@ set(CMAKE_CXX_STANDARD 17)            # Enable c++11 standard
 set(PROJECT_HEADER                    # Directory of all header file
   ../Engine/src/HitTable/hittable_list.hpp
   ../Engine/src/HitTable/hittable.hpp
+  ../Engine/src/Texture/texture.hpp
   ../Engine/include/constante.hpp
   ../Engine/src/Sphere/sphere.hpp
   ../Engine/include/material.hpp
-  ../Engine/include/texture.hpp
   ../Engine/src/Color/color.hpp
   ../Engine/include/camera.hpp
   ../Engine/src/Rect/rect.hpp
@@ -30,6 +30,7 @@ set(PROJECT_HEADER                    # Directory of all header file
 
 set(PROJECT_SOURCE                    # Directory of all source file
   ../Engine/src/HitTable/hittable_list.cpp
+  ../Engine/src/Texture/texture.cpp
   ../Engine/src/Sphere/sphere.cpp
   ../Engine/src/Color/color.cpp
   ../Engine/src/Rect/rect.cpp

@@ -106,26 +106,25 @@ hittable_list Render::simple_light() {
     return objects;
 }
 
-/*
 hittable_list Render::solar_scene() {
-    auto solar_texture{
-        make_shared<image_texture>("solar_texture.jpg")};
+    const char *filename = "earthmap.jpg";
+    auto solar_texture{make_shared<image_texture>(filename)};
     auto solar_surface{make_shared<lambertian>(solar_texture)};
     auto globe{make_shared<sphere>(point3(0, 0, 0), 2, solar_surface)};
     return hittable_list(globe);
 }
-*/
 
 void Render::run() {
     // Camera
-    point3 lookfrom(26, 3, 6);
+    // point3 lookfrom(26, 3, 6);
+    point3 lookfrom(13, 2, 3);
     // point3 lookfrom(0, 0, 1); // visão de frente
     //  point3 lookfrom(3, 3, 2); // Visão da diagonal
     //  Visão do observador
-    point3 lookat(0, 2, 0);
+    point3 lookat(0, 0, 0);
     vec3 vup(0, 1, 0);
     color background(0, 0, 0);
-    background = color(0, 0, 0.1);
+    background = color(0.70, 0.80, 1.00);
 
     // const double dist_to_focus{(lookfrom - lookat).length()};
     const double dist_to_focus{100.0};
@@ -134,8 +133,8 @@ void Render::run() {
     // World
     // auto world{random_scene()};
     // auto world{single_scene()};
-    // auto world{solar_scene()};
-    auto world{simple_light()};
+    auto world{solar_scene()};
+    // auto world{simple_light()};
 
     // Renderização
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";

@@ -1,6 +1,6 @@
 #include "../src/HitTable/hittable.hpp"
 #include "constante.hpp"
-#include "texture.hpp"
+#include "../src/Texture/texture.hpp"
 #include <memory>
 
 class material {
