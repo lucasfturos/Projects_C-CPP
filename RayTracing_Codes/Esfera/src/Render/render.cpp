@@ -63,29 +63,30 @@ hittable_list Render::random_scene() {
 }
 
 hittable_list Render::single_scene() {
+    hittable_list world;
     // Texture
     auto checker{make_shared<checker_texture>(color(0.2, 0.3, 0.1),
                                               color(0.9, 0.9, 0.9))};
     auto pertext{make_shared<noise_texture>(4)};
 
     // Material
+    difflight = make_shared<diffuse_light>(color(4, 4, 4));
     material_metal = make_shared<metal>(color(.8, .8, .8), .0);
     material_lambertian_checker = make_shared<lambertian>(checker);
     material_lambertian_pertext = make_shared<lambertian>(pertext);
     material_dieletric = make_shared<dielectric>(1.5);
-    // World
-    hittable_list world;
+
     // Chão
     world.add(make_shared<sphere>(point3(0, -100.5, -1), 100,
-                                  material_lambertian_checker));
+                                  material_lambertian_pertext));
     // Objeto no centro
-    world.add(
-        make_shared<sphere>(point3(.0, 2, -1), 2, material_lambertian_pertext));
+    world.add(make_shared<sphere>(point3(.0, .0, -1), .5, material_dieletric));
     // Objeto a esquerda
-    // world.add(make_shared<sphere>(point3(-1.0, .0, -1.0), 2,
-    // material_metal)); Objeto a direita
-    // world.add(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5,
-    // material_metal));
+    // world.add(make_shared<sphere>(point3(-1.0, .0, -1.0), .5, difflight));
+    // Objeto a direita
+    // world.add(make_shared<sphere>(point3(1.0, .0, -1.0), .5, difflight));
+    // Objeto em cima do centro
+    world.add(make_shared<sphere>(point3(.0, 1.2, -1), .5, difflight));
 
     return world;
 }
@@ -100,7 +101,7 @@ hittable_list Render::simple_light() {
     objects.add(make_shared<sphere>(point3(0, 2, 0), 2,
                                     make_shared<lambertian>(pertext)));
 
-    auto difflight{make_shared<diffuse_light>(color(4, 4, 4))};
+    difflight = make_shared<diffuse_light>(color(4, 4, 4));
     objects.add(make_shared<xy_rect>(3, 5, 1, 3, -2, difflight));
 
     return objects;
@@ -117,24 +118,22 @@ hittable_list Render::solar_scene() {
 void Render::run() {
     // Camera
     // point3 lookfrom(26, 3, 6);
-    point3 lookfrom(13, 2, 3);
-    // point3 lookfrom(0, 0, 1); // visão de frente
+    // point3 lookfrom(13, 2, 3);
+    point3 lookfrom(0, 0, 1); // visão de frente
     //  point3 lookfrom(3, 3, 2); // Visão da diagonal
     //  Visão do observador
     point3 lookat(0, 0, 0);
     vec3 vup(0, 1, 0);
     color background(0, 0, 0);
-    background = color(0.70, 0.80, 1.00);
+    background = color(0.3, 0.3, 0.3);
 
-    // const double dist_to_focus{(lookfrom - lookat).length()};
-    const double dist_to_focus{100.0};
     cam = make_shared<camera>(lookfrom, lookat, vup, vfov, aspect_ratio);
 
     // World
     // auto world{random_scene()};
-    // auto world{single_scene()};
-    auto world{solar_scene()};
-    // auto world{simple_light()};
+    auto world{single_scene()};
+    // auto world{solar_scene()};
+    //  auto world{simple_light()};
 
     // Renderização
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
