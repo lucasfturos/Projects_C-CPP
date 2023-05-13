@@ -1,24 +1,5 @@
 #include "color.hpp"
 
-int Color::find_ansi_rgb(int r, int g, int b) {
-    int index = 0;
-    int dr = r - table_rgb[index][0];
-    int dg = g - table_rgb[index][1];
-    int db = b - table_rgb[index][2];
-    int d = dr * dr + dg * dg + db * db;
-    for (int i = 0; i < 256; ++i) {
-        dr = r - table_rgb[i][0];
-        dg = g - table_rgb[i][1];
-        db = b - table_rgb[i][2];
-        int dd = dr * dr + dg * dg + db * db;
-        if (dd < d) {
-            index = i;
-            d = dd;
-        }
-    }
-    return index;
-}
-
 int Color::distance_hsl(int i, int h, int s, int l) {
     int dh{h - table_hsl[i][0]};
     int ds{s - table_hsl[i][1]};
@@ -91,29 +72,32 @@ void Color::rgb_to_hsl(int r, int g, int b, int *h, int *s, int *l) {
     *l = (lf * 100.0f);
 }
 
-void Color::run_color() {
-    for (int r{0}; r < 5; ++r) {
-        for (int g{0}; g < 5; ++g) {
-            for (int b{0}; b < 5; ++b) {
-                std::cout << "\e[48;5;"
-                          << find_ansi_rgb(255 * r / 5, 255 * g / 5,
-                                           255 * b / 5)
-                          << "m  ";
-            }
-            std::cout << "\e[0m" << '\n';
-        }
+void Color::run_color(std::ostream &out, color pixel_color,
+                      int samples_per_pixel) {
+    for (int i{0}; i < 256; ++i) {
+        int r = table_rgb[i][0];
+        int g = table_rgb[i][1];
+        int b = table_rgb[i][2];
+        int h = table_hsl[i][0];
+        int s = table_hsl[i][1];
+        int l = table_hsl[i][2];
+        rgb_to_hsl(r, g, b, &h, &s, &l);
     }
 
-    for (int r{0}; r < 5; ++r) {
-        for (int g{0}; g < 5; ++g) {
-            for (int b{0}; b < 5; ++b) {
-                int h, s, l;
-                rgb_to_hsl(r, g, b, &h, &s, &l);
-                std::cout << "\e[48;5;" << find_ansi_hsl(h, s, l) << "m  ";
-            }
-            std::cout << "\e[0m" << '\n';
-        }
-    }
+    auto r{pixel_color.x()};
+    auto g{pixel_color.y()};
+    auto b{pixel_color.z()};
+    // Divide a cor pelo número de amostras.
+    auto scale{1.0 / samples_per_pixel};
+    r *= scale;
+    g *= scale;
+    b *= scale;
+
+    int h, s, l;
+    rgb_to_hsl(static_cast<int>(255 * clamp(r, 0.0, 0.999)),
+               static_cast<int>(255 * clamp(g, 0.0, 0.999)),
+               static_cast<int>(255 * clamp(b, 0.0, 0.999)), &h, &s, &l);
+    out << "\e[48;5;" << find_ansi_hsl(h, s, l) << "m  ";
 }
 
 void Color::write_color(std::ostream &out, color pixel_color,

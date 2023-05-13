@@ -146,12 +146,9 @@ class Color {
 
     void rgb_to_hsl(int r, int g, int b, int *h, int *s, int *l);
 
-    struct hit_record rec;
-
   public:
     void write_color(std::ostream &out, color pixel_color,
                      int samples_per_pixel);
 
-    void run_image(int argc, char *argv[]);
-    void run_color();
+    void run_color(std::ostream &out, color pixel_color, int samples_per_pixel);
 };
