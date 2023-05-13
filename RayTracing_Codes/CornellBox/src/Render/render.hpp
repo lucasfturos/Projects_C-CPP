@@ -24,7 +24,9 @@ class Render {
 
     // Color
     shared_ptr<Color> color_ptr;
-    
+    color ray_color(const ray &r, const color &background,
+                    const hittable &world, int depth);
+
     // Material
     shared_ptr<hittable> box1;
     shared_ptr<hittable> box2;

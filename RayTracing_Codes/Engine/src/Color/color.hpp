@@ -2,8 +2,10 @@
 
 #include "../../include/constante.hpp"
 #include "../HitTable/hittable.hpp"
+#include <cassert>
+#include <iostream>
 
-const int table_rgb[][3] = {
+constexpr int table_rgb[][3] = {
     {95, 95, 135},   {128, 0, 0},     {0, 128, 0},     {128, 128, 0},
     {0, 0, 128},     {128, 0, 128},   {0, 128, 128},   {192, 192, 192},
     {128, 128, 128}, {255, 0, 0},     {0, 255, 0},     {255, 255, 0},
@@ -69,7 +71,7 @@ const int table_rgb[][3] = {
     {168, 168, 168}, {178, 178, 178}, {188, 188, 188}, {198, 198, 198},
     {208, 208, 208}, {218, 218, 218}, {228, 228, 228}, {238, 238, 238}};
 
-const int table_hsl[][3] = {
+constexpr int table_hsl[][3] = {
     {0, 0, 0},      {0, 100, 25},   {120, 100, 25}, {60, 100, 25},
     {240, 100, 25}, {300, 100, 25}, {180, 100, 25}, {0, 0, 75},
     {0, 0, 50},     {0, 100, 50},   {120, 100, 50}, {60, 100, 50},
@@ -144,11 +146,9 @@ class Color {
 
     void rgb_to_hsl(int r, int g, int b, int *h, int *s, int *l);
 
-    hit_record rec;
+    struct hit_record rec;
 
   public:
-    color ray_color(const ray &r, const color &background,
-                    const hittable &world, int depth);
     void write_color(std::ostream &out, color pixel_color,
                      int samples_per_pixel);
 

@@ -1,5 +1,30 @@
 #include "render.hpp"
 
+color Render::ray_color(const ray &r, const color &background,
+                        const hittable &world, int depth) {
+    hit_record rec;
+    // Se exceder o limite do rebatimento dos pacotes de luz, não haverá mais
+    // coleta de luz.
+    if (depth <= 0) {
+        return color(0, 0, 0);
+    }
+
+    // Se o raio não atingir nada, retorna a cor de fundo.
+    if (!world.hit(r, .000001, infinity, rec)) {
+        return background;
+    }
+
+    ray scattered;
+    color attenuation;
+    color emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
+
+    if (!rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
+        return emitted;
+    }
+    return emitted +
+           attenuation * ray_color(scattered, background, world, depth - 1);
+}
+
 hittable_list Render::random_scene() {
     // World
     hittable_list world;
@@ -46,15 +71,16 @@ hittable_list Render::single_scene() {
     // Material
     difflight = make_shared<diffuse_light>(color(4, 4, 4));
     material_metal = make_shared<metal>(color(.8, .8, .8), .0);
+    material_lambertian = make_shared<lambertian>(color(1.0, .0, .0));
     material_lambertian_checker = make_shared<lambertian>(checker);
     material_lambertian_pertext = make_shared<lambertian>(pertext);
     material_dieletric = make_shared<dielectric>(1.5);
 
     // Chão
     world.add(make_shared<sphere>(point3(0, -100.5, -1), 100,
-                                  material_lambertian_pertext));
+                                  material_lambertian));
     // Objeto no centro
-    world.add(make_shared<sphere>(point3(.0, .0, -1), .5, material_dieletric));
+    world.add(make_shared<sphere>(point3(.0, .0, -1), .5, material_metal));
     // Objeto a esquerda
     // world.add(make_shared<sphere>(point3(-1.0, .0, -1.0), .5, difflight));
     // Objeto a direita
@@ -102,7 +128,7 @@ void Render::run() {
     point3 lookat(0, 0, 0);
     vec3 vup(0, 1, 0);
     color background(0, 0, 0);
-    background = color(0.3, 0.3, 0.3);
+    background = color(0.7, 0.7, 0.7);
 
     cam = make_shared<camera>(lookfrom, lookat, vup, vfov, aspect_ratio);
 
@@ -125,8 +151,7 @@ void Render::run() {
                 auto v{(j + random_double()) / (image_height - 1)};
 
                 ray r{cam->get_ray(u, v)};
-                pixel_color +=
-                    color_ptr->ray_color(r, background, world, max_depth);
+                pixel_color += ray_color(r, background, world, max_depth);
             }
             color_ptr->write_color(std::cout, pixel_color, samples_per_pixel);
         }
