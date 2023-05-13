@@ -1,8 +1,6 @@
 #pragma once
 
 #include "constante.hpp"
-#include "ray.hpp"
-#include "vec3.hpp"
 
 class aabb {
   public:

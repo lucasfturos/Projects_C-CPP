@@ -2,8 +2,6 @@
 
 #include "../../../Engine/include/camera.hpp"
 #include "../../../Engine/include/perlin.hpp"
-#include "../../../Engine/include/ray.hpp"
-#include "../../../Engine/include/vec3.hpp"
 #include "../../../Engine/src/Box/box.hpp"
 #include "../../../Engine/src/Color/color.hpp"
 #include "../../../Engine/src/Constant_Medium/constant_medium.hpp"
@@ -26,8 +24,7 @@ class Render {
     const double vfov{50.0};
 
     // Color
-    color ray_color(const ray &r, const color &background,
-                    const hittable &world, int depth);
+    shared_ptr<Color> color_ptr;
 
     // Material
     shared_ptr<metal> material_metal;

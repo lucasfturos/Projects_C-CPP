@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../include/vec3.hpp"
+#include "../../include/constante.hpp"
 #include "../HitTable/hittable.hpp"
 
 class sphere : public hittable {

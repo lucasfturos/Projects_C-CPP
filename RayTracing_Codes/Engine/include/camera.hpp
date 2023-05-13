@@ -1,7 +1,6 @@
 #pragma once
 
-#include "ray.hpp"
-#include "vec3.hpp"
+#include "constante.hpp"
 
 class camera {
   public:

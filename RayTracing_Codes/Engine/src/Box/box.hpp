@@ -1,8 +1,6 @@
 #pragma once
 
 #include "../../include/constante.hpp"
-#include "../../include/ray.hpp"
-#include "../../include/vec3.hpp"
 #include "../HitTable/hittable_list.hpp"
 #include "../Rect/rect.hpp"
 

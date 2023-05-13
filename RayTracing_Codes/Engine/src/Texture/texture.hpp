@@ -2,7 +2,6 @@
 
 #include "../../include/constante.hpp"
 #include "../../include/perlin.hpp"
-#include "../../include/vec3.hpp"
 
 class texture {
   public:

@@ -1,31 +1,5 @@
 #include "render.hpp"
 
-color Render::ray_color(const ray &r, const color &background,
-                        const hittable &world, int depth) {
-    hit_record rec;
-    // Se exceder o limite do rebatimento dos pacotes de luz, não haverá mais
-    // coleta de luz.
-    if (depth <= 0) {
-        return color(0, 0, 0);
-    }
-
-    // Se o raio não atingir nada, retorna a cor de fundo.
-    if (!world.hit(r, .000001, infinity, rec)) {
-        return background;
-    }
-
-    ray scattered;
-    color attenuation;
-    color emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
-
-    if (!rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
-        return emitted;
-    }
-
-    return emitted +
-           attenuation * ray_color(scattered, background, world, depth - 1);
-}
-
 hittable_list Render::random_scene() {
     // World
     hittable_list world;
@@ -116,6 +90,9 @@ hittable_list Render::solar_scene() {
 }
 
 void Render::run() {
+    // Color
+    color_ptr = make_shared<Color>();
+
     // Camera
     // point3 lookfrom(26, 3, 6);
     // point3 lookfrom(13, 2, 3);
@@ -148,9 +125,10 @@ void Render::run() {
                 auto v{(j + random_double()) / (image_height - 1)};
 
                 ray r{cam->get_ray(u, v)};
-                pixel_color += ray_color(r, background, world, max_depth);
+                pixel_color +=
+                    color_ptr->ray_color(r, background, world, max_depth);
             }
-            write_color(std::cout, pixel_color, samples_per_pixel);
+            color_ptr->write_color(std::cout, pixel_color, samples_per_pixel);
         }
     }
     std::cerr << "\nTerminou" << '\n';

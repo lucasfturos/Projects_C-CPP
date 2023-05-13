@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../include/aabb.hpp"
-#include "../../include/ray.hpp"
 #include <memory>
 #include <vector>
 

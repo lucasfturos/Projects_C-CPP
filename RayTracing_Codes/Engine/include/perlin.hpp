@@ -1,7 +1,6 @@
 #pragma once
 
 #include "constante.hpp"
-#include "vec3.hpp"
 
 class perlin {
   public:

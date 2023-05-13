@@ -2,7 +2,6 @@
 
 #include "../../include/aabb.hpp"
 #include "../../include/constante.hpp"
-#include "../../include/ray.hpp"
 #include "../HitTable/hittable.hpp"
 
 class xy_rect : public hittable {
