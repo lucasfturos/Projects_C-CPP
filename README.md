@@ -13,6 +13,7 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, RayTracin
     │   ├── Cubo3DASCII
     │   ├── Natal code
     │   ├── PenduloDuploASCII
+    │   ├── RGB_Terminal 
     │   ├── SnakeGame
     │   ├── termtetris
     │   └── Tic-Tac-Toe
