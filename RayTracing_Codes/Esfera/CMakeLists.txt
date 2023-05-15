@@ -13,6 +13,7 @@ project(${PROJECT_NAME})              # Create project "EsferaRayTracing"
 set(CMAKE_CXX_STANDARD 17)            # Enable c++11 standard
 
 set(PROJECT_HEADER                    # Directory of all header file
+  # HEADER da Engine
   ../Engine/src/Constant_Medium/constant_medium.hpp
   ../Engine/src/HitTable/hittable_list.hpp
   ../Engine/src/HitTable/hittable.hpp
@@ -26,10 +27,12 @@ set(PROJECT_HEADER                    # Directory of all header file
   ../Engine/include/aabb.hpp
   ../Engine/include/vec3.hpp 
   ../Engine/include/ray.hpp
+  # HEADER da Esfera 
   src/Render/render.hpp
 )
 
 set(PROJECT_SOURCE                    # Directory of all source file
+  # SOURCE da Engine
   ../Engine/src/Constant_Medium/constant_medium.cpp
   ../Engine/src/HitTable/hittable_list.cpp
   ../Engine/src/HitTable/hittable.cpp
@@ -37,6 +40,12 @@ set(PROJECT_SOURCE                    # Directory of all source file
   ../Engine/src/Sphere/sphere.cpp
   ../Engine/src/Color/color.cpp
   ../Engine/src/Rect/rect.cpp
+  # SOURCE da Esfera 
+  src/Render/random_scene.cpp
+  src/Render/simple_light.cpp
+  src/Render/single_scene.cpp
+  src/Render/solar_scene.cpp
+  src/Render/ray_color.cpp
   src/Render/render.cpp
   src/main.cpp 
 )

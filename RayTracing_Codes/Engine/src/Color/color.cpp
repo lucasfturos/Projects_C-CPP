@@ -75,9 +75,14 @@ void Color::rgb_to_hsl(int r, int g, int b, int *h, int *s, int *l) {
 void Color::run_color(std::ostream &out, color pixel_color,
                       int samples_per_pixel) {
     for (int i{0}; i < 256; ++i) {
-        int r = table_rgb[i][0];
-        int g = table_rgb[i][1];
-        int b = table_rgb[i][2];
+        auto r{table_rgb[i][0]};
+        auto g{table_rgb[i][1]};
+        auto b{table_rgb[i][2]};
+        // Divide a cor pelo número de amostras.
+        auto scale{1.0 / samples_per_pixel};
+        r *= scale;
+        g *= scale;
+        b *= scale;
         int h = table_hsl[i][0];
         int s = table_hsl[i][1];
         int l = table_hsl[i][2];
