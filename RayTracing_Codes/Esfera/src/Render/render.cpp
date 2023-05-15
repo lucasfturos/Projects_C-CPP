@@ -53,15 +53,15 @@ void Render::run_term() {
     point3 lookat(0, 0, 0);   //  Visão do observador
     vec3 vup(0, 1, 0);
     color background(0, 0, 0); // Background do céu
-    background = color(0.7, 0.7, 0.7);
+    background = color(.0, 0.749, 1.0);
 
     cam = make_shared<camera>(lookfrom, lookat, vup, vfov, aspect_ratio);
 
     // World
-   // auto world{random_scene()};
+    // auto world{random_scene()};
     auto world{single_scene()};
     // auto world{solar_scene()};
-    //  auto world{simple_light()}; 
+    //  auto world{simple_light()};
 
     // Renderização
     for (auto j{image_height - 1}; j >= 0; --j) {
