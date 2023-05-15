@@ -21,6 +21,7 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, RayTracin
     │   ├── Torus3DOpenGL
     │   └── TrianguloOpenGL
     ├── RayTracing_Codes
+    │   ├── CornellBox 
     │   ├── Engine
     │   └── Esfera 
     └── SFML_Codes
@@ -35,26 +36,48 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, RayTracin
 
 <details><summary>Show</summary>
 
-- Tic-Tac-Toe é o jogo da velha feito em C++ usando classes (uma tentativa de classe abstrata). Foi feito no Linux.
-
-- SnakeGame é o jogo da cobrinha feito em C. Foi feito no Linux.
-
-- Natal code é uma árvore de Natal feita em C. Foi feito no Windows e testada no Linux.
-
-- TrianguloOpenGL é um triângulo colorido feito em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
-
-- Torus3DOpenGL é uma toróide feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
-
-- Esfera3DOpenGL é uma esfera feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
-
-- EsferaRayTracing é uma esfera feita em C++ utilizando técnicas da própria linguagem para fazer o plot do objeto, a técnica utilizada é o RayTracing. Também será implementado métodos de paralelismo para tornar a renderização mais eficiente e logo irei organizar melhor as pastas de conteúdo do projeto. Foi feito no Linux.
-  - OBS: Este projeto é fruto do meu aprendizado nas aulas do livro [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html), recomendo a leitura do livro e acesse o repositório [RayTracing](https://github.com/RayTracing/raytracing.github.io) para ter acesso a todo o conteúdo (livro, código fonte e etc.) sobre essa prática da computação gráfica.
+**ASCII Codes**
 
 - Cubo3DASCII é um cubo feito em C++ sendo feito o plot em modo texto. Foi feito no Linux.
   - OBS: Este projeto foi feito com base no vídeo do canal [Servet Guinarogiu](https://youtu.be/p09i_hoFdd0) para praticar C++.
-- PenduloDuploASCII é uma simulação do movimento caótico de um pêndulo duplo, seu plot é em modo texto (ASCII). Foi feito no Linux.
 
+- Tic-Tac-Toe é o jogo da velha feito em C++ usando classes (uma tentativa de classe abstrata). Foi feito no Linux.
+
+- Natal code é uma árvore de Natal feita em C. Foi feito no Windows e testada no Linux.
+
+- PenduloDuploASCII é uma simulação do movimento caótico de um pêndulo duplo, seu plot é em modo texto (ASCII). Foi feito no Linux.
   - OBS: Esta simulação foi feita com base no código do [DinoZ1729](https://github.com/DinoZ1729/Double-Pendulum) para estudar sobre simulações de movimentos caóticos e praticar C++.
+
+- RGB_Terminal é um suporte para imagens para o terminal. Foi feito em C++ no Linux.
+  - OBS: Este suporte foi feito com base no vídeo [_3D ASCII with Colors_](https://youtu.be/M-sIyi9VMSU) do canal [Tsoding Daily](https://www.youtube.com/@TsodingDaily).
+
+- SnakeGame é o jogo da cobrinha feito em C. Foi feito no Linux.
+
+**OpenGL Codes**
+
+- Esfera3DOpenGL é uma esfera feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
+
+- Torus3DOpenGL é uma toróide feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
+
+- TrianguloOpenGL é um triângulo colorido feito em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
+
+**Ray Tracing Codes**
+
+- CornellBox é uma [Cornell Box](https://en.wikipedia.org/wiki/Cornell_box), uma das formas da computação gráfica para testar a renderização de objetos "3D". Foi a própria linguagem de progrmação C++ para fazer o plot do objeto, a técnica utilizada é o RayTracing.
+
+- Esfera é uma esfera feita utilizando a própria linguagem de progrmação C++ para fazer o plot do objeto, a técnica utilizada é o RayTracing.
+
+Também será implementado métodos de paralelismo para tornar a renderização mais eficiente, também foi implementado um suporte para renderizar no Terminal, e logo irei organizar melhor as pastas do conteúdo do projeto. Foi feito no Linux.
+
+OBS: Os projetos Esfera e Cornellbox são frutos do meu aprendizado nas aulas dos seguintes livros:
+    - [_RayTracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html);
+    - [_Ray Tracing: The Next Week_](https://raytracing.github.io/books/RayTracingTheNextWeek.html);
+    - [_Ray Tracing: The Rest of Your Life_](https://raytracing.github.io/books/RayTracingTheRestOfYourLife.html).
+    Eu recomendo a leitura dos livros e acesse o repositório [RayTracing](https://github.com/RayTracing/raytracing.github.io) para ter acesso a todo o conteúdo (livro, código fonte e etc.) sobre essa prática da computação gráfica.
+
+O Suporte para renderizar as imagens no terminal foi feito utilizando como base o vídeo [3D ASCII with Colors](https://youtu.be/M-sIyi9VMSU) do canal [Tsoding Daily](https://www.youtube.com/@TsodingDaily).
+
+**SFML Codes**
 
 - PenduloDuplo_SFML é uma simulação de um pêndulo duplo, seu plot foi feito utilizando a biblioteca do SFML. Foi feito no sistema operacional Debian em C++.
 
@@ -119,7 +142,7 @@ make run
 Ou abra o arquivo Makefile e veja quais os comandos existem e teste cada um.
 
 
-Para o projeto EsferaRayTracing você precisa fazer os seguintes passos:
+Para o projeto Esfera ou CornellBox você precisa fazer os seguintes passos:
 ```
 cmake -B build
 cd build/
