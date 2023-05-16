@@ -15,8 +15,8 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, RayTracin
     │   ├── PenduloDuploASCII
     │   ├── RGB_Terminal 
     │   ├── SnakeGame
-    │   ├── termtetris
-    │   └── Tic-Tac-Toe
+    │   ├── Tic-Tac-Toe
+    │   └── termtetris
     ├── OpenGL_Codes
     │   ├── Esfera3DOpenGL
     │   ├── Torus3DOpenGL
