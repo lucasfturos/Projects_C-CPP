@@ -35,11 +35,7 @@ auto TermTetris::moveToDown() -> void {
         }
 
         if (maxLimit()) {
-            int number = std::rand() % shapes;
-            for (auto i{0}; i < squares; ++i) {
-                z[i].x = forms[number][i] % 2;
-                z[i].y = forms[number][i] / 2;
-            }
+          generatePiece(); 
         }
         timercount = 0;
     }

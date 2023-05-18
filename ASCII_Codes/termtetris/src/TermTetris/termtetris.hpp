@@ -17,6 +17,7 @@ class TermTetris : public KbhitGetch {
 
     std::vector<std::vector<std::string>> area;
     std::vector<std::vector<int>> forms;
+    std::vector<std::vector<bool>> board;
 
     struct Coords {
         int x, y;
@@ -37,6 +38,7 @@ class TermTetris : public KbhitGetch {
     void setScore();
     void clear();
     void draw();
+    void generatePiece();
     void draw_shapes(int);
     void logoGameOver();
 

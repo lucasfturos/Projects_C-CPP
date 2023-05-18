@@ -21,11 +21,7 @@ TermTetris::TermTetris() {
     diry = 0;
     timercount = 1.f;
 
-    int number = std::rand() % shapes;
-    for (auto i{0}; i < squares; ++i) {
-        z[i].x = forms[number][i] % 2;
-        z[i].y = forms[number][i] / 2;
-    }
+    generatePiece();
 }
 
 auto TermTetris::run() -> void {

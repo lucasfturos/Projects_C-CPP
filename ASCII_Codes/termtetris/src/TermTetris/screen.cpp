@@ -35,10 +35,18 @@ auto TermTetris::draw() -> void {
 
 auto TermTetris::maxLimit() -> bool {
     for (auto i{0}; i < squares; ++i) {
-        if (z[i].x < 1 || z[i].x >= lines - 1 || z[i].y >= cols - 1 ||
-            z[i].y < 1 || area[z[i].x][z[i].y] == "▣") {
+        if (z[i].x < 0 || z[i].x >= lines - 1 || z[i].y >= cols - 1 ||
+            z[i].y < 0 || area[z[i].x][z[i].y] == "▣") {
             return true;
         }
     }
     return false;
+}
+
+auto TermTetris::generatePiece() -> void {
+    int number = std::rand() % shapes;
+    for (auto i{0}; i < squares; ++i) {
+        z[i].x = forms[number][i] % 2;
+        z[i].y = (lines - 4) / 2 + forms[number][i] / 2;
+    }
 }
