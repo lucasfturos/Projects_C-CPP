@@ -27,59 +27,7 @@ auto TermTetris::events() -> void {
     }
 }
 
-auto TermTetris::moveToDown() -> void {
-    if (timercount < start) {
-        for (auto i{0}; i < squares; ++i) {
-           // k[i] = z[i];
-            ++z[i].x;
-        }
-
-        if (maxLimit()) {
-          generatePiece(); 
-        }
-        timercount = 0;
-    }
-}
-
-auto TermTetris::setRotate() -> void {
-    if (rotate) {
-        Coords coords = z[1];
-        for (auto i{0}; i < squares; ++i) {
-            int x = z[i].y - coords.y;
-            int y = z[i].x - coords.x;
-
-            z[i].x = coords.x - x;
-            z[i].y = coords.y + y;
-        }
-
-        if (maxLimit()) {
-            for (auto i{0}; i < squares; ++i) {
-                z[i] = k[i];
-            }
-        }
-    }
-}
-
 auto TermTetris::resetValues() -> void {
     diry = move_down = 0;
     rotate = false;
-}
-
-auto TermTetris::changePosition() -> void {
-    if (move_down) {
-        for (auto i{0}; i < squares; ++i) {
-            ++z[i].x;
-        }
-    }
-
-    for (auto i{0}; i < squares; ++i) {
-        k[i] = z[i];
-        z[i].y += diry * 4;
-    }
-
-    if (maxLimit()) {
-        for (auto i{0}; i < squares; ++i) {
-            z[i] = k[i];
-        }
-    }
 }

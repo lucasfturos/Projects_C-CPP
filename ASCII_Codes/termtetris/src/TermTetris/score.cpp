@@ -27,22 +27,26 @@ auto TermTetris::scoreLimit() -> std::string {
 auto TermTetris::setScore() -> void {
     int match{lines - 1};
     for (auto i = match; i >= 1; --i) {
-        int sum{};
+        bool fullRow = true;
         for (auto j{0}; j < cols; ++j) {
-            if (area[i][j] == "█") {
-                if (i == 1) {
-                    gameover = true;
-                    std::quick_exit(true);
-                }
-                ++sum;
+            if (!board[i][j]) {
+                fullRow = false;
+                break;
             }
-            area[match][j] = area[i][j];
         }
-        if (sum < lines) {
-            --match;
-        } else {
+        if (fullRow) {
+            // Remover a linha completa
+            for (auto k = i; k > 0; --k) {
+                for (auto j{0}; j < cols; ++j) {
+                    board[k][j] = board[k - 1][j];
+                }
+            }
+            // Preencher a primeira linha com espaços vazios
+            for (auto j{0}; j < cols; ++j) {
+                board[0][j] = false;
+            }
             ++score;
-            color = std::rand() % (37 - 31) + 31;
+            ++match; // Ajustar a posição das linhas acumuladas
         }
     }
 }

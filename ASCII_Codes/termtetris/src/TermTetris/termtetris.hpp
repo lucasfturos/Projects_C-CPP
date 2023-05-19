@@ -10,37 +10,37 @@
 
 class TermTetris : public KbhitGetch {
   private:
-    static constexpr int lines{30};
-    static constexpr int cols{30};
-    static constexpr int squares{4};
+    static constexpr int cols{25};
+    static constexpr int lines{25};
     static constexpr int shapes{7};
+    static constexpr int squares{4};
 
-    std::vector<std::vector<std::string>> area;
     std::vector<std::vector<int>> forms;
     std::vector<std::vector<bool>> board;
+    std::vector<std::vector<std::string>> area;
 
     struct Coords {
         int x, y;
     } z[squares], k[squares];
 
-    int diry, color, move_down;
+    long int score;
+    int diry, move_down;
     bool rotate, gameover;
     float timercount, start;
-    long int score;
 
   protected:
+    void draw();
+    void clear();
     void events();
-    void moveToDown();
-    void setRotate();
-    void resetValues();
-    void changePosition();
     bool maxLimit();
     void setScore();
-    void clear();
-    void draw();
-    void generatePiece();
-    void draw_shapes(int);
+    void setRotate();
+    void spawPiece();
+    void moveToDown();
+    void resetValues();
     void logoGameOver();
+    void checkGameOver();
+    void changePosition();
 
     std::string scoreLimit();
 
