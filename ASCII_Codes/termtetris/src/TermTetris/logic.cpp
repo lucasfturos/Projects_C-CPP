@@ -93,7 +93,7 @@ auto TermTetris::setRotate() -> void {
 
 auto TermTetris::checkGameOver() -> void {
     for (auto i = 0; i < squares; ++i) {
-        if (z[i].x == 1) {
+        if (z[i].y < 1) {
             gameover = true;
             return;
         }

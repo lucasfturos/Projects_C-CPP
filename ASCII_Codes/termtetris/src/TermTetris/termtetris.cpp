@@ -40,13 +40,13 @@ auto TermTetris::run() -> void {
             moveToDown();
             setScore();
             resetValues();
-        } else {
+        } else if (gameover || score > 9999999) {
             std::cout << "\033c";
             logoGameOver();
             std::cout << "\033[1;34mSua pontuação: " + std::to_string(score)
                       << "\033[0m" << '\n';
             std::quick_exit(true);
         }
-        std::this_thread::sleep_for(std::chrono::microseconds(100000));
+        std::this_thread::sleep_for(std::chrono::microseconds(130000));
     }
 }
