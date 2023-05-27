@@ -43,7 +43,7 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, RayTracin
 - Cubo3DASCII é um cubo feito em C++ sendo feito o plot em modo texto. Foi feito no Linux.
   - OBS: Este projeto foi feito com base no vídeo do canal [Servet Guinarogiu](https://youtu.be/p09i_hoFdd0) para praticar C++.
 
-- dotenv é um projeto com duas funções, gera uma chave de API aleatória (key.cpp), e lê o arquivo .env e mostra na tela as variáveis de ambiente, no caso API_KEY no .env de exemplo. Foi feito em C++.
+- dotenv é um projeto com duas funções, gera uma chave de API aleatória (key.cpp), lê o arquivo .env e mostra na tela as variáveis de ambiente (env_read.cpp), no caso API_KEY no .env de exemplo. Foi feito em C++.
 
 - Tic-Tac-Toe é o jogo da velha feito em C++ usando classes (uma tentativa de classe abstrata). Foi feito no Linux.
 
