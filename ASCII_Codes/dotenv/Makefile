@@ -1,5 +1,5 @@
 run: build
-	@./main
+	@./env_read
 run_key: build
 	@./key > .env
 build:
