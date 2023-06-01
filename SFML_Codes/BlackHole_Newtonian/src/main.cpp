@@ -15,9 +15,6 @@ auto main() -> int {
     auto black_hole{std::make_shared<BlackHole>(
         static_cast<float>(width / 2), static_cast<float>(height / 2))};
 
-    auto photon{std::make_shared<Photon>(static_cast<float>(width / 2),
-                                         static_cast<float>(height / 2), 4, 0)};
-
     while (window->isOpen()) {
         sf::Event event;
         while (window->pollEvent(event)) {

@@ -10,4 +10,6 @@ constexpr float c{299792458.0f};
 constexpr float G{6.6743E-11};
 constexpr float radius{2 * G * mass_bh / (c * c)};
 constexpr float F_Gravity{G * (mass_bh / (radius * radius))};
+constexpr float epsilon{0.009f};
+constexpr int max_photons{1000};
 } // namespace Constantes
