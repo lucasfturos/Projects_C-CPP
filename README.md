@@ -12,6 +12,7 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, RayTracin
     ├── ASCII_Codes
     │   ├── Cubo3DASCII
     │   ├── dotenv
+    │   ├── ExpressoesNumericas
     │   ├── Natal code
     │   ├── PenduloDuploASCII
     │   ├── RGB_Terminal 
@@ -44,6 +45,9 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, RayTracin
   - OBS: Este projeto foi feito com base no vídeo do canal [Servet Guinarogiu](https://youtu.be/p09i_hoFdd0) para praticar C++.
 
 - dotenv é um projeto com duas funções, gera uma chave de API aleatória (key.cpp), lê o arquivo .env e mostra na tela as variáveis de ambiente (env_read.cpp), no caso API_KEY no .env de exemplo. Foi feito em C++.
+
+- ExpressoesNumericas é uma calculadora de expressões algébricas, resolve expressões com adição, subtração, multiplicação, divisão e potência e pode usar parênteses para separar melhor a ordem da resolução. Foi feito em C++.
+  - OBS: Este projeto foi feito com base no desafio 14 do site [OsProgramadores](https://osprogramadores.com/), caso queira conhecer os [Desafios](https://osprogramadores.com/desafios/) fique a vontade.
 
 - Tic-Tac-Toe é o jogo da velha feito em C++ usando classes (uma tentativa de classe abstrata). Foi feito no Linux.
 
