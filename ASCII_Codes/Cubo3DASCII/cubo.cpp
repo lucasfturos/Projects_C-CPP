@@ -1,24 +1,25 @@
 #include "cubo.hpp"
 
-float Cubo::calculaX(int i, int j, int k) {
-    return j * sin(A) * sin(B) * cos(C) - k * cos(A) * sin(B) * cos(C) +
-           j * cos(A) * sin(C) + k * sin(A) * sin(C) + i * cos(B) * cos(C);
+float Cubo::calculaX(float *v) {
+    return v[1] * sinf(A) * sinf(B) * cosf(C) -
+           v[2] * cosf(A) * sinf(B) * cosf(C) + v[1] * cosf(A) * sinf(C) +
+           v[2] * sinf(A) * sinf(C) + v[0] * cosf(B) * cosf(C);
 }
 
-float Cubo::calculaY(int i, int j, int k) {
-    return j * cos(A) * cos(C) + k * sin(A) * cos(C) -
-           j * sin(A) * sin(B) * sin(C) + k * cos(A) * sin(B) * sin(C) -
-           i * cos(B) * sin(C);
+float Cubo::calculaY(float *v) {
+    return v[1] * cosf(A) * cosf(C) + v[2] * sinf(A) * cosf(C) -
+           v[1] * sinf(A) * sinf(B) * sinf(C) +
+           v[2] * cosf(A) * sinf(B) * sinf(C) - v[0] * cosf(B) * sinf(C);
 }
 
-float Cubo::calculaZ(int i, int j, int k) {
-    return k * cos(A) * cos(B) - j * sin(A) * cos(B) + i * sin(B);
+float Cubo::calculaZ(float *v) {
+    return v[2] * cosf(A) * cosf(B) - v[1] * sinf(A) * cosf(B) + v[0] * sinf(B);
 }
 
-void Cubo::calculaSuperficie(float cubeX, float cubeY, float cubeZ, int ch) {
-    x = calculaX(cubeX, cubeY, cubeZ);
-    y = calculaY(cubeX, cubeY, cubeZ);
-    z = calculaZ(cubeX, cubeY, cubeZ) + distance;
+void Cubo::calculaSuperficie(std::array<float, 3> v, int ch) {
+    x = calculaX(v.data());
+    y = calculaY(v.data());
+    z = calculaZ(v.data()) + distance;
 
     ooz = 1 / z;
 
@@ -36,24 +37,26 @@ void Cubo::calculaSuperficie(float cubeX, float cubeY, float cubeZ, int ch) {
 
 void Cubo::draw() {
     std::cout << "\x1b[2J";
-
     while (1) {
-        memset(buffer.data(), 32, (w * h));   // 32 code ASCII of space
-        memset(zBuffer.data(), 0, w * h * 4); // 0 code ASCII of Null
+        std::cout << "\033c";
+        std::fill(buffer.begin(), buffer.end(),
+                  32); // 32 code ASCII of space
+        std::fill(zBuffer.begin(), zBuffer.end(),
+                  0); // 0 code ASCII of Null
 
         cubeWidth = 20;
         horizontalOffSet *= cubeWidth;
         for (float cubeX = -cubeWidth; cubeX < cubeWidth; cubeX += speed) {
             for (float cubeY = -cubeWidth; cubeY < cubeWidth; cubeY += speed) {
-                calculaSuperficie(cubeX, cubeY, -cubeWidth,
+                calculaSuperficie({cubeX, cubeY, -cubeWidth},
                                   64); // 64 code ASCII of @
-                calculaSuperficie(cubeWidth, cubeY, cubeX,
+                calculaSuperficie({cubeWidth, cubeY, cubeX},
                                   47); // 47 code ASCII of /
-                calculaSuperficie(-cubeWidth, cubeY, -cubeX, 64);
-                calculaSuperficie(-cubeX, cubeY, cubeWidth,
+                calculaSuperficie({-cubeWidth, cubeY, -cubeX}, 64);
+                calculaSuperficie({-cubeX, cubeY, cubeWidth},
                                   35); // 35 code ASCII of #
-                calculaSuperficie(cubeX, -cubeWidth, -cubeY, 47);
-                calculaSuperficie(cubeX, cubeWidth, cubeY, 35);
+                calculaSuperficie({cubeX, -cubeWidth, -cubeY}, 47);
+                calculaSuperficie({cubeX, cubeWidth, cubeY}, 254);
             }
         }
         std::cout << "\x1b[H";

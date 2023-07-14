@@ -1,12 +1,13 @@
-#ifndef CUBO_HPP
-#define CUBO_HPP
+#pragma once
+
+#include <algorithm>
 #include <array>
 #include <cmath>
-#include <cstring>
 #include <iostream>
 #include <thread>
 
 class Cubo {
+    std::array<float, 3> vec;
     std::array<char, 160 * 44> buffer;
     std::array<float, 160 * 44> zBuffer;
     int w{80}, h{40}, distance{100}, xp{}, yp{}, idx{};
@@ -15,16 +16,14 @@ class Cubo {
         y{}, z{}, ooz{}, speed{0.6};
 
   protected:
-    float calculaX(int i, int j, int k);
+    float calculaX(float *v);
 
-    float calculaY(int i, int j, int k);
+    float calculaY(float *v);
 
-    float calculaZ(int i, int j, int k);
+    float calculaZ(float *v);
 
-    void calculaSuperficie(float cubeX, float cubeY, float cubeZ, int ch);
+    void calculaSuperficie(std::array<float, 3> v, int ch);
 
   public:
     void draw();
 };
-
-#endif

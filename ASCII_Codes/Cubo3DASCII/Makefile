@@ -1,8 +1,6 @@
 run: build
-	./cubo
+	@./cubo
 build: 
-	g++ -Wall -o cubo cubo.cpp 
-
-clear: 
-	clear
-	@rm -rf ./cubo
+	@g++ -Wall -o cubo cubo.cpp 
+clean: 
+	@rm -rf cubo
