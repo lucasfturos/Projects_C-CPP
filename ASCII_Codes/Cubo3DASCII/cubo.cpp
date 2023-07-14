@@ -51,12 +51,12 @@ void Cubo::draw() {
                 calculaSuperficie({cubeX, cubeY, -cubeWidth},
                                   64); // 64 code ASCII of @
                 calculaSuperficie({cubeWidth, cubeY, cubeX},
-                                  47); // 47 code ASCII of /
+                                  38); // 38 code ASCII of &
                 calculaSuperficie({-cubeWidth, cubeY, -cubeX}, 64);
                 calculaSuperficie({-cubeX, cubeY, cubeWidth},
                                   35); // 35 code ASCII of #
-                calculaSuperficie({cubeX, -cubeWidth, -cubeY}, 47);
-                calculaSuperficie({cubeX, cubeWidth, cubeY}, 254);
+                calculaSuperficie({cubeX, -cubeWidth, -cubeY}, 38);
+                calculaSuperficie({cubeX, cubeWidth, cubeY}, 35);
             }
         }
         std::cout << "\x1b[H";
