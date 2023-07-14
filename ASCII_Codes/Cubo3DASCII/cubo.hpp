@@ -7,7 +7,6 @@
 #include <thread>
 
 class Cubo {
-    std::array<float, 3> vec;
     std::array<char, 160 * 44> buffer;
     std::array<float, 160 * 44> zBuffer;
     int w{80}, h{40}, distance{100}, xp{}, yp{}, idx{};
