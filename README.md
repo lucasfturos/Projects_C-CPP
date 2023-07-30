@@ -130,3 +130,11 @@ make run
 Ou abra o arquivo Makefile e veja quais os comandos existem e teste cada um.
 
 </details>
+
+## Bibliografia
+
+Documentações para consulta:
+
+ - [Boost C++ Libraries](https://www.boost.org/)
+ - [cplusplus.com](https://cplusplus.com/)
+ - [cppreference.com](https://pt.cppreference.com/w/P%C3%A1gina_principal)
