@@ -4,7 +4,7 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
 
 ## Categoria
 
-As pastas do repositório estão divididas em categorias (ASCII_Codes, RayTracing_Codes, OpenGL_Codes e SFML_Codes), logo a baixo está presente a organização das pastas:
+As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Codes e SFML_Codes), logo a baixo está presente a organização das pastas:
 <details><summary>Show</summary>
 
 ```bash
