@@ -25,6 +25,7 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
     │   └── TrianguloOpenGL
     └── SFML_Codes
         ├── BlackHole_Newtonian
+        ├── Modelos3DSFML
         └── PenduloDuplo_SFML
 ```
 
@@ -66,6 +67,9 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 - TrianguloOpenGL é um triângulo colorido feito em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
 
 **SFML Codes**
+
+- Modelos3DSFML fiz dois modelos 3D de uma esfera e uma rosquinha usando o SFML e matemática. Foi feito no Linux.
+  - OBS: Na pasta a uma pasta com nome de img, o site de onde veio as imagens é [Solar System Scope](https://www.solarsystemscope.com/textures/). O uso das imagens foi para aplicar uma textura para testar.
 
 - PenduloDuplo_SFML é uma simulação de um pêndulo duplo, seu plot foi feito utilizando a biblioteca do SFML. Foi feito no sistema operacional Debian em C++.
 
