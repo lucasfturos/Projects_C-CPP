@@ -10,17 +10,6 @@ const int HALF_HEIGHT = HEIGHT / 2;
 const int MAX = 50;
 const float pi = M_PI;
 
-sf::Color hsla(float hue, float saturation, float lightness, float alpha) {
-    sf::Color hslaColor;
-
-    hslaColor.r = static_cast<sf::Uint8>((hue / 180) * 255);        // H
-    hslaColor.g = static_cast<sf::Uint8>((saturation / 180) * 255); // S
-    hslaColor.b = static_cast<sf::Uint8>((lightness / 180) * 255);  // L
-    hslaColor.a = static_cast<sf::Uint8>((alpha / 90) * 255);       // A
-
-    return hslaColor;
-}
-
 int main() {
     auto window =
         std::make_shared<sf::RenderWindow>(sf::VideoMode(WIDTH, HEIGHT), "Orb");
