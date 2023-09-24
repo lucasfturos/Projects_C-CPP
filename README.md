@@ -26,6 +26,7 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
     └── SFML_Codes
         ├── BlackHole_Newtonian
         ├── Modelos3DSFML
+        ├── Orb
         └── PenduloDuplo_SFML
 ```
 
@@ -70,6 +71,8 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 
 - Modelos3DSFML fiz dois modelos 3D de uma esfera e uma rosquinha usando o SFML e matemática. Foi feito no Linux.
   - OBS: Na pasta a uma pasta com nome de img, o site de onde veio as imagens é [Solar System Scope](https://www.solarsystemscope.com/textures/). O uso das imagens foi para aplicar uma textura para testar.
+
+- Orb é desenhado 3 órbitas e ao longo que elas vão passando fica seu rastro em 3 cores diferentes (vermelho, ciano e preto), seu desenho foi feito com auxílio da biblioteca SFML. Foi feito no Linux.
 
 - PenduloDuplo_SFML é uma simulação de um pêndulo duplo, seu plot foi feito utilizando a biblioteca do SFML. Foi feito no sistema operacional Debian em C++.
 
