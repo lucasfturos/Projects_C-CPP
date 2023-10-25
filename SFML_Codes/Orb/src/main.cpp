@@ -8,6 +8,7 @@ const int HEIGHT = 800;
 const int HALF_WIDTH = WIDTH / 2;
 const int HALF_HEIGHT = HEIGHT / 2;
 const int MAX = 50;
+const int MAX_ITERATIONS = 600;
 const float pi = M_PI;
 
 int main() {
@@ -26,6 +27,7 @@ int main() {
 
     float tim = 0;
     int count = 0;
+    int iterationCount = 0;
     while (window->isOpen()) {
         sf::Event event;
         while (window->pollEvent(event)) {
@@ -35,6 +37,13 @@ int main() {
 
         window->clear();
 
+        if (iterationCount >= MAX_ITERATIONS) {
+            lines.clear();
+            points.clear();
+            orbitColors.clear();
+            count = 0;
+            iterationCount = 0;
+        }
         points.clear();
 
         float r = 0.0f;
@@ -108,11 +117,11 @@ int main() {
             }
         }
         count++;
+        iterationCount++;
 
         for (const auto &line : lines) {
             window->draw(line);
         }
-
         window->display();
     }
 
