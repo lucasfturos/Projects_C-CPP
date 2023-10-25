@@ -25,6 +25,7 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
     │   └── TrianguloOpenGL
     └── SFML_Codes
         ├── BlackHole_Newtonian
+        ├── FractalTree
         ├── Modelos3DSFML
         ├── Orb
         └── PenduloDuplo_SFML
@@ -68,6 +69,8 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 - TrianguloOpenGL é um triângulo colorido feito em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
 
 **SFML Codes**
+
+- FractalTree é um modelo matemático da área dos fractais e é uma boa demonstração de recursão usando o C++ e a biblioteca do SFML. Foi feito no Linux.
 
 - Modelos3DSFML fiz dois modelos 3D de uma esfera e uma rosquinha usando o SFML e matemática. Foi feito no Linux.
   - OBS: Na pasta a uma pasta com nome de img, o site de onde veio as imagens é [Solar System Scope](https://www.solarsystemscope.com/textures/). O uso das imagens foi para aplicar uma textura para testar.
