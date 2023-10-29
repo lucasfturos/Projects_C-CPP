@@ -24,7 +24,8 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
     │   ├── Torus3DOpenGL
     │   └── TrianguloOpenGL
     ├── Qt_Codes
-    │   └── CuboOpenGL
+    │   ├── CuboOpenGL
+    │   └── MiniNavegador
     └── SFML_Codes
         ├── BlackHole_Newtonian
         ├── FractalTree
@@ -73,6 +74,8 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 **Qt Codes**
 
 - CuboOpenGL é um cubo feito com as funções do Qt6 e C++. Foi feito no Linux com a IDE Qt Creator.
+
+- MiniNavegador é um navegador que pode mostrar páginas Web por link, foi feito com o Qt6 e C++. Foi usado o Linux e a IDE Qt Creator.
 
 **SFML Codes**
 
