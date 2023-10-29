@@ -4,7 +4,7 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
 
 ## Categoria
 
-As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Codes e SFML_Codes), logo a baixo está presente a organização das pastas:
+As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Codes, Qt_Codes e SFML_Codes), logo a baixo está presente a organização das pastas:
 <details><summary>Show</summary>
 
 ```bash
@@ -23,6 +23,8 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
     │   ├── Esfera3DOpenGL
     │   ├── Torus3DOpenGL
     │   └── TrianguloOpenGL
+    ├── Qt_Codes
+    │   └── CuboOpenGL
     └── SFML_Codes
         ├── BlackHole_Newtonian
         ├── FractalTree
@@ -67,6 +69,10 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 - Torus3DOpenGL é uma toróide feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
 
 - TrianguloOpenGL é um triângulo colorido feito em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
+
+**Qt Codes**
+
+- CuboOpenGL é um cubo feito com as funções do Qt6 e C++. Foi feito no Linux com a IDE Qt Creator.
 
 **SFML Codes**
 
@@ -115,6 +121,14 @@ No Windows use o MinGW e instale o gcc, g++, cmake e make, o link do site:
 https://www.mingw-w64.org/
 ```
 
+- Instalação do Qt6:
+
+Siga a documentação do site do Qt, segue o link do site:
+
+```
+https://www.qt.io/
+```
+
 </details>
 
 ## Como usar
@@ -148,3 +162,4 @@ Documentações para consulta:
  - [Boost C++ Libraries](https://www.boost.org/)
  - [cplusplus.com](https://cplusplus.com/)
  - [cppreference.com](https://pt.cppreference.com/w/P%C3%A1gina_principal)
+ - [Documentation Qt](https://doc.qt.io/)
