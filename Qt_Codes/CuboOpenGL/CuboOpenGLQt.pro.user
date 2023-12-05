@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 11.0.3, 2023-10-29T15:36:11. -->
+<!-- Written by QtCreator 11.0.3, 2023-12-05T11:41:29. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -254,8 +254,9 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/LucasTuros/Documentos/Programacao/Projetos_C++/CuboOpenGLQt/CuboOpenGLQt.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/LucasTuros/Documentos/Programacao/Projetos_C++/CuboOpenGLQt/CuboOpenGLQt.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">CuboOpenGLQt2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/LucasTuros/Documentos/Programacao/Github/Projects_C-CPP/Qt_Codes/CuboOpenGL/CuboOpenGLQt.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/LucasTuros/Documentos/Programacao/Github/Projects_C-CPP/Qt_Codes/CuboOpenGL/CuboOpenGLQt.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
