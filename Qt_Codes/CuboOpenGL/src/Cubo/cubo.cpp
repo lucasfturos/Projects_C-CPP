@@ -28,13 +28,16 @@ void Cubo::render() {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glEnable(GL_CCW);
+    glEnable(GL_BACK);
 
     m_program->bind();
 
     QMatrix4x4 matrix;
     matrix.perspective(60.0f, 4.0f / 3.0f, 0.1f, 100.0f);
     matrix.translate(0, 0, -5);
-    matrix.rotate(100.0f * m_frame / screen()->refreshRate(), 1, 1, 1);
+    matrix.rotate(100.0f * m_frame / screen()->refreshRate(), 1, 1, 0);
 
     m_program->setUniformValue(m_matrixUniform, matrix);
 

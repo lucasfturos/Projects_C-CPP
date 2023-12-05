@@ -36,7 +36,7 @@ Thumbs.db
 /.qmake.stash
 
 # qtcreator generated files
-*.pro.user*
+CuboOpenGLQt.pro.user
 CMakeLists.txt.user*
 
 # xemacs temporary files
