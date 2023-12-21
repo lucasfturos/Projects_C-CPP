@@ -12,7 +12,14 @@ SOURCES += \
 
 HEADERS += \
     src/Cubo/cubo.hpp \
+    src/Cubo/setupCubo.hpp \
     src/OpenGLWindow/openglwindow.hpp
+
+RESOURCES += \
+    res/resources.qrc
+
+QMAKE_CXXFLAGS += \
+    -Wall -Wextra -Wpedantic -Werror -pedantic -g -O2
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

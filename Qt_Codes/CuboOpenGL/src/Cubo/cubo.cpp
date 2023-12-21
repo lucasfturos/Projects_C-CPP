@@ -9,11 +9,16 @@ Cubo::~Cubo() {
 
 void Cubo::initialize() {
     m_program = new QOpenGLShaderProgram(this);
-    m_program->addShaderFromSourceCode(QOpenGLShader::Vertex,
-                                       vertexShaderSource);
-    m_program->addShaderFromSourceCode(QOpenGLShader::Fragment,
-                                       fragmentShaderSource);
-    m_program->link();
+    if (!m_program->addShaderFromSourceFile(QOpenGLShader::Vertex,
+                                            ":/shader/vertex.vert"))
+        qDebug() << "Problem while adding vertex shader!";
+
+    if (!m_program->addShaderFromSourceFile(QOpenGLShader::Fragment,
+                                            ":/shader/fragment.frag"))
+        qDebug() << "Problem while adding fragment shader!";
+
+    if (!m_program->link())
+        qDebug() << "Problem while linking program!";
 
     m_matrixUniform = m_program->uniformLocation("matrix");
     m_posAttr = m_program->attributeLocation("position");
