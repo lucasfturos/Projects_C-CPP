@@ -17,8 +17,9 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
     │   ├── PenduloDuploASCII
     │   ├── RGB_Terminal 
     │   ├── SnakeGame
+    │   ├── termtetris
     │   ├── Tic-Tac-Toe
-    │   └── termtetris
+    │   └── ToneGenerator
     ├── OpenGL_Codes
     │   ├── Esfera3DOpenGL
     │   ├── Torus3DOpenGL
@@ -62,6 +63,8 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
   - OBS: Este suporte foi feito com base no vídeo [_3D ASCII with Colors_](https://youtu.be/M-sIyi9VMSU) do canal [Tsoding Daily](https://www.youtube.com/@TsodingDaily).
 
 - SnakeGame é o jogo da cobrinha feito em C. Foi feito no Linux.
+
+- ToneGenerator é para criar arquivos de áudio (no formato wav) para testes de som. Foi feito em C++ no Linux.
 
 **OpenGL Codes**
 
