@@ -15,6 +15,8 @@ PenduloDuplo::PenduloDuplo(float l1, float l2, float m1, float m2, float O1,
     alpha2 = 0;
     w1 = 0;
     w2 = 0;
+
+    frame_start = clock.getElapsedTime().asMilliseconds();
 }
 
 auto PenduloDuplo::setupRenderObjects() -> void {
@@ -43,25 +45,39 @@ auto PenduloDuplo::setupRenderObjects() -> void {
 }
 
 auto PenduloDuplo::update() -> void {
-    alpha1 = static_cast<float>(
-        (-g * (2 * m1 + m2) * sin(O1) - g * m2 * sin(O1 - 2 * O2) -
-         2 * m2 * sin(O1 - O2) * (w2 * w2 * l2 + w1 * w1 * l1 * cos(O1 - O2))) /
-        (l1 * (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2))));
-    alpha2 =
-        static_cast<float>((2 * sin(O1 - O2)) *
-                           (w1 * w1 * l1 * (m1 + m2) + g * (m1 + m2) * cos(O1) +
-                            w2 * w2 * l2 * m2 * cos(O1 - O2)) /
-                           l2 / (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)));
+    current_time = clock.getElapsedTime().asMilliseconds();
+    accumulator += current_time - frame_start;
+    frame_start = current_time;
 
-    w1 += alpha1 * dt * 3.0f;
-    w2 += alpha2 * dt * 3.0f;
-    O1 += w1 * dt * 3.0f;
-    O2 += w2 * dt * 3.0f;
+    if (accumulator >= 1.0F / 30.0F) {
+        accumulator = 1.0F / 30.0F;
+    }
+
+    while (accumulator > dt) {
+        float sinO1 = sin(O1);
+        float sinO2 = sin(O2);
+        float cosO1 = cos(O1);
+        float cosO2 = cos(O2);
+
+        float d1 = -g * (2 * m1 + m2) * sinO1 - g * m2 * sin(O1 - 2 * O2) -
+                   2 * m2 * sin(O1 - O2) *
+                       (w2 * w2 * l2 + w1 * w1 * l1 * cos(O1 - O2));
+        float d2 = 2 * sin(O1 - O2) *
+                   (w1 * w1 * l1 * (m1 + m2) + g * (m1 + m2) * cosO1 +
+                    w2 * w2 * l2 * m2 * cos(O1 - O2));
+
+        alpha1 = d1 / (l1 * (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)));
+        alpha2 = d2 / (l2 * (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)));
+
+        w1 += 0.1f * alpha1 * dt;
+        w2 += 0.1f * alpha2 * dt;
+        O1 += 2 * w1 * dt;
+        O2 += 2 * w2 * dt;
+
+        accumulator -= dt;
+    }
 
     updateXY();
-
-    w1 *= 1.0f;
-    w2 *= 1.0f;
 }
 
 auto PenduloDuplo::render() -> void {

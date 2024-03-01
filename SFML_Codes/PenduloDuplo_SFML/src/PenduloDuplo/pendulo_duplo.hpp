@@ -17,6 +17,11 @@ class PenduloDuplo : public sf::Sprite {
 
     int trace1_s{}, trace2_s{};
 
+    sf::Clock clock;
+
+    float frame_start{};
+    float accumulator{};
+    float current_time{};
     float alpha1{}, alpha2{};
     float pos_x2{}, pos_y2{};
     float w1{}, w2{}, O1{}, O2{};
