@@ -3,29 +3,30 @@
 PenduloDuplo::PenduloDuplo(float l1, float l2, float m1, float m2, float O1,
                            float O2)
     : m_l1(l1), m_l2(l2), m_m1(m1), m_m2(m2), m_O1(O1), m_O2(O2), alpha1(0),
-      alpha2(0), w1(0), w2(0),
-      frame_start(clock.getElapsedTime().asMilliseconds()), length_vertices(3) {
+      alpha2(0), w1(0), w2(0), length_vertices(3),
+      window(std::make_shared<sf::RenderWindow>(
+          sf::VideoMode(width, height), "Pendulo Duplo em SFML",
+          sf::Style::Titlebar | sf::Style::Close)),
+      desktop(
+          std::make_shared<sf::VideoMode>(sf::VideoMode::getDesktopMode())) {
 
-    window = std::make_shared<sf::RenderWindow>(
-        sf::VideoMode(width, height), "Pendulo Duplo em SFML",
-        sf::Style::Titlebar | sf::Style::Close);
     window->setFramerateLimit(fps);
-
-    desktop = std::make_shared<sf::VideoMode>(sf::VideoMode::getDesktopMode());
 
     half_width = static_cast<float>(window->getSize().x / 2.0f);
     half_height = static_cast<float>(window->getSize().y / 2.0f);
 
     window->setPosition(sf::Vector2i(desktop->width / 2.0f - half_width,
                                      desktop->height / 2.0f - half_height));
+
+    frame_start = clock.getElapsedTime().asMilliseconds();
 }
 
 auto PenduloDuplo::setupRenderObjects() -> void {
     vertex_buffer.create(3);
     vertex_buffer.setPrimitiveType(sf::LineStrip);
 
-    length_vertices[0].position = sf::Vector2f(half_width, half_height * 0.7);
-    for (auto i{0}; i < 3; i++) {
+    length_vertices[0].position = sf::Vector2f(half_width, half_height * 0.7f);
+    for (std::size_t i = 0; i < length_vertices.size(); i++) {
         length_vertices[i].color = sf::Color::White;
     }
 
@@ -123,7 +124,6 @@ auto PenduloDuplo::render() -> void {
     window->draw(mass2);
     window->draw(&traces1[0], traces1.size(), sf::LineStrip);
     window->draw(&traces2[0], traces2.size(), sf::LineStrip);
-    window->display();
 }
 
 auto PenduloDuplo::updateXY() -> void {
@@ -140,14 +140,16 @@ auto PenduloDuplo::run() -> void {
     while (window->isOpen()) {
         sf::Event event;
         while (window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed) {
                 window->close();
-            if (event.key.code == sf::Keyboard::Q)
+            }
+            if (event.key.code == sf::Keyboard::Q) {
                 window->close();
+            }
         }
-        window->clear(sf::Color::Black);
-
+        window->clear();
         update();
         render();
+        window->display();
     }
 }

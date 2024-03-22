@@ -17,8 +17,6 @@ class PenduloDuplo {
 
     int trace1_s, trace2_s;
 
-    sf::Clock clock;
-
     float frame_start;
     float accumulator;
     float current_time;
@@ -34,6 +32,7 @@ class PenduloDuplo {
 
     bool show_length = true;
 
+    sf::Clock clock;
     sf::Color color_trace;
     sf::VertexBuffer vertex_buffer;
     std::vector<sf::Vertex> length_vertices;
