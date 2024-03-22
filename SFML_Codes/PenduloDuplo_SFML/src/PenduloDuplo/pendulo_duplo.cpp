@@ -1,5 +1,4 @@
 #include "pendulo_duplo.hpp"
-#include <SFML/Graphics/Sprite.hpp>
 
 PenduloDuplo::PenduloDuplo(float l1, float l2, float m1, float m2, float O1,
                            float O2)

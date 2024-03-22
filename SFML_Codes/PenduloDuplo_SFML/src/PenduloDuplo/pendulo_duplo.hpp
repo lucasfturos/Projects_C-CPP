@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Graphics/Sprite.hpp>
 #include <cmath>
 #include <memory>
 #include <vector>
