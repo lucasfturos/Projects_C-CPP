@@ -1,45 +1,44 @@
 #include "pendulo_duplo.hpp"
+#include <SFML/Graphics/Sprite.hpp>
 
 PenduloDuplo::PenduloDuplo(float l1, float l2, float m1, float m2, float O1,
-                           float O2, float half_width, float half_height) {
-    this->half_width = half_width;
-    this->half_height = half_height;
-    this->l1 = l1;
-    this->l2 = l2;
-    this->m1 = m1;
-    this->m2 = m2;
-    this->O1 = O1;
-    this->O2 = O2;
+                           float O2)
+    : m_l1(l1), m_l2(l2), m_m1(m1), m_m2(m2), m_O1(O1), m_O2(O2), alpha1(0),
+      alpha2(0), w1(0), w2(0),
+      frame_start(clock.getElapsedTime().asMilliseconds()), length_vertices(3) {
 
-    alpha1 = 0;
-    alpha2 = 0;
-    w1 = 0;
-    w2 = 0;
+    window = std::make_shared<sf::RenderWindow>(
+        sf::VideoMode(width, height), "Pendulo Duplo em SFML",
+        sf::Style::Titlebar | sf::Style::Close);
+    window->setFramerateLimit(fps);
 
-    frame_start = clock.getElapsedTime().asMilliseconds();
+    desktop = std::make_shared<sf::VideoMode>(sf::VideoMode::getDesktopMode());
+
+    half_width = static_cast<float>(window->getSize().x / 2.0f);
+    half_height = static_cast<float>(window->getSize().y / 2.0f);
+
+    window->setPosition(sf::Vector2i(desktop->width / 2.0f - half_width,
+                                     desktop->height / 2.0f - half_height));
 }
 
 auto PenduloDuplo::setupRenderObjects() -> void {
-    texture.create(width, height);
-    this->setTexture(texture.getTexture());
-
-    ver_buffer.create(3);
-    ver_buffer.setPrimitiveType(sf::LineStrip);
+    vertex_buffer.create(3);
+    vertex_buffer.setPrimitiveType(sf::LineStrip);
 
     length_vertices[0].position = sf::Vector2f(half_width, half_height * 0.7);
     for (auto i{0}; i < 3; i++) {
         length_vertices[i].color = sf::Color::White;
     }
 
-    base.setRadius(m1);
+    base.setRadius(m_m1);
     base.setOrigin(base.getRadius(), base.getRadius());
     base.setFillColor(sf::Color::White);
 
-    mass1.setRadius(m1);
+    mass1.setRadius(m_m1);
     mass1.setOrigin(mass1.getRadius(), mass1.getRadius());
     mass1.setFillColor(sf::Color::White);
 
-    mass2.setRadius(m2);
+    mass2.setRadius(m_m2);
     mass2.setOrigin(mass2.getRadius(), mass2.getRadius());
     mass2.setFillColor(sf::Color::White);
 }
@@ -54,25 +53,28 @@ auto PenduloDuplo::update() -> void {
     }
 
     while (accumulator > dt) {
-        float sinO1 = sin(O1);
-        float sinO2 = sin(O2);
-        float cosO1 = cos(O1);
-        float cosO2 = cos(O2);
+        float sinO1 = sinf(m_O1);
+        float sinO2 = sinf(m_O2);
+        float cosO1 = cosf(m_O1);
+        float cosO2 = cosf(m_O2);
 
-        float d1 = -g * (2 * m1 + m2) * sinO1 - g * m2 * sin(O1 - 2 * O2) -
-                   2 * m2 * sin(O1 - O2) *
-                       (w2 * w2 * l2 + w1 * w1 * l1 * cos(O1 - O2));
-        float d2 = 2 * sin(O1 - O2) *
-                   (w1 * w1 * l1 * (m1 + m2) + g * (m1 + m2) * cosO1 +
-                    w2 * w2 * l2 * m2 * cos(O1 - O2));
+        float d1 = -g * (2 * m_m1 + m_m2) * sinO1 -
+                   g * m_m2 * sinf(m_O1 - 2 * m_O2) -
+                   2 * m_m2 * sinf(m_O1 - m_O2) *
+                       (w2 * w2 * m_l2 + w1 * w1 * m_l1 * cosf(m_O1 - m_O2));
+        float d2 = 2 * sinf(m_O1 - m_O2) *
+                   (w1 * w1 * m_l1 * (m_m1 + m_m2) + g * (m_m1 + m_m2) * cosO1 +
+                    w2 * w2 * m_l2 * m_m2 * cosf(m_O1 - m_O2));
 
-        alpha1 = d1 / (l1 * (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)));
-        alpha2 = d2 / (l2 * (2 * m1 + m2 - m2 * cos(2 * O1 - 2 * O2)));
+        alpha1 =
+            d1 / (m_l1 * (2 * m_m1 + m_m2 - m_m2 * cosf(2 * m_O1 - 2 * m_O2)));
+        alpha2 =
+            d2 / (m_l2 * (2 * m_m1 + m_m2 - m_m2 * cosf(2 * m_O1 - 2 * m_O2)));
 
         w1 += 0.1f * alpha1 * dt;
         w2 += 0.1f * alpha2 * dt;
-        O1 += 2 * w1 * dt;
-        O2 += 2 * w2 * dt;
+        m_O1 += 2 * w1 * dt;
+        m_O2 += 2 * w2 * dt;
 
         accumulator -= dt;
     }
@@ -88,7 +90,7 @@ auto PenduloDuplo::render() -> void {
 
     length_vertices[1].position = end_pos1;
     length_vertices[2].position = end_pos2;
-    ver_buffer.update(length_vertices);
+    vertex_buffer.update(length_vertices.data());
 
     base.setPosition(half_width, half_height * 0.7f);
     mass1.setPosition(end_pos1);
@@ -112,23 +114,41 @@ auto PenduloDuplo::render() -> void {
         traces2[trace2_s - 1].position = end_pos2;
     }
 
-    texture.clear(sf::Color::Black);
+    window->clear(sf::Color::Black);
     if (show_length) {
-        texture.draw(ver_buffer);
+        window->draw(vertex_buffer);
     }
 
-    texture.draw(base);
-    texture.draw(mass1);
-    texture.draw(mass2);
-    texture.draw(&traces1[0], traces1.size(), sf::LineStrip);
-    texture.draw(&traces2[0], traces2.size(), sf::LineStrip);
-    texture.display();
+    window->draw(base);
+    window->draw(mass1);
+    window->draw(mass2);
+    window->draw(&traces1[0], traces1.size(), sf::LineStrip);
+    window->draw(&traces2[0], traces2.size(), sf::LineStrip);
+    window->display();
 }
 
 auto PenduloDuplo::updateXY() -> void {
-    x1 = l1 * sin(O1);
-    y1 = l1 * cos(O1);
+    x1 = m_l1 * sinf(m_O1);
+    y1 = m_l1 * cosf(m_O1);
 
-    x2 = x1 + l2 * sin(O2);
-    y2 = y1 + l2 * cos(O2);
+    x2 = x1 + m_l2 * sinf(m_O2);
+    y2 = y1 + m_l2 * cosf(m_O2);
+}
+
+auto PenduloDuplo::run() -> void {
+    setupRenderObjects();
+
+    while (window->isOpen()) {
+        sf::Event event;
+        while (window->pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window->close();
+            if (event.key.code == sf::Keyboard::Q)
+                window->close();
+        }
+        window->clear(sf::Color::Black);
+
+        update();
+        render();
+    }
 }
