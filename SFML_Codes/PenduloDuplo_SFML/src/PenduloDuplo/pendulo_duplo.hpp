@@ -44,12 +44,12 @@ class PenduloDuplo {
     std::shared_ptr<sf::RenderWindow> window;
     std::shared_ptr<sf::VideoMode> desktop;
 
-    void updateXY();
-
-  public:
-    void setupRenderObjects();
     void update();
     void render();
+    void updateXY();
+    void setupRenderObjects();
+
+  public:
     void run();
 
     PenduloDuplo(float, float, float, float, float, float);
