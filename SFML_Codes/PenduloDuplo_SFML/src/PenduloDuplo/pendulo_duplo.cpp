@@ -122,8 +122,8 @@ auto PenduloDuplo::render() -> void {
     window->draw(base);
     window->draw(mass1);
     window->draw(mass2);
-    window->draw(&traces1[0], traces1.size(), sf::LineStrip);
-    window->draw(&traces2[0], traces2.size(), sf::LineStrip);
+    window->draw(traces1.data(), traces1.size(), sf::LineStrip);
+    window->draw(traces2.data(), traces2.size(), sf::LinesStrip);
 }
 
 auto PenduloDuplo::updateXY() -> void {
