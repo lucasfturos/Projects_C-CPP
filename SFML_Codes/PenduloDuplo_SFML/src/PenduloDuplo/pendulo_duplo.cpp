@@ -122,7 +122,7 @@ auto PenduloDuplo::render() -> void {
     sf::VertexArray oscilated_traces2(sf::LinesStrip, traces.size());
     for (std::size_t i = 0; i < traces.size(); ++i) {
         sf::Vector2f position = traces[i].position;
-        position.y += wave_amplitude * sinf(i * 0.7f + current_time * 0.7f);
+        position.y += wave_amplitude * sinf(i * w1 + current_time * w2);
         sf::Color vertex_color(
             static_cast<sf::Uint8>(start_color.r * (1 - current_time) +
                                    end_color.r * current_time),
