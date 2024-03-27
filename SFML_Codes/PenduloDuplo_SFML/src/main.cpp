@@ -3,8 +3,10 @@
 
 int main() {
     try {
-        auto pendulo = std::make_shared<PenduloDuplo>(
-            3, 3, 15, 15, 90 * pi / 180, 90 * pi / 180);
+        float mass = 20;
+        float length = 280;
+        auto pendulo = std::make_shared<PenduloDuplo>(length, length, mass,
+                                                      mass, 3 * pi / 4, pi / 2);
         pendulo->run();
     } catch (const std::exception &e) {
         std::cerr << "Exception: " << e.what() << '\n';
