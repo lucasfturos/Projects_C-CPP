@@ -22,7 +22,7 @@ PenduloDuplo::PenduloDuplo(float l1, float l2, float m1, float m2, float O1,
     frame_start = clock.getElapsedTime().asMilliseconds();
 }
 
-auto PenduloDuplo::setupRenderObjects() -> void {
+auto PenduloDuplo::setupRender() -> void {
     vertex_buffer.create(3);
     vertex_buffer.setPrimitiveType(sf::LineStrip);
 
@@ -149,21 +149,32 @@ auto PenduloDuplo::render() -> void {
 auto PenduloDuplo::togglePause() -> void { paused = !paused; }
 
 auto PenduloDuplo::run() -> void {
-    setupRenderObjects();
+    setupRender();
 
     while (window->isOpen()) {
         sf::Event event;
         while (window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
+            switch (event.type) {
+            case sf::Event::Closed:
                 window->close();
-            } else if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::Q) {
+                break;
+            case sf::Event::KeyPressed: {
+                switch (event.key.code) {
+                case sf::Keyboard::Q:
                     window->close();
-                } else if (event.key.code == sf::Keyboard::Space) {
+                    break;
+                case sf::Keyboard::Space:
                     togglePause();
+                    break;
+                default:
+                    break;
                 }
+            } 
+            default:
+                break;
             }
         }
+
         window->clear();
         update();
         render();

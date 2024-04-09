@@ -57,7 +57,7 @@ class PenduloDuplo {
     void render();
     void updateXY();
     void togglePause();
-    void setupRenderObjects();
+    void setupRender();
 
   public:
     void run();
