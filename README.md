@@ -10,6 +10,7 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 ```bash
 
     ├── ASCII_Codes
+    │   ├── ASCII_Art_3D
     │   ├── Cubo3DASCII
     │   ├── dotenv
     │   ├── ExpressoesNumericas
@@ -43,6 +44,8 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 <details><summary>Show</summary>
 
 **ASCII Codes**
+
+- ASCII_Art_3D é um projeto onde é feito o plot de arquivos objetos ou modelos 3D calculados em tempo real seus vértices e faces/índices. Projeto feito em C++ no Linux.
 
 - Cubo3DASCII é um cubo feito em C++ sendo feito o plot em modo texto. Foi feito no Linux.
   - OBS: Este projeto foi feito com base no vídeo do canal [Servet Guinarogiu](https://youtu.be/p09i_hoFdd0) para praticar C++.
