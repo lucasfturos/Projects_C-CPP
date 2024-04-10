@@ -1,12 +1,12 @@
 #pragma once
 
-#include "../Point/point.hpp"
+#include "../Vec3/vec3.hpp"
 #include <vector>
 
 class Torus {
   private:
     std::vector<int> indices;
-    std::vector<point3d> vertices;
+    std::vector<vec3d> vertices;
 
     void generateIndices();
     void generateVertices();

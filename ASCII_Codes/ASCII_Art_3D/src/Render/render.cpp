@@ -1,18 +1,17 @@
 #include "render.hpp"
 
-// Render::Render()
-//     : camp(HEIGHT, std::vector<std::string>(WIDTH)),
-//       p(std::make_shared<point3d>()),
-//       torus(std::make_shared<Torus>(0.8, 2.0, 40)),
-//       sources(torus->Sources()), distance(900), alpha(0), beta(0), theta(0)
-//       {}
-
 Render::Render()
     : camp(HEIGHT, std::vector<std::string>(WIDTH)),
       p(std::make_shared<point3d>()),
-      read_object(std::make_shared<ReadObjectFile>("./obj/teapot.obj")),
-      sources(read_object->Sources()), distance(600), alpha(0), beta(0),
-      theta(0) {}
+      torus(std::make_shared<Torus>(0.8, 2.0, 30)), sources(torus->Sources()),
+      distance(400), alpha(0), beta(0), theta(0) {}
+
+// Render::Render()
+//     : camp(HEIGHT, std::vector<std::string>(WIDTH)),
+//       p(std::make_shared<point3d>()),
+//       read_object(std::make_shared<ReadObjectFile>("./obj/teapot.obj")),
+//       sources(read_object->Sources()), distance(700), alpha(0), beta(0),
+//       theta(0) {}
 
 void Render::update() {
     alpha += 0.05;
@@ -48,7 +47,7 @@ void Render::clear() {
         int screenX = static_cast<int>(projectedX);
         int screenY = static_cast<int>(projectedY);
 
-        camp[screenY][screenX] = '*';
+        camp[screenY][screenX] = ':';
 
         int shadowX = screenX + 1;
         int shadowY = screenY + 1;

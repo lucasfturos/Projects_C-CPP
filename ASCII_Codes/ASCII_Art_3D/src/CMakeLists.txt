@@ -2,18 +2,20 @@
 
 # List all the header files in the src directory
 set(SRC_HEADERS
-    Point/point.hpp
+    # Matrix/matrix.hpp
     ReadObjectFile/read_object_file.cpp
     Render/render.hpp
     Torus/torus.hpp
+    Vec3/vec3.hpp
 )
 
 # List all the source files in the src directory
 set(SRC_SOURCES
-    Point/point.cpp
+    # Matrix/matrix.cpp
     ReadObjectFile/read_object_file.cpp
     Render/render.cpp
     Torus/torus.cpp
+    Vec3/vec3.cpp
     main.cpp
 )
 

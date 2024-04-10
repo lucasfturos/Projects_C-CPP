@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Point/point.hpp"
+#include "../Vec3/vec3.hpp"
 #include <fstream>
 #include <iostream>
 #include <sstream>

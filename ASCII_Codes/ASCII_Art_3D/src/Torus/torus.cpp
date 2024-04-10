@@ -38,7 +38,7 @@ void Torus::generateVertices() {
             double y = (outterRadius + innerRadius * cosV) * sinU;
             double z = innerRadius * sinV;
 
-            vertices.push_back(point3d(x, y, z));
+            vertices.push_back(vec3d(x, y, z));
         }
     }
 }
