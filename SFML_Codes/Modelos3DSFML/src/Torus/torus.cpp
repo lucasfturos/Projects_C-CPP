@@ -95,7 +95,6 @@ void Torus::run() {
                 default:
                     break;
                 }
-                break;
             default:
                 break;
             }

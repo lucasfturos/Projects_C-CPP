@@ -67,10 +67,20 @@ void Sphere::run() {
     while (window->isOpen()) {
         sf::Event event;
         while (window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
+            switch (event.type) {
+            case sf::Event::Closed:
                 window->close();
-            } else if (event.type == sf::Event::KeyPressed) {
-                event.key.code == sf::Keyboard::Q ? window->close() : (void(0));
+                break;
+            case sf::Event::KeyPressed:
+                switch (event.key.code) {
+                case sf::Keyboard::Q:
+                    window->close();
+                    break;
+                default:
+                    break;
+                }
+            default:
+                break;
             }
         }
         window->clear();
