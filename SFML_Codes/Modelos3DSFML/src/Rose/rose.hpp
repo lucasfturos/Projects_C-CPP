@@ -30,7 +30,7 @@ class Rose {
     void init();
     void draw();
     float fx(float s);
-    float fy(float x, float s);
+    float fy(float x, float phi);
     sf::Color calculateColor(float radius, float r_min, float r_max);
 
   public:

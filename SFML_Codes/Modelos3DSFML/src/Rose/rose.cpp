@@ -11,14 +11,14 @@ Rose::Rose(float init_theta, float final_theta, float counter)
       init_theta(init_theta), final_theta(final_theta), counter(counter) {}
 
 float Rose::fx(float s) {
-    float a = 1 - std::fmod((3.6 * s), (2 * pi)) / pi;
-    float b = 1.25f * (a * a) - 0.25;
+    float a = 1 - std::fmod((3.6f * s), (2 * pi)) / pi;
+    float b = 1.25f * (a * a) - 0.25f;
     return 1 - 0.5f * (b * b);
 }
 
-float Rose::fy(float x, float s) {
-    float a = 1.27689 * x - 1;
-    return 1.95653 * (x * x) * (a * a) * std::sin(s);
+float Rose::fy(float x, float phi) {
+    float a = 1.2f * x - 1;
+    return 2 * (x * x) * (a * a) * std::sin(phi);
 }
 
 void Rose::init() {
@@ -30,7 +30,7 @@ void Rose::init() {
              s += (final_theta - init_theta) / counter) {
             float phi = pi / 2 * std::exp(-s / (8 * pi));
             float X = fx(s);
-            float Y = fy(x, s);
+            float Y = fy(x, phi);
             float r = X * (x * std::sin(phi) + Y * std::cos(phi));
 
             if (r > 0.0f) {
@@ -51,10 +51,11 @@ void Rose::init() {
 sf::Color Rose::calculateColor(float radius, float r_min, float r_max) {
     float amplitude = 255.0f;
     float normalized_radius = (radius - r_min) / (r_max - r_min);
-    int value = 34 + static_cast<int>(amplitude * normalized_radius);
+    sf::Uint16 value =
+        34 + static_cast<sf::Uint16>(amplitude * normalized_radius);
 
     sf::Uint16 red =
-        amplitude - static_cast<int>(amplitude * normalized_radius);
+        amplitude - static_cast<sf::Uint16>(amplitude * normalized_radius);
     value >>= 8;
     sf::Uint16 green = value & 0x1f;
     value >>= 8;
@@ -69,7 +70,7 @@ void Rose::draw() {
     float r_min = *std::min_element(radius.begin(), radius.end());
     float r_max = *std::max_element(radius.begin(), radius.end());
 
-    for (int i = 0; i < num_vertex; i++) {
+    for (int i = 0; i < num_vertex; ++i) {
         *p = points[i];
         p->rotateY(rotation);
         float zoom = 900.0f;
