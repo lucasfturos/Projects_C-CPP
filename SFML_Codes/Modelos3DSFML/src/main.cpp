@@ -1,5 +1,9 @@
+#include "Rose/rose.hpp"
 #include "Sphere/sphere.hpp"
 #include "Torus/torus.hpp"
+#include "common.hpp"
+
+using std::make_shared;
 
 int main(int argc, char *argv[]) {
     try {
@@ -15,6 +19,9 @@ int main(int argc, char *argv[]) {
         } else if (input == "Sphere") {
             auto sphere = make_shared<Sphere>(30.f, 30.f);
             sphere->run();
+        } else if (input == "Rose") {
+            auto rose = make_shared<Rose>(-2.0f * pi, 15.0f * pi, 950.0f);
+            rose->run();
         } else {
             throw std::runtime_error(
                 "Error: Enter the model name correctly!!!");

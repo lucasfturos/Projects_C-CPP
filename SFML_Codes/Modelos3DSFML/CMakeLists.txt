@@ -14,6 +14,7 @@ set(CMAKE_CXX_STANDARD 14)            # Enable c++14 standard
 set(PROJECT_HEADER                    # Directory of all header file
   src/Sphere/sphere.hpp
   src/Torus/torus.hpp
+  src/Rose/rose.hpp
   src/common.hpp
   src/point.hpp
 )
@@ -21,6 +22,7 @@ set(PROJECT_HEADER                    # Directory of all header file
 set(PROJECT_SOURCE                    # Directory of all source file
   src/Sphere/sphere.cpp
   src/Torus/torus.cpp
+  src/Rose/rose.cpp
   src/main.cpp
 )
 

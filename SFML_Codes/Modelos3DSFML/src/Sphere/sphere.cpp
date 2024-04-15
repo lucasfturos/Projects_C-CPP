@@ -1,12 +1,14 @@
 #include "sphere.hpp"
+#include "../common.hpp"
 
-Sphere::Sphere(float r, float vert) : radius(r), vertex_quanty(vert) {
-    // Variáveis da janela inicializadas
-    window = make_shared<sf::RenderWindow>(
-        sf::VideoMode(WIDTH, HEIGHT), "Bolinha :)",
-        sf::Style::Titlebar | sf::Style::Close);
+using std::make_shared;
 
-    desktop = make_shared<sf::VideoMode>(sf::VideoMode::getDesktopMode());
+Sphere::Sphere(float r, float vert)
+    : radius(r), vertex_quanty(vert),
+      window(make_shared<sf::RenderWindow>(
+          sf::VideoMode(WIDTH, HEIGHT), "Bolinha :)",
+          sf::Style::Titlebar | sf::Style::Close)),
+      desktop(make_shared<sf::VideoMode>(sf::VideoMode::getDesktopMode())) {
 
     if (!texture.loadFromFile("img/earthclouds.jpg")) {
         throw std::invalid_argument("Erro ao carregar a textura!!!");
@@ -14,13 +16,9 @@ Sphere::Sphere(float r, float vert) : radius(r), vertex_quanty(vert) {
 }
 
 void Sphere::init() {
+    points.reserve(static_cast<size_t>(vertex_quanty));
+
     float increment = pi / vertex_quanty;
-
-    auto p = make_shared<Point>();
-
-    points.resize(
-        static_cast<size_t>(vertex_quanty * vertex_quanty * vertex_quanty));
-
     for (float alpha = increment; alpha <= 2 * pi; alpha += increment) {
         for (float beta = increment; beta <= pi; beta += increment) {
             sf::Vector2f tex_coord;
@@ -28,10 +26,10 @@ void Sphere::init() {
             tex_coord.y = beta / (2 * pi);
             tex_coords.emplace_back(tex_coord);
 
-            p->x = cos(alpha) * sin(beta) * radius;
-            p->y = sin(alpha) * radius;
-            p->z = cos(alpha) * cos(beta) * radius;
-            points[num_vertex] = *p;
+            float x = cos(alpha) * sin(beta) * radius;
+            float y = sin(alpha) * radius;
+            float z = cos(alpha) * cos(beta) * radius;
+            points.emplace_back(x, y, z);
             num_vertex++;
         }
     }
@@ -48,8 +46,8 @@ void Sphere::draw() {
         x = p->getProjection(distance, p->x, WIDTH / 2.f, 100.f);
         y = p->getProjection(distance, p->y, HEIGHT / 2.f, 100.f);
 
-        sf::CircleShape circle = p->drawCircle(x, y, 5.f, sf::Color::White);
-        sf::Vector2f texCoord = tex_coords[i];
+        auto circle = p->drawCircle(x, y, 5.f, sf::Color::White);
+        auto texCoord = tex_coords[i];
 
         circle.setTexture(&texture);
         circle.setTextureRect(sf::IntRect(texCoord.x * texture.getSize().x,

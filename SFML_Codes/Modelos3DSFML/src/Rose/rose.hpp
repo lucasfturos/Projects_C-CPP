@@ -11,32 +11,30 @@
 using std::shared_ptr;
 using std::vector;
 
-class Torus {
+class Rose {
   private:
-    float inner_radius;
-    float outter_radius;
-    float vertex_quanty;
     shared_ptr<sf::RenderWindow> window;
     shared_ptr<sf::VideoMode> desktop;
+    float init_theta;
+    float final_theta;
+    float counter;
 
   private:
     // Variáveis
     int num_vertex = 0;
     float rotation = 0;
     vector<Point> points;
-
-    // SFML
-    sf::Texture texture;
-    vector<sf::Vector2f> tex_coords;
+    vector<float> radius;
 
     // Funções auxiliares
     void init();
     void draw();
-    void initTexture(float alpha, float beta);
-    void applyTexture(float x, float y, int index);
+    float fx(float s);
+    float fy(float x, float s);
+    sf::Color calculateColor(float radius, float r_min, float r_max);
 
   public:
-    Torus(float inner, float outter, float vert);
+    Rose(float init_theta, float final_theta, float counter);
 
     // Função principal
     void run();

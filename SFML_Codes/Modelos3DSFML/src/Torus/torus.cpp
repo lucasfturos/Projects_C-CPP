@@ -1,13 +1,14 @@
 #include "torus.hpp"
+#include "../common.hpp"
+
+using std::make_shared;
 
 Torus::Torus(float inner, float outter, float vert)
-    : inner_radius(inner), outter_radius(outter), vertex_quanty(vert) {
-    // Variáveis da janela inicializadas
-    window = make_shared<sf::RenderWindow>(
-        sf::VideoMode(WIDTH, HEIGHT), "Rosquinha :)",
-        sf::Style::Titlebar | sf::Style::Close);
-
-    desktop = make_shared<sf::VideoMode>(sf::VideoMode::getDesktopMode());
+    : inner_radius(inner), outter_radius(outter), vertex_quanty(vert),
+      window(make_shared<sf::RenderWindow>(
+          sf::VideoMode(WIDTH, HEIGHT), "Rosquinha :)",
+          sf::Style::Titlebar | sf::Style::Close)),
+      desktop(make_shared<sf::VideoMode>(sf::VideoMode::getDesktopMode())) {
 
     if (!texture.loadFromFile("img/earthmap.jpg")) {
         throw std::invalid_argument("Erro ao carregar a textura!!!");
@@ -15,18 +16,15 @@ Torus::Torus(float inner, float outter, float vert)
 }
 
 void Torus::init() {
+    points.reserve(static_cast<size_t>(vertex_quanty));
+
     float increment = pi / vertex_quanty;
-    auto p = make_shared<Point>();
-
-    points.resize(
-        static_cast<size_t>(vertex_quanty * vertex_quanty * vertex_quanty));
-
     for (float alpha = increment; alpha <= 2 * pi; alpha += increment) {
         for (float beta = increment; beta <= 2 * pi; beta += increment) {
-            p->x = (outter_radius + inner_radius * cosf(beta)) * cosf(alpha);
-            p->y = (outter_radius + inner_radius * cosf(beta)) * sinf(alpha);
-            p->z = inner_radius * sinf(beta);
-            points[num_vertex] = *p;
+            float x = (outter_radius + inner_radius * cosf(beta)) * cosf(alpha);
+            float y = (outter_radius + inner_radius * cosf(beta)) * sinf(alpha);
+            float z = inner_radius * sinf(beta);
+            points.emplace_back(x, y, z);
             num_vertex++;
         }
     }
@@ -42,7 +40,7 @@ void Torus::initTexture(float alpha, float beta) {
 void Torus::applyTexture(float x, float y, int index) {
     auto p = make_shared<Point>();
     sf::Vector2f tex_coord = tex_coords[index];
-    sf::CircleShape circle(p->drawCircle(x, y, 3.f, sf::Color::White));
+    auto circle = p->drawCircle(x, y, 3.f, sf::Color::White);
 
     // circle.setTexture(&texture);
     // circle.setTextureRect(sf::IntRect(tex_coord.x * texture.getSize().x,
@@ -85,10 +83,21 @@ void Torus::run() {
     while (window->isOpen()) {
         sf::Event event;
         while (window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
+            switch (event.type) {
+            case sf::Event::Closed:
                 window->close();
-            } else if (event.type == sf::Event::KeyPressed) {
-                event.key.code == sf::Keyboard::Q ? window->close() : (void(0));
+                break;
+            case sf::Event::KeyPressed:
+                switch (event.key.code) {
+                case sf::Keyboard::Q:
+                    window->close();
+                    break;
+                default:
+                    break;
+                }
+                break;
+            default:
+                break;
             }
         }
         window->clear();
