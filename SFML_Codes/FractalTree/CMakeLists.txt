@@ -20,7 +20,13 @@ set(PROJECT_SOURCE                    # Directory of all source file
   src/main.cpp
 )
 
-# Add executable target with source and header files listed in PROJECT_HEADER and PROJECT_SOURCE variable
+# Flags of compiling
+add_compile_options(
+  -Wall -Wextra -Wpedantic -Werror -pedantic -g -Ofast 
+)
+
+# Add executable target with source and header files listed in 
+# PROJECT_HEADER and PROJECT_SOURCE variable
 add_executable(${PROJECT_NAME} 
   ${PROJECT_HEADER} 
   ${PROJECT_SOURCE}

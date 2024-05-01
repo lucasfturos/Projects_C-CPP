@@ -6,7 +6,6 @@
 #include <memory>
 #include <vector>
 
-using std::make_shared;
 using std::shared_ptr;
 
 const float pi = M_PI;
@@ -25,13 +24,14 @@ class Render {
 
   private:
     shared_ptr<sf::RenderWindow> window;
+    shared_ptr<sf::VideoMode> desktop;
+
     sf::RectangleShape sliderBar;
     sf::RectangleShape sliderObject;
 
   private:
     void draw();
     void handleEvents();
-    void initializeWindow();
     void initializeSlider();
     void updateSliderPosition();
     void drawTree(int n, float x1, float y1, float x2, float y2, float angle);

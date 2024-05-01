@@ -1,22 +1,18 @@
 #include "render.hpp"
+#include <SFML/Graphics/PrimitiveType.hpp>
 
-Render::Render() {
-    initializeWindow();
-    initializeSlider();
-    isDragging = false;
-    depth = 0;
-    sliderValue = 0;
-}
+using std::make_shared;
 
-void Render::initializeWindow() {
-    window = make_shared<sf::RenderWindow>(
-        sf::VideoMode(WIDTH, HEIGHT), "Fractal Tree",
-        sf::Style::Titlebar | sf::Style::Close);
-    auto desktop = make_shared<sf::VideoMode>(sf::VideoMode::getDesktopMode());
+Render::Render()
+    : depth(0), sliderValue(0), isDragging(false),
+      window(make_shared<sf::RenderWindow>(
+          sf::VideoMode(WIDTH, HEIGHT), "Fractal Tree",
+          sf::Style::Titlebar | sf::Style::Close)),
+      desktop(make_shared<sf::VideoMode>(sf::VideoMode::getDesktopMode())) {
     window->setPosition(
         sf::Vector2i(desktop->width / 2.f - window->getSize().x / 2.f,
                      desktop->height / 2.f - window->getSize().y / 2.f));
-    window->setFramerateLimit(60);
+    initializeSlider();
 }
 
 void Render::initializeSlider() {
@@ -65,28 +61,26 @@ void Render::updateSliderPosition() {
 
 void Render::drawTree(int n, float x1, float y1, float x2, float y2,
                       float angle) {
-    if (n <= 1) {
+    if (n <= 1)
         return;
-    }
 
     std::vector<sf::Vertex> line;
     line.push_back(sf::Vertex(sf::Vector2f(x1, y1)));
     line.push_back(sf::Vertex(sf::Vector2f(x2, y2)));
-    window->draw(line.data(), line.size(), sf::Lines);
+    window->draw(line.data(), line.size(), sf::LinesStrip);
 
-    float xm = (x1 + x2) / 2;
-    float ym = (y1 + y2) / 2;
+    float midX = (x1 + x2) / 2;
+    float midY = (y1 + y2) / 2;
     float newLength = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) * 0.7;
-    float newAngle = angle;
 
-    float x3 = xm + newLength * cos((angle + pi) * pi / 180);
-    float y3 = ym + newLength * sin((angle + pi) * pi / 180);
+    float x3 = midX + newLength * cos(angle * pi / 180);
+    float y3 = midY + newLength * sin(angle * pi / 180);
 
-    float x4 = xm + newLength * cos((angle - pi) * pi / 180);
-    float y4 = ym + newLength * sin((angle - pi) * pi / 180);
+    float x4 = midX + newLength * cos(angle * pi / 180);
+    float y4 = midY + newLength * sin(angle * pi / 180);
 
-    drawTree(n - 1, xm, ym, x3, y3, angle + 45);
-    drawTree(n - 1, xm, ym, x4, y4, angle - 45);
+    drawTree(n - 1, midX, midY, x3, y3, angle + 45);
+    drawTree(n - 1, midX, midY, x4, y4, angle - 45);
 }
 
 void Render::draw() {
@@ -94,7 +88,6 @@ void Render::draw() {
     window->draw(sliderBar);
     window->draw(sliderObject);
     float angle = -90;
-    float treeHeight = 0;
     float trunkHeight = 400;
     drawTree(sliderValue, WIDTH / 2.f, HEIGHT, WIDTH / 2.f,
              HEIGHT - trunkHeight, angle);
@@ -102,6 +95,7 @@ void Render::draw() {
 }
 
 void Render::run() {
+    window->setFramerateLimit(60);
     while (window->isOpen()) {
         handleEvents();
         updateSliderPosition();

@@ -1,5 +1,7 @@
 #include "Render/render.hpp"
 
+using std::make_shared;
+
 int main() {
     try {
         auto render = make_shared<Render>();
