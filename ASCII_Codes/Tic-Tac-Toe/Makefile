@@ -1,6 +1,7 @@
 run: build
-	@./Tic-Tac-Toe
+	@./Game
 build:
-	@g++ -o Tic-Tac-Toe Jogo.cpp
+	@g++ -Wall -Wextra -Wpedantic -Werror -pedantic -g -o Game \
+		main.cpp Computador/Dificuldade.cpp Jogador/Jogador.cpp Tabuleiro/Tabuleiro.cpp
 remove:
-	@rm -rf Tic-Tac-Toe
+	@rm -rf Game
