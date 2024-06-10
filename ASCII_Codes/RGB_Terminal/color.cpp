@@ -48,47 +48,33 @@ void Color::rgb_to_hsl(int r, int g, int b, int *h, int *s, int *l) {
     float b_ = b / 255.0f;
 
     float epsilon = 1e-6;
-    float cmax = r_;
-
-    if (g_ > cmax) {
-        cmax = g_;
-    }
-    if (b_ > cmax) {
-        cmax = b_;
-    }
-
-    float cmin = r_;
-    if (g_ < cmin) {
-        cmin = g_;
-    }
-    if (b_ < cmin) {
-        cmin = b_;
-    }
-
+    float cmax = std::max(r_, std::max(g_, b_));
+    float cmin = std::min(r_, std::min(g_, b_));
     float delta = cmax - cmin;
-    // H
-    float hf = 0;
+    float hf, sf, lf;
     if (delta < epsilon) {
         hf = 0;
-    } else if (cmax == r_) {
-        hf = 60 * fmodf((g_ - b_) / delta, 6.0f);
-    } else if (cmax == g_) {
-        hf = 60 * ((b_ - r_) / delta + 2);
-    } else if (cmax == b_) {
-        hf = 60 * ((r_ - g_) / delta + 4);
+        sf = 0;
+        lf = (cmax + cmin) / 2.0f;
     } else {
-        assert(0 && "Inacessivel");
+        if (cmax == r_) {
+            hf = 60 * std::fmod((g_ - b_) / delta, 6.0f);
+        } else if (cmax == g_) {
+            hf = 60 * ((b_ - r_) / delta + 2);
+        } else if (cmax == b_) {
+            hf = 60 * ((r_ - g_) / delta + 4);
+        } else {
+            assert(0 && "Inacessivel");
+        }
     }
-    // S
-    float lf = (cmax + cmin) / 2.0f; // L
-    float sf = 0;
+    lf = (cmax + cmin) / 2.0f;
     if (delta < epsilon) {
         sf = 0.0;
     } else {
-        sf = delta / (1 - fabsf(2 * lf - 1));
+        sf = delta / (1 - std::fabs(2 * lf - 1));
     }
 
-    *h = fmodf(fmodf(hf, 360.0f) + 360.0f, 360.0f);
+    *h = std::fmod(std::fmod(hf, 360.0f) + 360.0f, 360.0f);
     *s = (sf * 100.0f);
     *l = (lf * 100.0f);
 }
@@ -148,16 +134,6 @@ void Color::run_image(int argc, char *argv[]) {
                        resize_width, resize_height,
                        sizeof(uint32_t) * resize_width, 4);
 
-    for (int i{0}; i < 256; ++i) {
-        int r = table_rgb[i][0];
-        int g = table_rgb[i][1];
-        int b = table_rgb[i][2];
-        int h = table_hsl[i][0];
-        int s = table_hsl[i][1];
-        int l = table_hsl[i][2];
-        rgb_to_hsl(r, g, b, &h, &s, &l);
-    }
-
     for (int y{0}; y < resize_height; y++) {
         for (int x{0}; x < resize_width; x++) {
             uint32_t pixel = resize_pixels[y * resize_width + x];
@@ -165,9 +141,9 @@ void Color::run_image(int argc, char *argv[]) {
             int g = (pixel >> 8 * 1) & 0xFF;
             int b = (pixel >> 8 * 2) & 0xFF;
             int a = (pixel >> 8 * 3) & 0xFF;
-            r = a * r / 255;
-            g = a * g / 255;
-            b = a * b / 255;
+            r *= a / 255;
+            g *= a / 255;
+            b *= a / 255;
             int h, s, l;
             rgb_to_hsl(r, g, b, &h, &s, &l);
             std::cout << "\e[48;5;" << find_ansi_hsl(h, s, l) << "m  ";
