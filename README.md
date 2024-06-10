@@ -5,6 +5,7 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
 ## Categoria
 
 As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Codes, Qt_Codes e SFML_Codes), logo a baixo está presente a organização das pastas:
+
 <details><summary>Show</summary>
 
 ```bash
@@ -16,11 +17,13 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
     │   ├── ExpressoesNumericas
     │   ├── Natal code
     │   ├── PenduloDuploASCII
-    │   ├── RGB_Terminal 
+    │   ├── RGB_Terminal
     │   ├── SnakeGame
     │   ├── termtetris
     │   ├── Tic-Tac-Toe
     │   └── ToneGenerator
+    ├── OpenCV_Codes
+    │   └── FilterImage
     ├── OpenGL_Codes
     │   ├── Esfera3DOpenGL
     │   ├── Torus3DOpenGL
@@ -38,61 +41,69 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 
 </details>
 
-
 ## Sobre eles:
 
 <details><summary>Show</summary>
 
-**ASCII Codes**
+### ASCII Codes
 
-- ASCII_Art_3D é um projeto onde é feito o plot de arquivos objetos ou modelos 3D calculados em tempo real seus vértices e faces/índices. Projeto feito em C++ no Linux.
+-   ASCII_Art_3D é um projeto onde é feito o plot de arquivos objetos ou modelos 3D calculados em tempo real seus vértices e faces/índices. Projeto feito em C++ no Linux.
 
-- Cubo3DASCII é um cubo feito em C++ sendo feito o plot em modo texto. Foi feito no Linux.
-  - OBS: Este projeto foi feito com base no vídeo do canal [Servet Guinarogiu](https://youtu.be/p09i_hoFdd0) para praticar C++.
+-   Cubo3DASCII é um cubo feito em C++ sendo feito o plot em modo texto. Foi feito no Linux.
 
-- dotenv é um projeto com duas funções, gera uma chave de API aleatória (key.cpp), lê o arquivo .env e mostra na tela as variáveis de ambiente (env_read.cpp), no caso API_KEY no .env de exemplo. Foi feito em C++.
+    -   OBS: Este projeto foi feito com base no vídeo do canal [Servet Guinarogiu](https://youtu.be/p09i_hoFdd0) para praticar C++.
 
-- ExpressoesNumericas é uma calculadora de expressões algébricas, resolve expressões com adição, subtração, multiplicação, divisão e potência e pode usar parênteses para separar melhor a ordem da resolução. Foi feito em C++.
-  - OBS: Este projeto foi feito com base no desafio 14 do site [OsProgramadores](https://osprogramadores.com/), caso queira conhecer os [Desafios](https://osprogramadores.com/desafios/) fique a vontade.
+-   dotenv é um projeto com duas funções, gera uma chave de API aleatória (key.cpp), lê o arquivo .env e mostra na tela as variáveis de ambiente (env_read.cpp), no caso API_KEY no .env de exemplo. Foi feito em C++.
 
-- Tic-Tac-Toe é o jogo da velha feito em C++ usando classes (uma tentativa de classe abstrata). Foi feito no Linux.
+-   ExpressoesNumericas é uma calculadora de expressões algébricas, resolve expressões com adição, subtração, multiplicação, divisão e potência e pode usar parênteses para separar melhor a ordem da resolução. Foi feito em C++.
 
-- Natal code é uma árvore de Natal feita em C. Foi feito no Windows e testada no Linux.
+    -   OBS: Este projeto foi feito com base no desafio 14 do site [OsProgramadores](https://osprogramadores.com/), caso queira conhecer os [Desafios](https://osprogramadores.com/desafios/) fique a vontade.
 
-- PenduloDuploASCII é uma simulação do movimento caótico de um pêndulo duplo, seu plot é em modo texto (ASCII). Foi feito no Linux.
-  - OBS: Esta simulação foi feita com base no código do [DinoZ1729](https://github.com/DinoZ1729/Double-Pendulum) para estudar sobre simulações de movimentos caóticos e praticar C++.
+-   Tic-Tac-Toe é o jogo da velha feito em C++ usando classes (uma tentativa de classe abstrata). Foi feito no Linux.
 
-- RGB_Terminal é um suporte para imagens para o terminal. Foi feito em C++ no Linux.
-  - OBS: Este suporte foi feito com base no vídeo [_3D ASCII with Colors_](https://youtu.be/M-sIyi9VMSU) do canal [Tsoding Daily](https://www.youtube.com/@TsodingDaily).
+-   Natal code é uma árvore de Natal feita em C. Foi feito no Windows e testada no Linux.
 
-- SnakeGame é o jogo da cobrinha feito em C. Foi feito no Linux.
+-   PenduloDuploASCII é uma simulação do movimento caótico de um pêndulo duplo, seu plot é em modo texto (ASCII). Foi feito no Linux.
 
-- ToneGenerator é para criar arquivos de áudio (no formato wav) para testes de som. Foi feito em C++ no Linux.
+    -   OBS: Esta simulação foi feita com base no código do [DinoZ1729](https://github.com/DinoZ1729/Double-Pendulum) para estudar sobre simulações de movimentos caóticos e praticar C++.
 
-**OpenGL Codes**
+-   RGB_Terminal é um suporte para imagens para o terminal. Foi feito em C++ no Linux.
 
-- Esfera3DOpenGL é uma esfera feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
+    -   OBS: Este suporte foi feito com base no vídeo [_3D ASCII with Colors_](https://youtu.be/M-sIyi9VMSU) do canal [Tsoding Daily](https://www.youtube.com/@TsodingDaily).
 
-- Torus3DOpenGL é uma toróide feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
+-   SnakeGame é o jogo da cobrinha feito em C. Foi feito no Linux.
 
-- TrianguloOpenGL é um triângulo colorido feito em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
+-   ToneGenerator é para criar arquivos de áudio (no formato wav) para testes de som. Foi feito em C++ no Linux.
 
-**Qt Codes**
+### OpenCV Codes
 
-- CuboOpenGL é um cubo feito com as funções do Qt6 e C++. Foi feito no Linux com a IDE Qt Creator.
+-   FilterImage é uma aplicação simples do OpenCV onde é demonstrado alguns filtros usados para atenuar bordas na imagem, o projeto é em C++. Foi feito no Linux.
 
-- MiniNavegador é um navegador que pode mostrar páginas Web por link, foi feito com o Qt6 e C++. Foi usado o Linux e a IDE Qt Creator.
+### OpenGL Codes
 
-**SFML Codes**
+-   Esfera3DOpenGL é uma esfera feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
 
-- FractalTree é um modelo matemático da área dos fractais e é uma boa demonstração de recursão usando o C++ e a biblioteca do SFML. Foi feito no Linux.
+-   Torus3DOpenGL é uma toróide feita em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
 
-- Modelos3DSFML fiz dois modelos 3D de uma esfera e uma rosquinha usando o SFML e matemática. Foi feito no Linux.
-  - OBS: Na pasta a uma pasta com nome de img, o site de onde veio as imagens é [Solar System Scope](https://www.solarsystemscope.com/textures/). O uso das imagens foi para aplicar uma textura para testar.
+-   TrianguloOpenGL é um triângulo colorido feito em C++ usando a biblioteca OpenGL e o Glut. Foi feito no Linux.
 
-- Orb é desenhado 3 órbitas e ao longo que elas vão passando fica seu rastro em 3 cores diferentes (vermelho, ciano e preto), seu desenho foi feito com auxílio da biblioteca SFML. Foi feito no Linux.
+### Qt Codes
 
-- PenduloDuplo_SFML é uma simulação de um pêndulo duplo, seu plot foi feito utilizando a biblioteca do SFML. Foi feito no sistema operacional Debian em C++.
+-   CuboOpenGL é um cubo feito com as funções do Qt6 e C++. Foi feito no Linux com a IDE Qt Creator.
+
+-   MiniNavegador é um navegador que pode mostrar páginas Web por link, foi feito com o Qt6 e C++. Foi usado o Linux e a IDE Qt Creator.
+
+### SFML Codes
+
+-   FractalTree é um modelo matemático da área dos fractais e é uma boa demonstração de recursão usando o C++ e a biblioteca do SFML. Foi feito no Linux.
+
+-   Modelos3DSFML fiz dois modelos 3D de uma esfera e uma rosquinha usando o SFML e matemática. Foi feito no Linux.
+
+    -   OBS: Na pasta a uma pasta com nome de img, o site de onde veio as imagens é [Solar System Scope](https://www.solarsystemscope.com/textures/). O uso das imagens foi para aplicar uma textura para testar.
+
+-   Orb é desenhado 3 órbitas e ao longo que elas vão passando fica seu rastro em 3 cores diferentes (vermelho, ciano e preto), seu desenho foi feito com auxílio da biblioteca SFML. Foi feito no Linux.
+
+-   PenduloDuplo_SFML é uma simulação de um pêndulo duplo, seu plot foi feito utilizando a biblioteca do SFML. Foi feito no sistema operacional Debian em C++.
 
 </details>
 
@@ -102,41 +113,35 @@ Para usar os códigos presentes neste repositório é necessário ter as seguint
 
 <details><summary>Show</summary>
 
+### Instalação do OpenGL e GLUT
 
-- O OpenGL e o Glut estão disponíveis no site:
+O OpenGL e o Glut estão disponíveis no site:
 
-```
-https://www.khronos.org/opengl/wiki/Getting_Started
-https://www.opengl.org/resources/libraries/glut/glut_downloads.php
-```
+1. [OpenGL Wiki: Getting Started - Khronos Group](https://www.khronos.org/opengl/wiki/Getting_Started)
 
-- O SFML está disponível no link:
+2. [GLUT - The OpenGL Utility Toolkit](https://www.opengl.org/resources/libraries/glut/glut_downloads.php)
 
-```
-https://www.sfml-dev.org/
-```
+### Instalação do SFML
 
-- Instalação no Linux para as ferramentas do C e C++ (Debian):
+Siga a documentação do [SFML](https://www.sfml-dev.org/) para instala-lo.
+
+### Instalação no Linux para as ferramentas do C e C++ (Debian)
 
 ```
 sudo apt install cmake make gcc g++
 ```
 
-- Instalação no Windows para as ferramentas do C e C++:
+### Instalação no Windows para as ferramentas do C e C++
 
-No Windows use o MinGW e instale o gcc, g++, cmake e make, o link do site:
+No Windows use o [MinGW](https://www.mingw-w64.org/) e instale o gcc, g++, cmake e make.
 
-```
-https://www.mingw-w64.org/
-```
+### Instalação do Qt:
 
-- Instalação do Qt6:
+Siga a documentação no site do [Qt](https://www.qt.io/) para instala-lo.
 
-Siga a documentação do site do Qt, segue o link do site:
+### Instalação do OpenCV:
 
-```
-https://www.qt.io/
-```
+Siga a documentação no site do [OpenCV](https://opencv.org/) para instala-lo.
 
 </details>
 
@@ -144,11 +149,10 @@ https://www.qt.io/
 
 Após fazer a instalação das dependências acima você precisa seguir esses orientações para usar os projetos:
 
-
 <details><summary>Show</summary>
 
-
 Para os projetos com CMakeLists.txt é só rodar o comando:
+
 ```
 cmake -B build
 cd build/
@@ -157,9 +161,11 @@ make
 ```
 
 Para os projetos com Makefile é só rodar o comando:
+
 ```
 make run
 ```
+
 Ou abra o arquivo Makefile e veja quais os comandos existem e teste cada um.
 
 </details>
@@ -168,7 +174,8 @@ Ou abra o arquivo Makefile e veja quais os comandos existem e teste cada um.
 
 Documentações para consulta:
 
- - [Boost C++ Libraries](https://www.boost.org/)
- - [cplusplus.com](https://cplusplus.com/)
- - [cppreference.com](https://pt.cppreference.com/w/P%C3%A1gina_principal)
- - [Documentation Qt](https://doc.qt.io/)
+1.  [Boost C++ Libraries](https://www.boost.org/)
+2.  [cplusplus.com](https://cplusplus.com/)
+3.  [cppreference.com](https://pt.cppreference.com/w/P%C3%A1gina_principal)
+4.  [Documentation OpenCV](https://docs.opencv.org/4.x/d1/dfb/intro.html)
+5.  [Documentation Qt](https://doc.qt.io/)
