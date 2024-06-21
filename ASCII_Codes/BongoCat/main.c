@@ -5,7 +5,7 @@
 #include <time.h>
 
 #define WIDTH 128
-#define HEIGHT 32
+#define HEIGHT 40
 
 void drawBitmap(const u_int8_t *bitmap) {
     for (int y = 0; y < HEIGHT; y++) {
@@ -20,7 +20,7 @@ void drawBitmap(const u_int8_t *bitmap) {
 }
 
 int main(void) {
-    struct timespec ts = {.tv_sec = 0, .tv_nsec = 200000000L};
+    struct timespec ts = {.tv_sec = 0, .tv_nsec = 250000000L};
 
     while (1) {
         printf("\033c");
