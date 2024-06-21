@@ -4,7 +4,7 @@ Repositório focado para salvar meus estudos nas linguagens C e C++
 
 ## Categoria
 
-As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Codes, Qt_Codes e SFML_Codes), logo a baixo está presente a organização das pastas:
+As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenCV_Codes, OpenGL_Codes, Qt_Codes e SFML_Codes), logo a baixo está presente a organização das pastas:
 
 <details><summary>Show</summary>
 
@@ -12,6 +12,7 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 
     ├── ASCII_Codes
     │   ├── ASCII_Art_3D
+    │   ├── BongoCat
     │   ├── Cubo3DASCII
     │   ├── dotenv
     │   ├── ExpressoesNumericas
@@ -48,6 +49,8 @@ As pastas do repositório estão divididas em categorias (ASCII_Codes, OpenGL_Co
 ### ASCII Codes
 
 -   ASCII_Art_3D é um projeto onde é feito o plot de arquivos objetos ou modelos 3D calculados em tempo real seus vértices e faces/índices. Projeto feito em C++ no Linux.
+
+-   BongoCat é uma animação simples usando bitmap e o plot em ASCII. Código feito em C no Linux.
 
 -   Cubo3DASCII é um cubo feito em C++ sendo feito o plot em modo texto. Foi feito no Linux.
 
